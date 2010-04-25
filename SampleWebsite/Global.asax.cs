@@ -27,8 +27,9 @@ namespace SampleWebsite
 
 		protected void Application_Start()
 		{
-			RegisterRoutes( RouteTable.Routes );
-		}
+            AreaRegistration.RegisterAllAreas();
+            RegisterRoutes(RouteTable.Routes);
+        }
 
 		protected void Application_AuthenticateRequest()
 		{

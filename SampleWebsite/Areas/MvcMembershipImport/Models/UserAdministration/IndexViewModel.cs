@@ -2,7 +2,7 @@
 using System.Web.Security;
 using PagedList;
 
-namespace SampleWebsite.Models.UserAdministration
+namespace MvcMembershipImport.Models.UserAdministration
 {
 	public class IndexViewModel
 	{

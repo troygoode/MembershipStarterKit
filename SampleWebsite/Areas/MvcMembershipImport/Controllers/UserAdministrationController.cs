@@ -4,10 +4,10 @@ using System.Net.Mail;
 using System.Web.Mvc;
 using System.Web.Security;
 using MvcMembership;
-using SampleWebsite.Models;
-using SampleWebsite.Models.UserAdministration;
+using MvcMembershipImport.Models;
+using MvcMembershipImport.Models.UserAdministration;
 
-namespace SampleWebsite.Controllers
+namespace MvcMembershipImport.Controllers
 {
 	//[Authorize(Roles="Administrator")]
 	public class UserAdministrationController : Controller

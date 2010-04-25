@@ -1,6 +1,6 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IndexViewModel>" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<MvcMembershipImport.Models.UserAdministration.IndexViewModel>" %>
 <%@ Import Namespace="System.Globalization"%>
-<%@ Import Namespace="SampleWebsite.Models.UserAdministration"%>
+<%@ Import Namespace="MvcMembershipImport.Models.UserAdministration"%>
 <%@ Import Namespace="PagedList"%>
 
 <asp:Content ContentPlaceHolderID="TitleContent" runat="server">

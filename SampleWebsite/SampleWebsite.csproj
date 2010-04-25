@@ -63,9 +63,10 @@
     <Reference Include="System.Web.Mobile" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Areas\MvcMembershipImport\MvcMembershipImportAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\UserAdministrationController.cs" />
+    <Compile Include="Areas\MvcMembershipImport\Controllers\UserAdministrationController.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -73,11 +74,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\ISmtpClient.cs" />
-    <Compile Include="Models\SmtpClientProxy.cs" />
-    <Compile Include="Models\UserAdministration\DetailsViewModel.cs" />
-    <Compile Include="Models\UserAdministration\IndexViewModel.cs" />
-    <Compile Include="Models\UserAdministration\RoleViewModel.cs" />
+    <Compile Include="Areas\MvcMembershipImport\Models\ISmtpClient.cs" />
+    <Compile Include="Areas\MvcMembershipImport\Models\SmtpClientProxy.cs" />
+    <Compile Include="Areas\MvcMembershipImport\Models\UserAdministration\DetailsViewModel.cs" />
+    <Compile Include="Areas\MvcMembershipImport\Models\UserAdministration\IndexViewModel.cs" />
+    <Compile Include="Areas\MvcMembershipImport\Models\UserAdministration\RoleViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -92,9 +93,9 @@
     <Content Include="Scripts\MicrosoftAjax.js" />
     <Content Include="Scripts\MicrosoftMvcAjax.debug.js" />
     <Content Include="Scripts\MicrosoftMvcAjax.js" />
-    <Content Include="Views\UserAdministration\Details.aspx" />
-    <Content Include="Views\UserAdministration\Index.aspx" />
-    <Content Include="Views\UserAdministration\Role.aspx" />
+    <Content Include="Areas\MvcMembershipImport\Views\UserAdministration\Details.aspx" />
+    <Content Include="Areas\MvcMembershipImport\Views\UserAdministration\Index.aspx" />
+    <Content Include="Areas\MvcMembershipImport\Views\UserAdministration\Role.aspx" />
     <Content Include="Web.config" />
     <Content Include="Content\Site.css" />
     <Content Include="Views\Account\ChangePassword.aspx" />
@@ -115,7 +116,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\MvcMembershipImport\Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\MvcMembershipImport\Views\Shared\" />
+    <Folder Include="Models\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" />

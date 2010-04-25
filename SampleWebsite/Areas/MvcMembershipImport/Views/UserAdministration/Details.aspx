@@ -1,6 +1,6 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<DetailsViewModel>" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<MvcMembershipImport.Models.UserAdministration.DetailsViewModel>" %>
 <%@ Import Namespace="System.Globalization" %>
-<%@ Import Namespace="SampleWebsite.Models.UserAdministration"%>
+<%@ Import Namespace="MvcMembershipImport.Models.UserAdministration"%>
 
 <asp:Content ContentPlaceHolderID="TitleContent" runat="server">
 	User Details: <% =Html.Encode(Model.DisplayName) %>
