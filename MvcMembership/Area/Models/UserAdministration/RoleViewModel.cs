@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Web.Security;
 
-namespace MvcMembershipImport.Models.UserAdministration
+namespace MvcMembership.Area.Models.UserAdministration
 {
 	public class RoleViewModel
 	{

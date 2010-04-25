@@ -1,6 +1,7 @@
 ﻿using System.Web.Mvc;
+using MvcMembership.Area.Controllers;
 
-namespace MvcMembershipImport
+namespace MvcMembership.Area
 {
     public class MvcMembershipImportAreaRegistration : AreaRegistration
     {
@@ -18,7 +19,7 @@ namespace MvcMembershipImport
                 "MvcMembershipImport",
                 "Membership/{controller}/{action}/{id}",
                 new { action = "Index", id = UrlParameter.Optional },
-                new string[] { typeof(MvcMembershipImport.Controllers.UserAdministrationController).Namespace }
+                new string[] { typeof(UserAdministrationController).Namespace }
             );
         }
     }

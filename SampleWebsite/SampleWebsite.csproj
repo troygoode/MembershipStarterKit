@@ -63,10 +63,8 @@
     <Reference Include="System.Web.Mobile" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Areas\MvcMembershipImport\MvcMembershipImportAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Areas\MvcMembershipImport\Controllers\UserAdministrationController.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -74,11 +72,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Areas\MvcMembershipImport\Models\ISmtpClient.cs" />
-    <Compile Include="Areas\MvcMembershipImport\Models\SmtpClientProxy.cs" />
-    <Compile Include="Areas\MvcMembershipImport\Models\UserAdministration\DetailsViewModel.cs" />
-    <Compile Include="Areas\MvcMembershipImport\Models\UserAdministration\IndexViewModel.cs" />
-    <Compile Include="Areas\MvcMembershipImport\Models\UserAdministration\RoleViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,7 +1,6 @@
 ﻿using System.Net.Mail;
-using MvcMembershipImport.Models;
 
-namespace MvcMembershipImport.Models
+namespace MvcMembership.Area.Models
 {
 	public class SmtpClientProxy : ISmtpClient
 	{

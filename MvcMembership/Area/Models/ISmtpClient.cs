@@ -1,6 +1,6 @@
 ﻿using System.Net.Mail;
 
-namespace MvcMembershipImport.Models
+namespace MvcMembership.Area.Models
 {
 	public interface ISmtpClient
 	{

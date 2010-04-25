@@ -1,13 +1,12 @@
-using System;
+﻿using System;
 using System.Linq;
 using System.Net.Mail;
 using System.Web.Mvc;
 using System.Web.Security;
-using MvcMembership;
-using MvcMembershipImport.Models;
-using MvcMembershipImport.Models.UserAdministration;
+using MvcMembership.Area.Models;
+using MvcMembership.Area.Models.UserAdministration;
 
-namespace MvcMembershipImport.Controllers
+namespace MvcMembership.Area.Controllers
 {
 	//[Authorize(Roles="Administrator")]
 	public class UserAdministrationController : Controller
