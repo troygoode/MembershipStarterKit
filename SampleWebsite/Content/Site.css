@@ -114,7 +114,7 @@ page width. Or, you can specify an exact pixel width. */
     padding: 30px 30px 15px 30px;
     background-color: #fff;
     margin-bottom: 30px;
-    _height: 1px; /* only IE6 applies CSS properties starting with an underscrore */
+    _height: 1px; /* only IE6 applies CSS properties starting with an underscore */
 }
 
 #footer
@@ -194,16 +194,6 @@ fieldset
 fieldset p 
 {
     margin: 2px 12px 10px 10px;
-}
-
-fieldset label 
-{
-    display: block;
-}
-
-fieldset label.inline 
-{
-    display: inline;
 }
 
 legend 
@@ -299,9 +289,16 @@ div#title
     text-decoration: none;
 }
 
+/* Styles for validation helpers
+-----------------------------------------------------------*/
 .field-validation-error
 {
     color: #ff0000;
+}
+
+.field-validation-valid
+{
+    display: none;
 }
 
 .input-validation-error
@@ -314,4 +311,34 @@ div#title
 {
     font-weight: bold;
     color: #ff0000;
+}
+
+.validation-summary-valid
+{
+    display: none;
+}
+
+/* Styles for editor and display helpers
+----------------------------------------------------------*/
+.display-label,
+.editor-label,
+.display-field,
+.editor-field
+{
+    margin: 0.5em 0;
+}
+
+.text-box
+{
+    width: 30em;
+}
+
+.text-box.multi-line
+{
+    height: 6.5em;
+}
+
+.tri-state
+{
+    width: 6em;
 }
