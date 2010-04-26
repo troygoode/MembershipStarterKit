@@ -26,7 +26,7 @@ instructions: http://www.asp.net/learn/whitepapers/what-is-new-in-aspnet-mvc/#_T
             if(User != null)
                 Membership.GetUser(true);
         }
-   7. Make sure you have master page Site.Master.  
+   7. Make sure you have master page Site.Master and any views rendered from that file (like perhaps LogonUserControl.ascx) 
       This code will need to be adapted so it works well when used from an Area.
       As far as I can tell, that means changing code that generates links to specify an Area explicitly.
       If the link is not to a page in an area (typical), then an Area of null should be specified.
