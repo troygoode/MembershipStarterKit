@@ -1,6 +1,4 @@
-  This project is based closely on the ASP.Net MVC Membership Starter Kit, which was published
-supporting ASP.Net MVC 1.0.  This project adds support for ASP.Net MVC 2.  The homepage for the
-original project is at http://mvcmembership.codeplex.com/.
+  This project is based closely on the ASP.Net MVC Membership Starter Kit, which was published supporting ASP.Net MVC 1.0.  This project adds support for ASP.Net MVC 2.  The homepage for the original project is at http://mvcmembership.codeplex.com/.
 
   I verified these steps running on Windows Server 2008 R2.
 
