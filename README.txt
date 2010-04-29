@@ -41,3 +41,6 @@ instructions: http://www.asp.net/learn/whitepapers/what-is-new-in-aspnet-mvc/#_T
    
       Html.ActionLink("User Administration", "Index", "UserAdministration", new { Area = "MvcMembershipImport" }, new { })
         
+        
+  Make sure you look at LICENSE.txt, which is included from http://mvcmembership.codeplex.com/license
+
