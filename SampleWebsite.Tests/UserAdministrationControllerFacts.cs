@@ -9,7 +9,6 @@ using MvcMembership;
 using MvcMembership.Area.Controllers;
 using MvcMembership.Area.Models;
 using MvcMembership.Area.Models.UserAdministration;
-using SampleWebsite.Controllers;
 using Xunit;
 using PagedList;
 using Xunit.Extensions;
