@@ -35,7 +35,7 @@ instructions:
 
 ## Configure Membership & Roles Providers
 
-1. Make sure you've configured your web.config properly for Membership and Roles. If you aren’t sure of how to do this, take a look at the first two articles in [this series by Scott Mitchell at 4GuysFromRolla](http://www.4guysfromrolla.com/articles/120705-1.aspx).
+1. Make sure you've configured your web.config properly for Membership and Roles. If you aren't sure of how to do this, take a look at the first two articles in [this series by Scott Mitchell at 4GuysFromRolla](http://www.4guysfromrolla.com/articles/120705-1.aspx).
   * *Hint:* use C:\Windows\Microsoft.NET\Framework\v2.0.50727\aspnet_regsql.exe, and then grant your web site's application pool user access to the database.
 2. Make sure the user identity of your application pool has sufficient permissions to the aspnet database.
 3. Add the following code to your global.asax to keep the membership system updated with each user's last activity date:
@@ -50,8 +50,7 @@ instructions:
 ## Integrate the Views
 
 1. The starter kit relies on your site having a site master page. A default ASP.Net MVC site is generated with a Site.Master in the `\Views\Shared` folder. If you want to isolate something to the starter kit you could put it in `\Areas\MvcMembership\Views\Shared`.
-2. That master page and any contained views will need to specify their Area when generating links, even views not in an area (so the default master page would requires fixes).
-  *. If the link is not to a page in an area (typical), then an Area of "" (empty string) should be specified. For instance, a call to generate a link to the homepage should look like so:
+2. That master page and any contained views will need to specify their Area when generating links, even views not in an area (so the default master page would requires fixes). If the link is not to a page in an area (typical), then an Area of "" (empty string) should be specified. For instance, a call to generate a link to the homepage should look like so:
     `Html.ActionLink("Home", "Index", "Home", new {Area = ""}, new { })`
 3. Add a Membership Administration link to your master page:
     `Html.ActionLink("User Administration", "Index", "UserAdministration", new { Area = "MvcMembershipImport" }, new { })`
