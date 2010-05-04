@@ -26,7 +26,7 @@ instructions:
 
 ## Add the Provided MVC Area (Controller, Views, etc)
  
-1. Copy directories in `MvcMembership\SampleWebSite\Areas\` to `{targetSite}\Areas\`. (If no "Areas" folder exists in your target site, you can just add one.)
+1. Copy directories in `MvcMembership\SampleWebSite\Areas` to `{targetSite}\Areas`. (If no "Areas" folder exists in your target site, you can just add one.)
 2. Ensure your application registers areas on startup:
   1. Application_Start shold call AreaRegistration.RegisterAllAreas().
   2. The routes should be registered before less specific routes.
@@ -49,7 +49,7 @@ instructions:
 
 ## Integrate the Views
 
-1. The starter kit relies on your site having a site master page. A default ASP.Net MVC site is generated with a Site.Master in the `\Views\Shared\` folder. If you want to isolate something to the starter kit you could put it in `\Areas\MvcMembership\Views\Shared\`.
+1. The starter kit relies on your site having a site master page. A default ASP.Net MVC site is generated with a Site.Master in the `\Views\Shared` folder. If you want to isolate something to the starter kit you could put it in `\Areas\MvcMembership\Views\Shared`.
 2. That master page and any contained views will need to specify their Area when generating links, even views not in an area (so the default master page would requires fixes).
   *. If the link is not to a page in an area (typical), then an Area of "" (empty string) should be specified. For instance, a call to generate a link to the homepage should look like so:
     `Html.ActionLink("Home", "Index", "Home", new {Area = ""}, new { })`
