@@ -41,7 +41,7 @@ instructions:
 <pre>
 	protected void Application_AuthenticateRequest()
 	{
-		if(User != null)
+		if(HttpContext.Current.User != null)
 			Membership.GetUser(true);
 	}
 </pre>

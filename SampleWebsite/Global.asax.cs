@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
@@ -33,7 +32,7 @@ namespace SampleWebsite
 
 		protected void Application_AuthenticateRequest()
 		{
-			if(User != null)
+			if (HttpContext.Current.User != null)
 				Membership.GetUser(true);
 		}
 	}
