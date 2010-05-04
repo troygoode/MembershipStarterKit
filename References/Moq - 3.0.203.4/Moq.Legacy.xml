@@ -1,0 +1,125 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Moq.Legacy</name>
+    </assembly>
+    <members>
+        <member name="T:Moq.MockExtensions">
+            <summary>
+            Extensions for backwards compatibility with legacy test code 
+            that uses older features of the API.
+            </summary>
+        </member>
+        <member name="M:Moq.MockExtensions.Verify(Moq.Mock)">
+            <summary>
+            Verifies that all verifiable expectations have been met.
+            </summary>
+            <example group="verification">
+            This example sets up an expectation and marks it as verifiable. After 
+            the mock is used, a <c>Verify()</c> call is issued on the mock 
+            to ensure the method in the setup was invoked:
+            <code>
+            var mock = new Mock&lt;IWarehouse&gt;();
+            mock.Setup(x =&gt; x.HasInventory(TALISKER, 50)).Verifiable().Returns(true);
+            ...
+            // other test code
+            ...
+            // Will throw if the test code has didn't call HasInventory.
+            mock.Verify();
+            </code>
+            </example>
+            <exception cref="T:Moq.MockException">Not all verifiable expectations were met.</exception>
+        </member>
+        <member name="M:Moq.MockExtensions.VerifyAll(Moq.Mock)">
+            <summary>
+            Verifies all expectations regardless of whether they have 
+            been flagged as verifiable.
+            </summary>
+            <example group="verification">
+            This example sets up an expectation without marking it as verifiable. After 
+            the mock is used, a <see cref="M:Moq.MockExtensions.VerifyAll(Moq.Mock)"/> call is issued on the mock 
+            to ensure that all expectations are met:
+            <code>
+            var mock = new Mock&lt;IWarehouse&gt;();
+            mock.Expect(x =&gt; x.HasInventory(TALISKER, 50)).Returns(true);
+            ...
+            // other test code
+            ...
+            // Will throw if the test code has didn't call HasInventory, even 
+            // that expectation was not marked as verifiable.
+            mock.VerifyAll();
+            </code>
+            </example>
+            <exception cref="T:Moq.MockException">At least one expectation was not met.</exception>
+        </member>
+        <member name="T:Moq.MockFactoryExtensions">
+            <summary>
+            Makes legacy members on <see cref="T:Moq.MockFactory"/> visible.
+            </summary>
+        </member>
+        <member name="M:Moq.MockFactoryExtensions.Verify(Moq.MockFactory)">
+            <summary>
+            Verifies all verifiable expectations on all mocks created 
+            by this factory.
+            </summary>
+            <exception cref="T:Moq.MockException">One or more mocks had expectations that were not satisfied.</exception>
+        </member>
+        <member name="M:Moq.MockFactoryExtensions.VerifyAll(Moq.MockFactory)">
+            <summary>
+            Verifies all verifiable expectations on all mocks created 
+            by this factory.
+            </summary>
+            <exception cref="T:Moq.MockException">One or more mocks had expectations that were not satisfied.</exception>
+        </member>
+        <member name="T:Moq.VerifiableExtension">
+            <summary>
+            Makes the Verifiable legacy members on the Moq fluent API visible.
+            </summary>
+        </member>
+        <member name="M:Moq.VerifiableExtension.Verifiable(Moq.Language.Flow.IReturnsResult)">
+            <summary>
+            Marks the setup as verifiable, meaning that a call 
+            to <c>mock.Verify()</c> will check if this particular 
+            setup was matched.
+            </summary>
+            <example>
+            The following example marks the setup as verifiable:
+            <code>
+            mock.Setup(x => x.Execute("ping"))
+                .Returns(true)
+                .Verifiable();
+            </code>
+            </example>
+        </member>
+        <member name="M:Moq.VerifiableExtension.Verifiable(Moq.Language.Flow.IThrowsResult)">
+            <summary>
+            Marks the setup as verifiable, meaning that a call 
+            to <c>mock.Verify()</c> will check if this particular 
+            setup was matched.
+            </summary>
+            <example>
+            The following example marks the setup as verifiable:
+            <code>
+            mock.Setup(x => x.Execute(""))
+                .Throws(new ArgumentException())
+                .Verifiable();
+            </code>
+            </example>
+        </member>
+        <member name="M:Moq.VerifiableExtension.Verifiable(Moq.Language.IVerifies)">
+            <summary>
+            Marks the setup as verifiable, meaning that a call 
+            to <c>mock.Verify()</c> will check if this particular 
+            setup was matched.
+            </summary>
+            <example>
+            The following example marks the setup as verifiable:
+            <code>
+            mock.Setup(x => x.Execute("ping"))
+                .Returns(true)
+                .Verifiable();
+            </code>
+            </example>
+        </member>
+    </members>
+</doc>

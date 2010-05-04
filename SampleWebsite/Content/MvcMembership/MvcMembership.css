@@ -1,0 +1,61 @@
+﻿h3{
+	clear: left;
+}
+ul.paging > li{
+	float: left;
+	list-style-type: none;
+	margin: 1em;
+}
+ul > li > form{
+	display: inline;
+	margin-left: 1em;
+}
+
+dl{
+	margin-left: .9em;
+}
+dl > dt{
+	display: block;
+	float: left;
+	clear: left;
+	height: 1.75em;
+	margin-right: 1em;
+}
+dl > dd{
+	display: block;
+	height: 1.75em;
+}
+
+div.mvcMembership-account > form{
+	display: inline;
+}
+
+div.mvcMembership-allUsers ul{
+	margin: 0;
+}
+div.mvcMembership-allUsers ul.users > li{
+	margin: .5em 0 .5em 0;
+}
+div.mvcMembership-allUsers ul.users > li > span.isOnline{
+	display: block;
+	font-weight: bold;
+	color: #33cc33;
+}
+div.mvcMembership-allUsers ul.users > li > span.isOffline{
+	display: block;
+	color: #999;
+}
+div.mvcMembership-allUsers ul.users > li > span.email{
+	display: block;
+	font-size: .8em;
+}
+div.mvcMembership-allUsers ul.users > li > span.comment{
+	display: block;
+	border: 1px solid #ccc;
+	padding: .25em .5em .25em .5em;
+	margin: .5em 0 .5em 0;
+}
+
+div.mvcMembership-allRoles ul > li{
+	margin: .5em 0 .5em 0;
+}
