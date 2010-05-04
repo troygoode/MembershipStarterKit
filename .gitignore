@@ -1,3 +1,10 @@
+_ReSharper.*
+*.[Rr]eSharper.user
+*.csproj.user
+*.ncb
+*.aps
+*.suo
+DearlyBuilder/TestOutput/
 TestResult.xml
 Tests.VisualState.xml
 [Bb]in
@@ -16,5 +23,6 @@ Tests.VisualState.xml
 *.vspscc
 LastBuild.log
 .svn
-_ReSharper*
 .DS_Store
+*.MDF
+*.LDF

@@ -17,37 +17,12 @@ namespace MvcMembership
 
 		public void Unlock(MembershipUser user)
 		{
-			_membershipProvider.UnlockUser(user.UserName);
-		}
-
-		public void ChangePassword(MembershipUser user, string oldPassword, string newPassword)
-		{
-			_membershipProvider.ChangePassword(user.UserName, oldPassword, newPassword);
-		}
-
-		public void ChangePasswordQuestionAndAnswer(MembershipUser user, string password, string question, string answer)
-		{
-			_membershipProvider.ChangePasswordQuestionAndAnswer(user.UserName, password, question, answer);
-		}
-
-		public string GetPassword(MembershipUser user, string passwordAnswer)
-		{
-			return _membershipProvider.GetPassword(user.UserName, passwordAnswer);
-		}
-
-		public string GetPassword(MembershipUser user)
-		{
-			return user.GetPassword();
+			user.UnlockUser();
 		}
 
 		public string ResetPassword(MembershipUser user, string passwordAnswer)
 		{
-			return _membershipProvider.ResetPassword(user.UserName, passwordAnswer);
-		}
-
-		public string ResetPassword(MembershipUser user)
-		{
-			return user.ResetPassword();
+			return user.ResetPassword(passwordAnswer);
 		}
 
 		#endregion
@@ -113,19 +88,19 @@ namespace MvcMembership
 			_membershipProvider.DeleteUser(user.UserName, false);
 		}
 
-		public void Touch(MembershipUser user)
+		public MembershipUser Touch(MembershipUser user)
 		{
-			_membershipProvider.GetUser(user.UserName, true);
+			return _membershipProvider.GetUser(user.UserName, true);
 		}
 
-		public void Touch(string userName)
+		public MembershipUser Touch(string userName)
 		{
-			_membershipProvider.GetUser(userName, true);
+			return _membershipProvider.GetUser(userName, true);
 		}
 
-		public void Touch(object providerUserKey)
+		public MembershipUser Touch(object providerUserKey)
 		{
-			_membershipProvider.GetUser(providerUserKey, true);
+			return _membershipProvider.GetUser(providerUserKey, true);
 		}
 
 		public int TotalUsers

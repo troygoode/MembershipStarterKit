@@ -12,22 +12,15 @@ namespace MvcMembership.Tests
 	{
 		private readonly Mock<RoleProvider> _roleProvider = new Mock<RoleProvider>();
 		private readonly string[] _roles;
-		private readonly IRolesService _roleWrapper;
-		private readonly Mock<MembershipUser> _user = new Mock<MembershipUser>();
-		private readonly string _username;
-		private readonly Random _rnd;
+		private readonly AspNetRoleProviderWrapper _roleWrapper;
 
 		public RoleServiceFacts()
 		{
-			_rnd = new Random();
-			_username = RandomString();
-			_user.SetupGet(x => x.UserName).Returns(_username);
-
 			_roleWrapper = new AspNetRoleProviderWrapper(_roleProvider.Object);
-
+			var rnd = new Random();
 			var list = new List<string>();
-			for (var i = 0; i < _rnd.Next(); i++)
-				list.Add(_rnd.Next().ToString());
+			for (var i = 0; i < rnd.Next(); i++)
+				list.Add(rnd.Next().ToString());
 			_roles = list.ToArray();
 		}
 
@@ -49,10 +42,13 @@ namespace MvcMembership.Tests
 		public void FindByUser_returns_list_of_roles_by_username()
 		{
 			//arrange
-			_roleProvider.Setup(x => x.GetRolesForUser(_username)).Returns(_roles).Verifiable();
+			var username = new Random().Next().ToString();
+			var user = new Mock<MembershipUser>();
+			user.SetupGet(x => x.UserName).Returns(username);
+			_roleProvider.Setup(x => x.GetRolesForUser(username)).Returns(_roles).Verifiable();
 
 			//act
-			var result = _roleWrapper.FindByUser(_user.Object);
+			var result = _roleWrapper.FindByUser(user.Object);
 
 			//assert
 			Assert.Equal(_roles, result);
@@ -63,10 +59,11 @@ namespace MvcMembership.Tests
 		public void FindByUserName_returns_list_of_roles_by_username()
 		{
 			//arrange
-			_roleProvider.Setup(x => x.GetRolesForUser(_username)).Returns(_roles).Verifiable();
+			var username = new Random().Next().ToString();
+			_roleProvider.Setup(x => x.GetRolesForUser(username)).Returns(_roles).Verifiable();
 
 			//act
-			var result = _roleWrapper.FindByUserName(_username);
+			var result = _roleWrapper.FindByUserName(username);
 
 			//assert
 			Assert.Equal(_roles, result);
@@ -77,7 +74,7 @@ namespace MvcMembership.Tests
 		public void FindUserNamesByRole_returns_list_of_usernames()
 		{
 			//arrange
-			var roleName = RandomString();
+			var roleName = new Random().Next().ToString();
 			var users = new List<string>().ToArray();
 			_roleProvider.Setup(x => x.GetUsersInRole(roleName)).Returns(users).Verifiable();
 
@@ -93,15 +90,18 @@ namespace MvcMembership.Tests
 		public void AddToRole_adds_user_to_role()
 		{
 			//arrange
-			var roleName = RandomString();
+			var roleName = new Random().Next().ToString();
+			var username = new Random().Next().ToString();
+			var user = new Mock<MembershipUser>();
+			user.SetupGet(x => x.UserName).Returns(username);
 
 			//act
-			_roleWrapper.AddToRole(_user.Object, roleName);
+			_roleWrapper.AddToRole(user.Object, roleName);
 
 			//assert
 			_roleProvider.Verify(
 				x =>
-				x.AddUsersToRoles(It.Is<string[]>(v => v.Contains(_username) && v.Length == 1),
+				x.AddUsersToRoles(It.Is<string[]>(v => v.Contains(username) && v.Length == 1),
 				                  It.Is<string[]>(v => v.Contains(roleName) && v.Length == 1)));
 		}
 
@@ -109,15 +109,18 @@ namespace MvcMembership.Tests
 		public void RemoveFromRole_removes_user_from_role()
 		{
 			//arrange
-			var roleName = RandomString();
+			var roleName = new Random().Next().ToString();
+			var username = new Random().Next().ToString();
+			var user = new Mock<MembershipUser>();
+			user.SetupGet(x => x.UserName).Returns(username);
 
 			//act
-			_roleWrapper.RemoveFromRole(_user.Object, roleName);
+			_roleWrapper.RemoveFromRole(user.Object, roleName);
 
 			//assert
 			_roleProvider.Verify(
 				x =>
-				x.RemoveUsersFromRoles(It.Is<string[]>(v => v.Contains(_username) && v.Length == 1),
+				x.RemoveUsersFromRoles(It.Is<string[]>(v => v.Contains(username) && v.Length == 1),
 				                       It.Is<string[]>(v => v.Contains(roleName) && v.Length == 1)));
 		}
 
@@ -125,11 +128,14 @@ namespace MvcMembership.Tests
 		public void IsInRole_returns_whether_or_not_supplied_user_is_in_role(bool isInRole)
 		{
 			//arrange
-			var role = RandomString();
-			_roleProvider.Setup(x => x.IsUserInRole(_username, role)).Returns(isInRole).Verifiable();
+			var username = new Random().Next().ToString();
+			var user = new Mock<MembershipUser>();
+			user.SetupGet(x => x.UserName).Returns(username);
+			var role = new Random().Next().ToString();
+			_roleProvider.Setup(x => x.IsUserInRole(username, role)).Returns(isInRole).Verifiable();
 
 			//act
-			var result = _roleWrapper.IsInRole(_user.Object, role);
+			var result = _roleWrapper.IsInRole(user.Object, role);
 
 			//assert
 			Assert.Equal(isInRole, result);
@@ -140,7 +146,7 @@ namespace MvcMembership.Tests
 		public void Create_creates_role()
 		{
 			//arrange
-			var role = RandomString();
+			var role = new Random().Next().ToString();
 
 			//act
 			_roleWrapper.Create(role);
@@ -153,18 +159,13 @@ namespace MvcMembership.Tests
 		public void Delete_deletes_role()
 		{
 			//arrange
-			var role = RandomString();
+			var role = new Random().Next().ToString();
 
 			//act
 			_roleWrapper.Delete(role);
 
 			//assert
 			_roleProvider.Verify(x => x.DeleteRole(role, false));
-		}
-
-		private string RandomString()
-		{
-			return _rnd.Next().ToString();
 		}
 	}
 }

@@ -9,16 +9,11 @@ namespace MvcMembership.Tests
 	public class UserServiceFacts
 	{
 		private readonly Mock<MembershipProvider> _membershipProvider = new Mock<MembershipProvider>();
-		private readonly IUserService _membershipWrapper;
+		private readonly AspNetMembershipProviderWrapper _membershipWrapper;
 		private readonly Mock<MembershipUser> _user = new Mock<MembershipUser>();
-		private readonly Random _rnd;
-		private readonly string _username;
 
 		public UserServiceFacts()
 		{
-			_rnd = new Random();
-			_username = RandomString();
-			_user.SetupGet(x => x.UserName).Returns(_username);
 			_membershipWrapper = new AspNetMembershipProviderWrapper(_membershipProvider.Object);
 		}
 
@@ -79,9 +74,10 @@ namespace MvcMembership.Tests
 			var service = new AspNetMembershipProviderWrapper(membership);
 			const int index = 3;
 			const int size = 10;
+			var username = new Random().Next().ToString();
 
 			//act
-			var result = service.FindByUserName(_username, index, size);
+			var result = service.FindByUserName(username, index, size);
 
 			//assert
 			Assert.Equal(index, membership.PageIndex);
@@ -114,7 +110,7 @@ namespace MvcMembership.Tests
 			var service = new AspNetMembershipProviderWrapper(membership);
 			const int index = 3;
 			const int size = 10;
-			var emailAddress = RandomString();
+			var emailAddress = new Random().Next().ToString();
 
 			//act
 			var result = service.FindByEmail(emailAddress, index, size);
@@ -146,10 +142,11 @@ namespace MvcMembership.Tests
 		public void Get_by_UserName_passes_username_to_provider_and_doesnt_update_timestamp_and_returns_user()
 		{
 			//arrange
-			_membershipProvider.Setup(x => x.GetUser(_username, false)).Returns(_user.Object).Verifiable();
+			var userName = new Random().Next().ToString();
+			_membershipProvider.Setup(x => x.GetUser(userName, false)).Returns(_user.Object).Verifiable();
 
 			//act
-			var result = _membershipWrapper.Get(_username);
+			var result = _membershipWrapper.Get(userName);
 
 			//assert
 			Assert.Same(_user.Object, result);
@@ -157,42 +154,48 @@ namespace MvcMembership.Tests
 		}
 
 		[Fact]
-		public void Touch_by_user_updates_last_active_timestamp()
+		public void Touch_by_user_returns_user_by_username_and_updates_last_active_timestamp()
 		{
 			//arrange
-			_membershipProvider.Setup(x=> x.GetUser(_username, true)).Returns(_user.Object).Verifiable();
+			var userName = new Random().Next().ToString();
+			_user.SetupGet(x => x.UserName).Returns(userName);
+			_membershipProvider.Setup(x=> x.GetUser(userName, true)).Returns(_user.Object).Verifiable();
 
 			//act
-			_membershipWrapper.Touch(_user.Object);
+			var result = _membershipWrapper.Touch(_user.Object);
 
 			//assert
+			Assert.Same(_user.Object, result);
 			_membershipProvider.Verify();
 		}
 
 		[Fact]
-		public void Touch_by_username_updates_last_active_timestamp()
+		public void Touch_by_username_returns_user_by_username_and_updates_last_active_timestamp()
 		{
 			//arrange
-			_membershipProvider.Setup(x => x.GetUser(_username, true)).Returns(_user.Object).Verifiable();
+			var userName = new Random().Next().ToString();
+			_membershipProvider.Setup(x => x.GetUser(userName, true)).Returns(_user.Object).Verifiable();
 
 			//act
-			_membershipWrapper.Touch(_username);
+			var result = _membershipWrapper.Touch(userName);
 
 			//assert
+			Assert.Same(_user.Object, result);
 			_membershipProvider.Verify();
 		}
 
 		[Fact]
-		public void Touch_by_providerUserKey_updates_last_active_timestamp()
+		public void Touch_by_providerUserKey_returns_user_by_providerUserKey_and_updates_last_active_timestamp()
 		{
 			//arrange
 			var puk = Guid.NewGuid();
 			_membershipProvider.Setup(x => x.GetUser(puk, true)).Returns(_user.Object).Verifiable();
 
 			//act
-			_membershipWrapper.Touch(puk);
+			var result = _membershipWrapper.Touch(puk);
 
 			//assert
+			Assert.Same(_user.Object, result);
 			_membershipProvider.Verify();
 		}
 
@@ -209,11 +212,15 @@ namespace MvcMembership.Tests
 		[Fact]
 		public void Delete_passes_username_to_Delete_method()
 		{
+			//arrange
+			var username = new Random().Next().ToString();
+			_user.SetupGet(x => x.UserName).Returns(username);
+
 			//act
 			_membershipWrapper.Delete(_user.Object);
 
 			//assert
-			_membershipProvider.Verify(x => x.DeleteUser(_username, false));
+			_membershipProvider.Verify(x => x.DeleteUser(username, false));
 		}
 
 		[Fact]
@@ -314,10 +321,5 @@ namespace MvcMembership.Tests
 		}
 
 		#endregion
-
-		private string RandomString()
-		{
-			return _rnd.Next().ToString();
-		}
 	}
 }

@@ -6,9 +6,10 @@ using System.Web.Mvc;
 using System.Web.Security;
 using Moq;
 using MvcMembership;
+using MvcMembership.Area.Controllers;
+using MvcMembership.Area.Models;
+using MvcMembership.Area.Models.UserAdministration;
 using SampleWebsite.Controllers;
-using SampleWebsite.Models;
-using SampleWebsite.Models.UserAdministration;
 using Xunit;
 using PagedList;
 using Xunit.Extensions;
@@ -69,20 +70,6 @@ namespace SampleWebsite.Tests
 			_rolesService.Verify();
 			var viewModel = Assert.IsType<IndexViewModel>(result.ViewData.Model);
 			Assert.Same(roles, viewModel.Roles);
-		}
-
-		[Fact]
-		public void Index_throws_exception_if_duplicate_roles_found()
-		{
-			//arrange
-			var roles = new[] { "one", "two", "three", "three" };
-			_rolesService.Setup(x => x.FindAll()).Returns(roles);
-
-			//act
-			Assert.ThrowsDelegate shouldThrow = () => _controller.Index(1);
-
-			//assert
-			Assert.Throws<UserAdministrationController.DuplicateRoleException>(shouldThrow);
 		}
 
 		[Fact]
@@ -243,27 +230,6 @@ namespace SampleWebsite.Tests
 				Assert.True(viewModel.Roles.ContainsKey(role));
 				Assert.Equal(rolesSubset.Contains(role), viewModel.Roles[role] );
 			}
-		}
-
-		[Fact]
-		public void Details_throws_exception_if_duplicate_roles_found()
-		{
-			//arrange
-			var id = Guid.NewGuid();
-			var username = new Random().Next().ToString();
-			var user = new Mock<MembershipUser>();
-			user.SetupGet(x => x.UserName).Returns(username);
-			_userService.Setup(x => x.Get(id)).Returns(user.Object);
-			var rolesSuperset = new[] { "one", "two", "three", "four", "four" };
-			var rolesSubset = new[] { "two", "three" };
-			_rolesService.Setup(x => x.FindAll()).Returns(rolesSuperset).Verifiable();
-			_rolesService.Setup(x => x.FindByUser(user.Object)).Returns(rolesSubset).Verifiable();
-
-			//act
-			Assert.ThrowsDelegate shouldThrow = () => _controller.Details(id);
-
-			//assert
-			Assert.Throws<UserAdministrationController.DuplicateRoleException>(shouldThrow);
 		}
 
 		[Fact]

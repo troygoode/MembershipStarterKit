@@ -42,6 +42,10 @@
     </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Mvc, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Routing">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
@@ -50,6 +54,13 @@
     <Compile Include="IPasswordService.cs" />
     <Compile Include="IRolesService.cs" />
     <Compile Include="IUserService.cs" />
+    <Compile Include="Area\Controllers\UserAdministrationController.cs" />
+    <Compile Include="Area\Models\ISmtpClient.cs" />
+    <Compile Include="Area\Models\SmtpClientProxy.cs" />
+    <Compile Include="Area\Models\UserAdministration\DetailsViewModel.cs" />
+    <Compile Include="Area\Models\UserAdministration\IndexViewModel.cs" />
+    <Compile Include="Area\Models\UserAdministration\RoleViewModel.cs" />
+    <Compile Include="Area\MvcMembershipImportAreaRegistration.cs" />
     <Compile Include="Settings\ILoginSettings.cs" />
     <Compile Include="Settings\IMembershipSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
