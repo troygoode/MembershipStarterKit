@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Web.Security;
 
-namespace MvcMembership.Area.Models.UserAdministration
+namespace MvcMembership.Areas.UserAdministration.Models.UserAdministration
 {
 	public class DetailsViewModel
 	{

@@ -90,9 +90,9 @@
     <Content Include="Scripts\MicrosoftAjax.js" />
     <Content Include="Scripts\MicrosoftMvcAjax.debug.js" />
     <Content Include="Scripts\MicrosoftMvcAjax.js" />
-    <Content Include="Areas\MvcMembershipImport\Views\UserAdministration\Details.aspx" />
-    <Content Include="Areas\MvcMembershipImport\Views\UserAdministration\Index.aspx" />
-    <Content Include="Areas\MvcMembershipImport\Views\UserAdministration\Role.aspx" />
+    <Content Include="Areas\UserAdministration\Views\UserAdministration\Details.aspx" />
+    <Content Include="Areas\UserAdministration\Views\UserAdministration\Index.aspx" />
+    <Content Include="Areas\UserAdministration\Views\UserAdministration\Role.aspx" />
     <Content Include="Web.config" />
     <Content Include="Content\Site.css" />
     <Content Include="Views\Account\ChangePassword.aspx" />
@@ -113,11 +113,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\MvcMembershipImport\Views\Web.config" />
+    <Content Include="Areas\UserAdministration\Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\MvcMembershipImport\Views\Shared\" />
+    <Folder Include="Areas\UserAdministration\Views\Shared\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

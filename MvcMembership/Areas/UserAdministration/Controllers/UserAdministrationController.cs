@@ -3,12 +3,12 @@ using System.Linq;
 using System.Net.Mail;
 using System.Web.Mvc;
 using System.Web.Security;
-using MvcMembership.Area.Models;
-using MvcMembership.Area.Models.UserAdministration;
+using MvcMembership.Areas.UserAdministration.Models;
+using MvcMembership.Areas.UserAdministration.Models.UserAdministration;
 
-namespace MvcMembership.Area.Controllers
+namespace MvcMembership.Areas.UserAdministration.Controllers
 {
-	//[Authorize(Roles="Administrator")]
+	[Authorize(Roles="Administrator")]
 	public class UserAdministrationController : Controller
 	{
 		private const int PageSize = 10;
