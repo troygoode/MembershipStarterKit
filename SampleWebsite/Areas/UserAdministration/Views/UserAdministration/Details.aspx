@@ -7,7 +7,7 @@
 
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
 
-	<link href='<% =Url.Content("~/Content/MvcMembership/MvcMembership.css") %>' rel="stylesheet" type="text/css" />
+	<link href='<% =Url.Content("~/Content/MvcMembership.css") %>' rel="stylesheet" type="text/css" />
 
     <h2>User Details: <% =Html.Encode(Model.DisplayName) %> [<% =Model.Status %>]</h2>
 
@@ -119,6 +119,6 @@
 			</li>
 			<% } %>
 		</ul>
-		</div>
+	</div>
 
 </asp:Content>

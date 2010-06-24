@@ -1,6 +1,4 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<SampleWebsite.Areas.UserAdministration.Models.UserAdministration.IndexViewModel>" %>
-<%@ Import Namespace="System.Globalization"%>
-<%@ Import Namespace="PagedList"%>
 
 <asp:Content ContentPlaceHolderID="TitleContent" runat="server">
 	User Administration
@@ -8,7 +6,7 @@
 
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
 
-	<link href='<% =Url.Content("~/Content/MvcMembership/MvcMembership.css") %>' rel="stylesheet" type="text/css" />
+	<link href='<% =Url.Content("~/Content/MvcMembership.css") %>' rel="stylesheet" type="text/css" />
 
     <h2>User Administration</h2>
     
@@ -42,7 +40,6 @@
 			<% } %>
 		</ul>
 		<ul class="paging">
-
 			<% if (Model.Users.IsFirstPage){ %>
 			<li>First</li>
 			<li>Previous</li>

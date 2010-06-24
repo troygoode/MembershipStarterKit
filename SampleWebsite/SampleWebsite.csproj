@@ -87,7 +87,7 @@
     <Content Include="Areas\UserAdministration\Views\UserAdministration\Details.aspx" />
     <Content Include="Areas\UserAdministration\Views\UserAdministration\Index.aspx" />
     <Content Include="Areas\UserAdministration\Views\UserAdministration\Role.aspx" />
-    <Content Include="Content\MvcMembership\MvcMembership.css" />
+    <Content Include="Content\MvcMembership.css" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\jquery-1.3.2-vsdoc.js" />

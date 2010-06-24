@@ -6,7 +6,7 @@
 
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
 
-	<link href='<% =Url.Content("~/Content/MvcMembership/MvcMembership.css") %>' rel="stylesheet" type="text/css" />
+	<link href='<% =Url.Content("~/Content/MvcMembership.css") %>' rel="stylesheet" type="text/css" />
 
     <h2>Role: <% =Html.Encode(Model.Role) %></h2>
     <div class="mvcMembership-roleUsers">
