@@ -3,12 +3,12 @@ using System.Linq;
 using System.Net.Mail;
 using System.Web.Mvc;
 using System.Web.Security;
-using MvcMembership.Areas.UserAdministration.Models;
-using MvcMembership.Areas.UserAdministration.Models.UserAdministration;
+using MvcMembership;
+using SampleWebsite.Areas.UserAdministration.Models.UserAdministration;
 
-namespace MvcMembership.Areas.UserAdministration.Controllers
+namespace SampleWebsite.Areas.UserAdministration.Controllers
 {
-	[Authorize(Roles="Administrator")]
+	[Authorize(Roles = "Administrator")]
 	public class UserAdministrationController : Controller
 	{
 		private const int PageSize = 10;
@@ -44,10 +44,10 @@ namespace MvcMembership.Areas.UserAdministration.Controllers
 		public ViewResult Index(int? index)
 		{
 			return View(new IndexViewModel
-			            	{
+							{
 								Users = _userService.FindAll(index ?? 0, PageSize),
-			            		Roles = _rolesService.FindAll()
-			            	});
+								Roles = _rolesService.FindAll()
+							});
 		}
 
 		[AcceptVerbs(HttpVerbs.Post)]
@@ -67,10 +67,10 @@ namespace MvcMembership.Areas.UserAdministration.Controllers
 		public ViewResult Role(string id)
 		{
 			return View(new RoleViewModel
-			            	{
-			            		Role = id,
+							{
+								Role = id,
 								Users = _rolesService.FindUserNamesByRole(id).Select(username => _userService.Get(username))
-			            	});
+							});
 		}
 
 		public ViewResult Details(Guid id)
@@ -78,30 +78,30 @@ namespace MvcMembership.Areas.UserAdministration.Controllers
 			var user = _userService.Get(id);
 			var userRoles = _rolesService.FindByUser(user);
 			return View(new DetailsViewModel
-			            	{
-			            		DisplayName = user.UserName,
-			            		User = user,
-			            		Roles = _rolesService.FindAll().ToDictionary(role=> role, role=> userRoles.Contains(role)),
-			            		Status = user.IsOnline
-			            		         	? DetailsViewModel.StatusEnum.Online
-			            		         	: !user.IsApproved
-			            		         	  	? DetailsViewModel.StatusEnum.Unapproved
-			            		         	  	: user.IsLockedOut
-			            		         	  	  	? DetailsViewModel.StatusEnum.LockedOut
-			            		         	  	  	: DetailsViewModel.StatusEnum.Offline
-			            	});
+							{
+								DisplayName = user.UserName,
+								User = user,
+								Roles = _rolesService.FindAll().ToDictionary(role => role, role => userRoles.Contains(role)),
+								Status = user.IsOnline
+											? DetailsViewModel.StatusEnum.Online
+											: !user.IsApproved
+												? DetailsViewModel.StatusEnum.Unapproved
+												: user.IsLockedOut
+													? DetailsViewModel.StatusEnum.LockedOut
+													: DetailsViewModel.StatusEnum.Offline
+							});
 		}
 
 		[AcceptVerbs(HttpVerbs.Post)]
 		public RedirectToRouteResult Details(Guid id,
-		                            [Bind(Prefix = "User.Email")] string email,
-		                            [Bind(Prefix = "User.Comment")] string comment)
+									[Bind(Prefix = "User.Email")] string email,
+									[Bind(Prefix = "User.Comment")] string comment)
 		{
 			var user = _userService.Get(id);
 			user.Email = email;
 			user.Comment = comment;
 			_userService.Update(user);
-			return RedirectToAction("Details", new {id});
+			return RedirectToAction("Details", new { id });
 		}
 
 		[AcceptVerbs(HttpVerbs.Post)]
@@ -117,14 +117,14 @@ namespace MvcMembership.Areas.UserAdministration.Controllers
 			var user = _userService.Get(id);
 			user.IsApproved = isApproved;
 			_userService.Update(user);
-			return RedirectToAction("Details", new {id});
+			return RedirectToAction("Details", new { id });
 		}
 
 		[AcceptVerbs(HttpVerbs.Post)]
 		public RedirectToRouteResult Unlock(Guid id)
 		{
 			_passwordService.Unlock(_userService.Get(id));
-			return RedirectToAction("Details", new {id});
+			return RedirectToAction("Details", new { id });
 		}
 
 		[AcceptVerbs(HttpVerbs.Post)]
@@ -136,7 +136,7 @@ namespace MvcMembership.Areas.UserAdministration.Controllers
 			var body = ResetPasswordBody + newPassword;
 			_smtpClient.Send(new MailMessage(ResetPasswordFromAddress, user.Email, ResetPasswordSubject, body));
 
-			return RedirectToAction("Details", new {id});
+			return RedirectToAction("Details", new { id });
 		}
 
 		[AcceptVerbs(HttpVerbs.Post)]

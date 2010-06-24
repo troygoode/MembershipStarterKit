@@ -1,4 +1,4 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<MvcMembership.Areas.UserAdministration.Models.UserAdministration.DetailsViewModel>" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<SampleWebsite.Areas.UserAdministration.Models.UserAdministration.DetailsViewModel>" %>
 <%@ Import Namespace="System.Globalization" %>
 
 <asp:Content ContentPlaceHolderID="TitleContent" runat="server">

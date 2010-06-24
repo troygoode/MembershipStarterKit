@@ -1,4 +1,4 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<MvcMembership.Areas.UserAdministration.Models.UserAdministration.IndexViewModel>" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<SampleWebsite.Areas.UserAdministration.Models.UserAdministration.IndexViewModel>" %>
 <%@ Import Namespace="System.Globalization"%>
 <%@ Import Namespace="PagedList"%>
 

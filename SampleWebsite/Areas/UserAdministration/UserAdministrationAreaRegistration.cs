@@ -1,7 +1,6 @@
 ﻿using System.Web.Mvc;
-using MvcMembership.Areas.UserAdministration.Controllers;
 
-namespace MvcMembership.Areas.UserAdministration
+namespace SampleWebsite.Areas.UserAdministration
 {
 	public class UserAdministrationAreaRegistration : AreaRegistration
 	{
@@ -9,17 +8,16 @@ namespace MvcMembership.Areas.UserAdministration
 		{
 			get
 			{
-				return "MvcMembership";
+				return "UserAdministration";
 			}
 		}
 
 		public override void RegisterArea(AreaRegistrationContext context)
 		{
 			context.MapRoute(
-				"MvcMembership_UserAdministration",
+				"UserAdministration_default",
 				"UserAdministration/{controller}/{action}/{id}",
-				new { action = "Index", id = UrlParameter.Optional },
-				new [] { typeof(UserAdministrationController).Namespace }
+				new { action = "Index", id = UrlParameter.Optional }
 			);
 		}
 	}

@@ -70,18 +70,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Areas\UserAdministration\UserAdministrationAreaRegistration.cs" />
     <Compile Include="AspNetMembershipProviderWrapper.cs" />
     <Compile Include="AspNetRoleProviderWrapper.cs" />
     <Compile Include="IPasswordService.cs" />
     <Compile Include="IRolesService.cs" />
     <Compile Include="IUserService.cs" />
-    <Compile Include="Areas\UserAdministration\Controllers\UserAdministrationController.cs" />
-    <Compile Include="Areas\UserAdministration\Models\ISmtpClient.cs" />
-    <Compile Include="Areas\UserAdministration\Models\SmtpClientProxy.cs" />
-    <Compile Include="Areas\UserAdministration\Models\UserAdministration\DetailsViewModel.cs" />
-    <Compile Include="Areas\UserAdministration\Models\UserAdministration\IndexViewModel.cs" />
-    <Compile Include="Areas\UserAdministration\Models\UserAdministration\RoleViewModel.cs" />
+    <Compile Include="ISmtpClient.cs" />
+    <Compile Include="SmtpClientProxy.cs" />
     <Compile Include="Settings\ILoginSettings.cs" />
     <Compile Include="Settings\IMembershipSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -112,6 +107,7 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

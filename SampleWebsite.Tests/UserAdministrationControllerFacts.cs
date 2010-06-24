@@ -6,11 +6,10 @@ using System.Web.Mvc;
 using System.Web.Security;
 using Moq;
 using MvcMembership;
-using MvcMembership.Areas.UserAdministration.Controllers;
-using MvcMembership.Areas.UserAdministration.Models;
-using MvcMembership.Areas.UserAdministration.Models.UserAdministration;
-using Xunit;
 using PagedList;
+using SampleWebsite.Areas.UserAdministration.Controllers;
+using SampleWebsite.Areas.UserAdministration.Models.UserAdministration;
+using Xunit;
 using Xunit.Extensions;
 
 namespace SampleWebsite.Tests
@@ -59,8 +58,8 @@ namespace SampleWebsite.Tests
 		public void Index_retrieves_roles_from_rolesService_and_passes_to_view()
 		{
 			//arrange
-			var roles = new[] {"one", "two", "three", "four"};
-			_rolesService.Setup(x=> x.FindAll()).Returns(roles).Verifiable();
+			var roles = new[] { "one", "two", "three", "four" };
+			_rolesService.Setup(x => x.FindAll()).Returns(roles).Verifiable();
 
 			//act
 			var result = _controller.Index(1);
@@ -178,7 +177,7 @@ namespace SampleWebsite.Tests
 		{
 			//arrange
 			_userService.Setup(x => x.Get(It.IsAny<Guid>())).Returns(new Mock<MembershipUser>().Object);
-		
+
 			//act
 			var result = _controller.Details(Guid.Empty);
 
@@ -214,9 +213,9 @@ namespace SampleWebsite.Tests
 			user.SetupGet(x => x.UserName).Returns(username);
 			_userService.Setup(x => x.Get(id)).Returns(user.Object);
 			var rolesSuperset = new[] { "one", "two", "three", "four", "five" };
-			var rolesSubset = new[] {"two", "four"};
-			_rolesService.Setup(x=> x.FindAll()).Returns(rolesSuperset).Verifiable();
-			_rolesService.Setup(x=> x.FindByUser(user.Object)).Returns(rolesSubset).Verifiable();
+			var rolesSubset = new[] { "two", "four" };
+			_rolesService.Setup(x => x.FindAll()).Returns(rolesSuperset).Verifiable();
+			_rolesService.Setup(x => x.FindByUser(user.Object)).Returns(rolesSubset).Verifiable();
 
 			//act
 			var result = _controller.Details(id);
@@ -224,10 +223,10 @@ namespace SampleWebsite.Tests
 			//assert
 			var viewModel = Assert.IsType<DetailsViewModel>(result.ViewData.Model);
 			Assert.Equal(rolesSuperset.Length, viewModel.Roles.Count);
-			foreach(var role in rolesSuperset)
+			foreach (var role in rolesSuperset)
 			{
 				Assert.True(viewModel.Roles.ContainsKey(role));
-				Assert.Equal(rolesSubset.Contains(role), viewModel.Roles[role] );
+				Assert.Equal(rolesSubset.Contains(role), viewModel.Roles[role]);
 			}
 		}
 
@@ -273,15 +272,15 @@ namespace SampleWebsite.Tests
 			var id = Guid.NewGuid();
 			var email = new Random().Next().ToString();
 			var user = new Mock<MembershipUser>();
-			user.SetupProperty(x=> x.Email);
-			_userService.Setup(x=> x.Get(id)).Returns(user.Object).Verifiable();
+			user.SetupProperty(x => x.Email);
+			_userService.Setup(x => x.Get(id)).Returns(user.Object).Verifiable();
 
 			//act
 			_controller.Details(id, email, "");
 
 			//assert
 			_userService.Verify();
-			_userService.Verify(x=> x.Update(It.Is<MembershipUser>(v=> v == user.Object && v.Email == email)));
+			_userService.Verify(x => x.Update(It.Is<MembershipUser>(v => v == user.Object && v.Email == email)));
 		}
 
 		[Fact]
@@ -323,10 +322,10 @@ namespace SampleWebsite.Tests
 			var id = Guid.NewGuid();
 			var user = new Mock<MembershipUser>();
 			_userService.Setup(x => x.Get(id)).Returns(user.Object).Verifiable();
-			
+
 			//act
 			_controller.DeleteUser(id);
-			
+
 			//assert
 			_userService.Verify();
 			_userService.Verify(x => x.Delete(user.Object));
@@ -339,10 +338,10 @@ namespace SampleWebsite.Tests
 			var id = Guid.NewGuid();
 			var user = new Mock<MembershipUser>();
 			_userService.Setup(x => x.Get(id)).Returns(user.Object).Verifiable();
-			
+
 			//act
 			var result = _controller.ChangeApproval(id, true);
-			
+
 			//assert
 			Assert.Equal("Details", result.RouteValues["action"]);
 			Assert.Null(result.RouteValues["controller"]);
@@ -362,7 +361,7 @@ namespace SampleWebsite.Tests
 			_controller.ChangeApproval(id, isApproved);
 
 			//assert
-			_userService.Verify(x => x.Update(It.Is<MembershipUser>(v=> v == user.Object && v.IsApproved == isApproved)));
+			_userService.Verify(x => x.Update(It.Is<MembershipUser>(v => v == user.Object && v.IsApproved == isApproved)));
 		}
 
 		[Fact]
@@ -446,12 +445,12 @@ namespace SampleWebsite.Tests
 			//arrange - verify the message that is sent to the user
 			var emailIsValid = false;
 			_smtpClient.Setup(x => x.Send(It.IsAny<MailMessage>())).Callback<MailMessage>(msg =>
-			                                                                              	{
-																								if(msg.To.Count == 1 &&
+																							{
+																								if (msg.To.Count == 1 &&
 																								msg.To[0].Address == emailAddress &&
 																								msg.Body.Contains(newPassword))
 																									emailIsValid = true;
-			                                                                              	});
+																							});
 
 			//act
 			_controller.ResetPassword(id, "password answer");
@@ -465,7 +464,7 @@ namespace SampleWebsite.Tests
 		{
 			//arrange
 			var id = Guid.NewGuid();
-		
+
 			//act
 			var result = _controller.AddToRole(id, "");
 
@@ -489,7 +488,7 @@ namespace SampleWebsite.Tests
 
 			//assert
 			_userService.Verify();
-			_rolesService.Verify(x=> x.AddToRole(user, role));
+			_rolesService.Verify(x => x.AddToRole(user, role));
 		}
 
 		[Fact]

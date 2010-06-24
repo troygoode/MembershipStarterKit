@@ -67,6 +67,11 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Areas\UserAdministration\Controllers\UserAdministrationController.cs" />
+    <Compile Include="Areas\UserAdministration\Models\UserAdministration\DetailsViewModel.cs" />
+    <Compile Include="Areas\UserAdministration\Models\UserAdministration\IndexViewModel.cs" />
+    <Compile Include="Areas\UserAdministration\Models\UserAdministration\RoleViewModel.cs" />
+    <Compile Include="Areas\UserAdministration\UserAdministrationAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Default.aspx.cs">
@@ -79,6 +84,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\UserAdministration\Views\UserAdministration\Details.aspx" />
+    <Content Include="Areas\UserAdministration\Views\UserAdministration\Index.aspx" />
+    <Content Include="Areas\UserAdministration\Views\UserAdministration\Role.aspx" />
     <Content Include="Content\MvcMembership\MvcMembership.css" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
@@ -90,9 +98,6 @@
     <Content Include="Scripts\MicrosoftAjax.js" />
     <Content Include="Scripts\MicrosoftMvcAjax.debug.js" />
     <Content Include="Scripts\MicrosoftMvcAjax.js" />
-    <Content Include="Areas\UserAdministration\Views\UserAdministration\Details.aspx" />
-    <Content Include="Areas\UserAdministration\Views\UserAdministration\Index.aspx" />
-    <Content Include="Areas\UserAdministration\Views\UserAdministration\Role.aspx" />
     <Content Include="Web.config" />
     <Content Include="Content\Site.css" />
     <Content Include="Views\Account\ChangePassword.aspx" />
@@ -113,12 +118,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\UserAdministration\Views\Web.config" />
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\UserAdministration\Views\Shared\" />
     <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\UserAdministration\Views\Web.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

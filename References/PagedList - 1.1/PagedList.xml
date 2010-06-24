@@ -4,19 +4,6 @@
         <name>PagedList</name>
     </assembly>
     <members>
-        <member name="T:PagedList.PagedList`1">
-            <summary>
-            Represents a subset of a collection of objects that can be individually accessed by index and containing metadata about the superset collection of objects this subset was created from.
-            </summary>
-            <remarks>
-            Represents a subset of a collection of objects that can be individually accessed by index and containing metadata about the superset collection of objects this subset was created from.
-            </remarks>
-            <typeparam name="T">The type of object the collection should contain.</typeparam>
-            <seealso cref="T:PagedList.IPagedList`1"/>
-            <seealso cref="T:PagedList.BasePagedList`1"/>
-            <seealso cref="T:PagedList.StaticPagedList`1"/>
-            <seealso cref="T:System.Collections.Generic.List`1"/>
-        </member>
         <member name="T:PagedList.BasePagedList`1">
             <summary>
             Represents a subset of a collection of objects that can be individually accessed by index and containing metadata about the superset collection of objects this subset was created from.
@@ -189,6 +176,19 @@
             <value>
             Returns true if this is the last subset within the superset.
             </value>
+        </member>
+        <member name="T:PagedList.PagedList`1">
+            <summary>
+            Represents a subset of a collection of objects that can be individually accessed by index and containing metadata about the superset collection of objects this subset was created from.
+            </summary>
+            <remarks>
+            Represents a subset of a collection of objects that can be individually accessed by index and containing metadata about the superset collection of objects this subset was created from.
+            </remarks>
+            <typeparam name="T">The type of object the collection should contain.</typeparam>
+            <seealso cref="T:PagedList.IPagedList`1"/>
+            <seealso cref="T:PagedList.BasePagedList`1"/>
+            <seealso cref="T:PagedList.StaticPagedList`1"/>
+            <seealso cref="T:System.Collections.Generic.List`1"/>
         </member>
         <member name="M:PagedList.PagedList`1.#ctor(System.Collections.Generic.IEnumerable{`0},System.Int32,System.Int32)">
             <summary>

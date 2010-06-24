@@ -1,6 +1,6 @@
 ﻿using System.Net.Mail;
 
-namespace MvcMembership.Areas.UserAdministration.Models
+namespace MvcMembership
 {
 	public class SmtpClientProxy : ISmtpClient
 	{
