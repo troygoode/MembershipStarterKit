@@ -24,14 +24,15 @@ instructions:
 1. After getting the source code build it using your preferred IDE or using the included `Build.Debug.bat` or `Build.Release.bat` batch files.
 2. Add a reference from the target site to `MvcMembership.dll`.
 
+## Dependencies
+
+1. The MvcMembership.dll depends upon the PagedList.dll, which you can find packaged with the MvcMembership source code, in the bin of the SampleWebsite, or [download from GitHub](http://github.com/TroyGoode/PagedList).
+
 ## Add the Provided MVC Area (Controller, Views, etc)
  
-1. Copy directories in `MvcMembership\SampleWebSite\Areas` to `{targetSite}\Areas`. (If no "Areas" folder exists in your target site, you can just add one.)
-2. Ensure your application registers areas on startup:
-  1. `Application_Start` shold call `AreaRegistration.RegisterAllAreas()`.
-  2. The routes should be registered before less specific routes.
-  3. The routes registered match a single rule `"Membership/{controller}/{action}/{id}"`
-3. Copy path `MvcMembership\SampleWebSite\Content\MvcMembership` to `{targetSite}\Content\MvcMembership`.
+1. Copy directories in `SampleWebsite\Areas` to `{targetSite}\Areas`. (If no "Areas" folder exists in your target site, you can just add one.)
+2. Ensure your application registers areas on startup: `Application_Start` shold call `AreaRegistration.RegisterAllAreas()`.
+3. Copy the file `SampleWebsite\Content\MvcMembership.css` to `{targetSite}\Content\`.
 
 ## Configure Membership & Roles Providers
 
@@ -48,8 +49,8 @@ instructions:
 
 ## Integrate the Views
 
-1. The starter kit relies on your site having a site master page. A default ASP.Net MVC site is generated with a `Site.Master` in the `\Views\Shared` folder. If you want to isolate something to the starter kit you could put it in `\Areas\MvcMembership\Views\Shared`.
+1. The starter kit relies on your site having a site master page. A default ASP.Net MVC site is generated with a `Site.Master` in the `\Views\Shared` folder. If you want to isolate something to the starter kit you could put it in `\Areas\UserAdministration\Views\Shared`.
 2. That master page and any contained views will need to specify their Area when generating links, even views not in an area (so the default master page would requires fixes). If the link is not to a page in an area (typical), then an Area of "" (empty string) should be specified. For instance, a call to generate a link to the homepage should look like so:
     `Html.ActionLink("Home", "Index", "Home", new {Area = ""}, new {})`
 3. Add a Membership Administration link to your master page:
-    `Html.ActionLink("User Administration", "Index", "UserAdministration", new { Area = "MvcMembership" }, new {})`
+    `Html.ActionLink("User Administration", "Index", "UserAdministration", new { Area = "UserAdministration" }, new {})`
