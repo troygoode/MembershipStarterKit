@@ -13,6 +13,8 @@ Out of the box, the starter kit gives you the following features:
 * Change Email Address
 * Change a User's Roles
 
+Some screenshots of the UI are [available on my blog](http://www.squaredroot.com/2009/08/07/mvcmembership-release-1-0/). While that blog post announced an older version of the project, the screenshots still accurately reflect the current version.
+
 # How do I use it?
 
 *Note:* If you have an ASP.Net MVC 1.0 project, you can convert it to ASP.NET MVC 2.0 following these
@@ -26,7 +28,7 @@ instructions:
 
 ## Dependencies
 
-1. The MvcMembership.dll depends upon the PagedList.dll, which you can find packaged with the MvcMembership source code, in the bin of the SampleWebsite, or [downloaded from GitHub](http://github.com/TroyGoode/PagedList).
+1. The MvcMembership.dll depends upon the PagedList.dll assembly, which you can find packaged with the MvcMembership source code, in the bin of the SampleWebsite, or [downloaded from GitHub](http://github.com/TroyGoode/PagedList).
 
 ## Add the Provided MVC Area (Controller, Views, etc)
  
