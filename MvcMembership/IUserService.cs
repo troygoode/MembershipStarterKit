@@ -15,6 +15,7 @@ namespace MvcMembership
 		MembershipUser Get(object providerUserKey);
 		void Update(MembershipUser user);
 		void Delete(MembershipUser user);
+		void Delete(MembershipUser user, bool deleteAllRelatedData);
 		MembershipUser Touch(MembershipUser user);
 		MembershipUser Touch(string userName);
 		MembershipUser Touch(object providerUserKey);

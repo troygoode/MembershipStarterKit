@@ -88,6 +88,11 @@ namespace MvcMembership
 			_membershipProvider.DeleteUser(user.UserName, false);
 		}
 
+		public void Delete(MembershipUser user, bool deleteAllRelatedData)
+		{
+			_membershipProvider.DeleteUser(user.UserName, deleteAllRelatedData);
+		}
+
 		public MembershipUser Touch(MembershipUser user)
 		{
 			return _membershipProvider.GetUser(user.UserName, true);

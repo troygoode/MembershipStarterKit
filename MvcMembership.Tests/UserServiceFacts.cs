@@ -3,6 +3,7 @@ using System.Linq;
 using System.Web.Security;
 using Moq;
 using Xunit;
+using Xunit.Extensions;
 
 namespace MvcMembership.Tests
 {
@@ -221,6 +222,22 @@ namespace MvcMembership.Tests
 
 			//assert
 			_membershipProvider.Verify(x => x.DeleteUser(username, false));
+		}
+
+		[Theory]
+		[InlineData(true)]
+		[InlineData(false)]
+		public void Delete_passes_username_and_supplied_flag_to_Delete_method(bool deleteAllUserData)
+		{
+			//arrange
+			var username = new Random().Next().ToString();
+			_user.SetupGet(x => x.UserName).Returns(username);
+
+			//act
+			_membershipWrapper.Delete(_user.Object, deleteAllUserData);
+
+			//assert
+			_membershipProvider.Verify(x => x.DeleteUser(username, deleteAllUserData));
 		}
 
 		[Fact]

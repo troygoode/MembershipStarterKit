@@ -42,11 +42,11 @@ instructions:
 2. Make sure the user identity of your application pool has sufficient permissions to the aspnet database.
 3. Add the following code to your `global.asax` to keep the membership system updated with each user's last activity date:
 <pre>
-	protected void Application_AuthenticateRequest()
-	{
-		if(HttpContext.Current.User != null)
-			Membership.GetUser(true);
-	}
+    protected void Application_AuthenticateRequest()
+    {
+        if(HttpContext.Current.User != null)
+            Membership.GetUser(true);
+    }
 </pre>
 
 ## Integrate the Views
