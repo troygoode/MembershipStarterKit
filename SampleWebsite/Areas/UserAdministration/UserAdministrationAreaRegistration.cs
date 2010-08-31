@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using SampleWebsite.Areas.UserAdministration.Controllers;
 
 namespace SampleWebsite.Areas.UserAdministration
 {
@@ -17,7 +18,8 @@ namespace SampleWebsite.Areas.UserAdministration
 			context.MapRoute(
 				"UserAdministration_default",
 				"UserAdministration/{controller}/{action}/{id}",
-				new { action = "Index", id = UrlParameter.Optional }
+				new { area="UserAdministration", action = "Index", id = UrlParameter.Optional },
+				new [] { typeof(UserAdministrationController).Namespace }
 			);
 		}
 	}
