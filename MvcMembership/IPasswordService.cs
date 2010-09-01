@@ -5,6 +5,8 @@ namespace MvcMembership
 	public interface IPasswordService
 	{
 		void Unlock(MembershipUser user);
+		string ResetPassword(MembershipUser user);
 		string ResetPassword(MembershipUser user, string passwordAnswer);
+		void ChangePassword(MembershipUser user, string newPassword);
 	}
 }

@@ -1,4 +1,5 @@
-﻿using System.Web.Security;
+﻿using System;
+using System.Web.Security;
 using Moq;
 using Xunit;
 
@@ -29,13 +30,55 @@ namespace MvcMembership.Tests
 		public void ResetPassword_calls_ResetPassword_on_supplied_user_object()
 		{
 			//arrange
-			const string answer = "Some Answer";
+			var randomPassword = Guid.NewGuid().ToString();
+			_user.Setup(x => x.ResetPassword()).Returns(randomPassword);
 
 			//act
-			_membershipWrapper.ResetPassword(_user.Object, answer);
+			var newPassword = _membershipWrapper.ResetPassword(_user.Object);
 
 			//assert
-			_user.Verify(x => x.ResetPassword(answer));
+			Assert.Equal(randomPassword, newPassword);
+		}
+
+		[Fact]
+		public void ResetPassword_calls_ResetPassword_on_supplied_user_object_and_passes_password_answer()
+		{
+			//arrange
+			const string answer = "Some Answer";
+			var randomPassword = Guid.NewGuid().ToString();
+			_user.Setup(x => x.ResetPassword(answer)).Returns(randomPassword);
+
+			//act
+			var newPassword = _membershipWrapper.ResetPassword(_user.Object, answer);
+
+			//assert
+			Assert.Equal(randomPassword, newPassword);
+		}
+
+		[Fact]
+		public void ChangePassword_resets_password_then_uses_new_password_to_change_password()
+		{
+			//arrange
+			const string newPassword = "Lorem ipsum dolor.";
+			var randomResetPassword = Guid.NewGuid().ToString();
+			_user.Setup(x => x.ResetPassword()).Returns(randomResetPassword);
+			_user.Setup(x => x.ChangePassword(randomResetPassword, newPassword)).Returns(true);
+
+			//act
+			_membershipWrapper.ChangePassword(_user.Object, newPassword);
+
+			//assert
+			_user.Verify(x => x.ChangePassword(randomResetPassword, newPassword));
+		}
+
+		[Fact]
+		public void ChangePassword_throws_MembershipPasswordException_if_password_wasnt_changed()
+		{
+			//arrange
+			_user.Setup(x => x.ChangePassword(It.IsAny<string>(), It.IsAny<string>())).Returns(false);
+
+			//act
+			Assert.Throws<MembershipPasswordException>(() => _membershipWrapper.ChangePassword(_user.Object, "New Password"));
 		}
 	}
 }

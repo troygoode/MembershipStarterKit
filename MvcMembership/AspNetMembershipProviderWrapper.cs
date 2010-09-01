@@ -20,9 +20,21 @@ namespace MvcMembership
 			user.UnlockUser();
 		}
 
+		public string ResetPassword(MembershipUser user)
+		{
+			return user.ResetPassword();
+		}
+
 		public string ResetPassword(MembershipUser user, string passwordAnswer)
 		{
 			return user.ResetPassword(passwordAnswer);
+		}
+
+		public void ChangePassword(MembershipUser user, string newPassword)
+		{
+			var resetPassword = user.ResetPassword();
+			if(!user.ChangePassword(resetPassword, newPassword))
+				throw new MembershipPasswordException("Could not change password.");
 		}
 
 		#endregion
