@@ -17,7 +17,7 @@
 			<% foreach(var user in Model.Users){ %>
 			<li>
 				<span class="mvcMembership-username"><% =Html.ActionLink(user.UserName, "Details", new{ id = user.ProviderUserKey}) %></span>
-				<span class="mvcMembership-email"><a href="mailto:<% =Html.Encode(user.Email) %>"><% =Html.Encode(user.Email) %></a></span>
+				<span class="mvcMembership-email"><a href="mailto:<%: user.Email %>"><%: user.Email %></a></span>
 				<% if(user.IsOnline){ %>
 					<span class="mvcMembership-isOnline">Online</span>
 				<% }else{ %>
@@ -34,7 +34,7 @@
 					</span>
 				<% } %>
 				<% if(!string.IsNullOrEmpty(user.Comment)){ %>
-					<span class="mvcMembership-comment"><% =Html.Encode(user.Comment) %></span>
+					<span class="mvcMembership-comment"><%: user.Comment %></span>
 				<% } %>
 			</li>
 			<% } %>

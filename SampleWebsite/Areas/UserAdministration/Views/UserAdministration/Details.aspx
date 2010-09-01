@@ -2,20 +2,20 @@
 <%@ Import Namespace="System.Globalization" %>
 
 <asp:Content ContentPlaceHolderID="TitleContent" runat="server">
-	User Details: <% =Html.Encode(Model.DisplayName) %>
+	User Details: <%: Model.DisplayName %>
 </asp:Content>
 
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
 
 	<link href='<% =Url.Content("~/Content/MvcMembership.css") %>' rel="stylesheet" type="text/css" />
 
-	<h2 class="mvcMembership">User Details: <% =Html.Encode(Model.DisplayName) %> [<% =Model.Status %>]</h2>
+	<h2 class="mvcMembership">User Details: <%: Model.DisplayName %> [<% =Model.Status %>]</h2>
 
 	<h3 class="mvcMembership">Account</h3>
 	<div class="mvcMembership-account">
 		<dl class="mvcMembership">
 			<dt>User Name:</dt>
-				<dd><% =Html.Encode(Model.User.UserName) %></dd>
+				<dd><%: Model.User.UserName %></dd>
 			<% if(Model.User.LastActivityDate == Model.User.CreationDate){ %>
 			<dt>Last Active:</dt>
 				<dd><em>Never</em></dd>
@@ -86,7 +86,7 @@
 						<% if(string.IsNullOrEmpty(Model.User.PasswordQuestion) || string.IsNullOrEmpty(Model.User.PasswordQuestion.Trim())){ %>
 						<dd><em>No password question defined.</em></dd>
 						<% }else{ %>
-						<dd><% =Html.Encode(Model.User.PasswordQuestion) %></dd>
+						<dd><%: Model.User.PasswordQuestion %></dd>
 						<% } %>
 					</dl>
 				</p>
