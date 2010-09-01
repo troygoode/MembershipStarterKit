@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Web.Security;
 using PagedList;
 
@@ -34,6 +35,12 @@ namespace MvcMembership
 		{
 			var resetPassword = user.ResetPassword();
 			if(!user.ChangePassword(resetPassword, newPassword))
+				throw new MembershipPasswordException("Could not change password.");
+		}
+
+		public void ChangePassword(MembershipUser user, string oldPassword, string newPassword)
+		{
+			if (!user.ChangePassword(oldPassword, newPassword))
 				throw new MembershipPasswordException("Could not change password.");
 		}
 

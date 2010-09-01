@@ -80,5 +80,30 @@ namespace MvcMembership.Tests
 			//act
 			Assert.Throws<MembershipPasswordException>(() => _membershipWrapper.ChangePassword(_user.Object, "New Password"));
 		}
+
+		[Fact]
+		public void ChangePassword_with_old_password_supplied_changes_password()
+		{
+			//arrange
+			const string oldPassword = "Foo Bar";
+			const string newPassword = "Lorem ipsum dolor.";
+			_user.Setup(x => x.ChangePassword(oldPassword, newPassword)).Returns(true);
+
+			//act
+			_membershipWrapper.ChangePassword(_user.Object, oldPassword, newPassword);
+
+			//assert
+			_user.Verify(x => x.ChangePassword(oldPassword, newPassword));
+		}
+
+		[Fact]
+		public void ChangePassword_with_old_password_supplied_throws_MembershipPasswordException_if_password_wasnt_changed()
+		{
+			//arrange
+			_user.Setup(x => x.ChangePassword(It.IsAny<string>(), It.IsAny<string>())).Returns(false);
+
+			//act
+			Assert.Throws<MembershipPasswordException>(() => _membershipWrapper.ChangePassword(_user.Object, "Old Password", "New Password"));
+		}
 	}
 }

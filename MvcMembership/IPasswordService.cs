@@ -8,5 +8,6 @@ namespace MvcMembership
 		string ResetPassword(MembershipUser user);
 		string ResetPassword(MembershipUser user, string passwordAnswer);
 		void ChangePassword(MembershipUser user, string newPassword);
+		void ChangePassword(MembershipUser user, string oldPassword, string newPassword);
 	}
 }
