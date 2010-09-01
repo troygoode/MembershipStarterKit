@@ -8,10 +8,10 @@
 
 	<link href='<% =Url.Content("~/Content/MvcMembership.css") %>' rel="stylesheet" type="text/css" />
 
-    <h2>Role: <% =Html.Encode(Model.Role) %></h2>
-    <div class="mvcMembership-roleUsers">
+	<h2 class="mvcMembership">Role: <% =Html.Encode(Model.Role) %></h2>
+	<div class="mvcMembership-roleUsers">
 		<% if(Model.Users.Count() > 0){ %>
-			<ul>
+			<ul class="mvcMembership">
 				<% foreach(var user in Model.Users){ %>
 				<li>
 					<% =Html.ActionLink(user.UserName, "Details", new{id=user.ProviderUserKey}) %>

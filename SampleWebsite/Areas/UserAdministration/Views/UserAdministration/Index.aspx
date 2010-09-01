@@ -8,20 +8,20 @@
 
 	<link href='<% =Url.Content("~/Content/MvcMembership.css") %>' rel="stylesheet" type="text/css" />
 
-    <h2>User Administration</h2>
-    
-    <h3>Users</h3>
-    <div class="mvcMembership-allUsers">
-    <% if(Model.Users.Count > 0){ %>
-		<ul class="users">
+	<h2 class="mvcMembership">User Administration</h2>
+	
+	<h3 class="mvcMembership">Users</h3>
+	<div class="mvcMembership-allUsers">
+	<% if(Model.Users.Count > 0){ %>
+		<ul class="mvcMembership mvcMembership-users">
 			<% foreach(var user in Model.Users){ %>
 			<li>
-				<span class="username"><% =Html.ActionLink(user.UserName, "Details", new{ id = user.ProviderUserKey}) %></span>
-				<span class="email"><a href="mailto:<% =Html.Encode(user.Email) %>"><% =Html.Encode(user.Email) %></a></span>
+				<span class="mvcMembership-username"><% =Html.ActionLink(user.UserName, "Details", new{ id = user.ProviderUserKey}) %></span>
+				<span class="mvcMembership-email"><a href="mailto:<% =Html.Encode(user.Email) %>"><% =Html.Encode(user.Email) %></a></span>
 				<% if(user.IsOnline){ %>
-					<span class="isOnline">Online</span>
+					<span class="mvcMembership-isOnline">Online</span>
 				<% }else{ %>
-					<span class="isOffline">Offline for
+					<span class="mvcMembership-isOffline">Offline for
 						<%
 							var offlineSince = (DateTime.Now - user.LastActivityDate);
 							if (offlineSince.TotalSeconds <= 60) Response.Write("1 minute.");
@@ -34,12 +34,12 @@
 					</span>
 				<% } %>
 				<% if(!string.IsNullOrEmpty(user.Comment)){ %>
-					<span class="comment"><% =Html.Encode(user.Comment) %></span>
+					<span class="mvcMembership-comment"><% =Html.Encode(user.Comment) %></span>
 				<% } %>
 			</li>
 			<% } %>
 		</ul>
-		<ul class="paging">
+		<ul class="mvcMembership mvcMembership-paging">
 			<% if (Model.Users.IsFirstPage){ %>
 			<li>First</li>
 			<li>Previous</li>
@@ -63,10 +63,10 @@
 	<% } %>
 	</div>
 
-	<h3>Roles</h3>
+	<h3 class="mvcMembership">Roles</h3>
 	<div class="mvcMembership-allRoles">
 	<% if(Model.Roles.Count() > 0 ){ %>
-		<ul>
+		<ul class="mvcMembership">
 			<% foreach(var role in Model.Roles){ %>
 			<li>
 				<% =Html.ActionLink(role, "Role", new{id = role}) %>

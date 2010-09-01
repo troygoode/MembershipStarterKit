@@ -9,11 +9,11 @@
 
 	<link href='<% =Url.Content("~/Content/MvcMembership.css") %>' rel="stylesheet" type="text/css" />
 
-    <h2>User Details: <% =Html.Encode(Model.DisplayName) %> [<% =Model.Status %>]</h2>
+	<h2 class="mvcMembership">User Details: <% =Html.Encode(Model.DisplayName) %> [<% =Model.Status %>]</h2>
 
-	<h3>Account</h3>
+	<h3 class="mvcMembership">Account</h3>
 	<div class="mvcMembership-account">
-		<dl>
+		<dl class="mvcMembership">
 			<dt>User Name:</dt>
 				<dd><% =Html.Encode(Model.User.UserName) %></dd>
 			<% if(Model.User.LastActivityDate == Model.User.CreationDate){ %>
@@ -40,7 +40,7 @@
 		<% } %>
 	</div>
 
-	<h3>Email Address & Comments</h3>
+	<h3 class="mvcMembership">Email Address & Comments</h3>
 	<div class="mvcMembership-emailAndComments">
 		<% using(Html.BeginForm("Details", "UserAdministration", new{ id = Model.User.ProviderUserKey })){ %>
 		<fieldset>
@@ -57,7 +57,7 @@
 		<% } %>
 	</div>
 
-	<h3>Password</h3>
+	<h3 class="mvcMembership">Password</h3>
 	<div class="mvcMembership-password">
 		<% if(Model.User.IsLockedOut){ %>
 			<p>Locked out since <% =Model.User.LastLockoutDate.ToString("MMMM dd, yyyy h:mm:ss tt", CultureInfo.InvariantCulture) %></p>
@@ -67,12 +67,12 @@
 		<% }else{ %>
 
 			<% if(Model.User.LastPasswordChangedDate == Model.User.CreationDate){ %>
-			<dl>
+			<dl class="mvcMembership">
 				<dt>Last Changed:</dt>
 				<dd><em>Never</em></dd>
 			</dl>
 			<% }else{ %>
-			<dl>
+			<dl class="mvcMembership">
 				<dt>Last Changed:</dt>
 				<dd><% =Model.User.LastPasswordChangedDate.ToString("MMMM dd, yyyy h:mm:ss tt", CultureInfo.InvariantCulture) %></dd>
 			</dl>
@@ -81,7 +81,7 @@
 			<% using(Html.BeginForm("ResetPassword", "UserAdministration", new{ id = Model.User.ProviderUserKey })){ %>
 			<fieldset>
 				<p>
-					<dl>
+					<dl class="mvcMembership">
 						<dt>Password Question:</dt>
 						<% if(string.IsNullOrEmpty(Model.User.PasswordQuestion) || string.IsNullOrEmpty(Model.User.PasswordQuestion.Trim())){ %>
 						<dd><em>No password question defined.</em></dd>
@@ -101,9 +101,9 @@
 		<% } %>
 	</div>
 
-	<h3>Roles</h3>
+	<h3 class="mvcMembership">Roles</h3>
 	<div class="mvcMembership-userRoles">
-		<ul>
+		<ul class="mvcMembership">
 			<% foreach(var role in Model.Roles){ %>
 			<li>
 				<% =Html.ActionLink(role.Key, "Role", new{id = role.Key}) %>

@@ -1,27 +1,29 @@
-﻿h3{
+﻿h3.mvcMembership{
 	clear: left;
 }
-ul.paging > li{
+
+ul.mvcMembership-paging > li{
 	float: left;
 	list-style-type: none;
 	margin: 1em;
 }
-ul > li > form{
+
+ul.mvcMembership > li > form{
 	display: inline;
 	margin-left: 1em;
 }
 
-dl{
+dl.mvcMembership{
 	margin-left: .9em;
 }
-dl > dt{
+dl.mvcMembership > dt{
 	display: block;
 	float: left;
 	clear: left;
 	height: 1.75em;
 	margin-right: 1em;
 }
-dl > dd{
+dl.mvcMembership > dd{
 	display: block;
 	height: 1.75em;
 }
@@ -33,23 +35,23 @@ div.mvcMembership-account > form{
 div.mvcMembership-allUsers ul{
 	margin: 0;
 }
-div.mvcMembership-allUsers ul.users > li{
+div.mvcMembership-allUsers ul.mvcMembership-users > li{
 	margin: .5em 0 .5em 0;
 }
-div.mvcMembership-allUsers ul.users > li > span.isOnline{
+div.mvcMembership-allUsers ul.mvcMembership-users > li > span.mvcMembership-isOnline{
 	display: block;
 	font-weight: bold;
 	color: #33cc33;
 }
-div.mvcMembership-allUsers ul.users > li > span.isOffline{
+div.mvcMembership-allUsers ul.mvcMembership-users > li > span.mvcMembership-isOffline{
 	display: block;
 	color: #999;
 }
-div.mvcMembership-allUsers ul.users > li > span.email{
+div.mvcMembership-allUsers ul.mvcMembership-users > li > span.mvcMembership-email{
 	display: block;
 	font-size: .8em;
 }
-div.mvcMembership-allUsers ul.users > li > span.comment{
+div.mvcMembership-allUsers ul.mvcMembership-users > li > span.mvcMembership-comment{
 	display: block;
 	border: 1px solid #ccc;
 	padding: .25em .5em .25em .5em;
