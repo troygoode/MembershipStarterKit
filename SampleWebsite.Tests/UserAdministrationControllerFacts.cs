@@ -410,7 +410,7 @@ namespace SampleWebsite.Tests
 			_userService.Setup(x => x.Get(id)).Returns(user.Object);
 
 			//act
-			var result = _controller.ResetPassword(id, string.Empty);
+			var result = _controller.ResetPassword(id);
 
 			//assert
 			Assert.Equal("Details", result.RouteValues["action"]);
@@ -419,7 +419,71 @@ namespace SampleWebsite.Tests
 		}
 
 		[Fact]
-		public void ResetPassword_calls_ResetPassword_method_and_passes_password_answer()
+		public void ResetPassword_calls_ResetPassword_method()
+		{
+			//arrange
+			var id = Guid.NewGuid();
+			var user = new Mock<MembershipUser>();
+			user.SetupGet(x => x.Email).Returns(new Random().Next() + "@domain.com");
+			_userService.Setup(x => x.Get(id)).Returns(user.Object);
+
+			//act
+			_controller.ResetPassword(id);
+
+			//assert
+			_passwordService.Verify(x => x.ResetPassword(user.Object));
+		}
+
+		[Fact]
+		public void ResetPassword_sends_new_password_to_user_via_email()
+		{
+			//arrange
+			var id = Guid.NewGuid();
+			//arrange - generate new password
+			var newPassword = new Random().Next().ToString();
+			_passwordService.Setup(x => x.ResetPassword(It.IsAny<MembershipUser>())).Returns(newPassword);
+			var emailAddress = new Random().Next() + "@domain.com";
+			//arrange - retrieve user & email address
+			var user = new Mock<MembershipUser>();
+			user.SetupGet(x => x.Email).Returns(emailAddress);
+			_userService.Setup(x => x.Get(id)).Returns(user.Object);
+			//arrange - verify the message that is sent to the user
+			var emailIsValid = false;
+			_smtpClient.Setup(x => x.Send(It.IsAny<MailMessage>())).Callback<MailMessage>(msg =>
+			{
+				if (msg.To.Count == 1 &&
+				msg.To[0].Address == emailAddress &&
+				msg.Body.Contains(newPassword))
+					emailIsValid = true;
+			});
+
+			//act
+			_controller.ResetPassword(id);
+
+			//assert
+			Assert.True(emailIsValid);
+		}
+
+		[Fact]
+		public void ResetPasswordWithAnswer_redirects_to_Details()
+		{
+			//arrange
+			var id = Guid.NewGuid();
+			var user = new Mock<MembershipUser>();
+			user.SetupGet(x => x.Email).Returns(new Random().Next() + "@domain.com");
+			_userService.Setup(x => x.Get(id)).Returns(user.Object);
+
+			//act
+			var result = _controller.ResetPasswordWithAnswer(id, string.Empty);
+
+			//assert
+			Assert.Equal("Details", result.RouteValues["action"]);
+			Assert.Null(result.RouteValues["controller"]);
+			Assert.Equal(id, result.RouteValues["id"]);
+		}
+
+		[Fact]
+		public void ResetPasswordWithAnswer_calls_ResetPassword_method_and_passes_password_answer()
 		{
 			//arrange
 			var id = Guid.NewGuid();
@@ -429,14 +493,14 @@ namespace SampleWebsite.Tests
 			_userService.Setup(x => x.Get(id)).Returns(user.Object);
 
 			//act
-			_controller.ResetPassword(id, answer);
+			_controller.ResetPasswordWithAnswer(id, answer);
 
 			//assert
 			_passwordService.Verify(x => x.ResetPassword(user.Object, answer));
 		}
 
 		[Fact]
-		public void ResetPassword_sends_new_password_to_user_via_email()
+		public void ResetPasswordWithAnswer_sends_new_password_to_user_via_email()
 		{
 			//arrange
 			var id = Guid.NewGuid();
@@ -459,14 +523,14 @@ namespace SampleWebsite.Tests
 																							});
 
 			//act
-			_controller.ResetPassword(id, "password answer");
+			_controller.ResetPasswordWithAnswer(id, "password answer");
 
 			//assert
 			Assert.True(emailIsValid);
 		}
 
 		[Fact]
-		public void ChangePassword_redirects_to_Details()
+		public void SetPassword_redirects_to_Details()
 		{
 			//arrange
 			var id = Guid.NewGuid();
@@ -475,7 +539,7 @@ namespace SampleWebsite.Tests
 			_userService.Setup(x => x.Get(id)).Returns(user.Object);
 
 			//act
-			var result = _controller.ChangePassword(id, string.Empty);
+			var result = _controller.SetPassword(id, string.Empty);
 
 			//assert
 			Assert.Equal("Details", result.RouteValues["action"]);
@@ -484,7 +548,7 @@ namespace SampleWebsite.Tests
 		}
 
 		[Fact]
-		public void ChangePassword_calls_ChangePassword_method_and_passes_new_password()
+		public void SetPassword_calls_ChangePassword_method_and_passes_new_password()
 		{
 			//arrange
 			var id = Guid.NewGuid();
@@ -494,14 +558,14 @@ namespace SampleWebsite.Tests
 			_userService.Setup(x => x.Get(id)).Returns(user.Object);
 
 			//act
-			_controller.ChangePassword(id, password);
+			_controller.SetPassword(id, password);
 
 			//assert
 			_passwordService.Verify(x => x.ChangePassword(user.Object, password));
 		}
 
 		[Fact]
-		public void ChangePassword_sends_new_password_to_user_via_email()
+		public void SetPassword_sends_new_password_to_user_via_email()
 		{
 			//arrange
 			var id = Guid.NewGuid();
@@ -523,7 +587,7 @@ namespace SampleWebsite.Tests
 			});
 
 			//act
-			_controller.ChangePassword(id, newPassword);
+			_controller.SetPassword(id, newPassword);
 
 			//assert
 			Assert.True(emailIsValid);

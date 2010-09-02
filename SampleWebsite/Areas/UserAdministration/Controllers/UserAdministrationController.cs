@@ -84,7 +84,8 @@ namespace SampleWebsite.Areas.UserAdministration.Controllers
 			var userRoles = _rolesService.FindByUser(user);
 			return View(new DetailsViewModel
 							{
-								AllowChangePassword = _membershipSettings.Password.ResetOrRetrieval.CanReset,
+								CanResetPassword = _membershipSettings.Password.ResetOrRetrieval.CanReset,
+								RequirePasswordQuestionAnswerToResetPassword = _membershipSettings.Password.ResetOrRetrieval.RequiresQuestionAndAnswer,
 								DisplayName = user.UserName,
 								User = user,
 								Roles = _rolesService.FindAll().ToDictionary(role => role, role => userRoles.Contains(role)),
@@ -99,13 +100,11 @@ namespace SampleWebsite.Areas.UserAdministration.Controllers
 		}
 
 		[AcceptVerbs(HttpVerbs.Post)]
-		public RedirectToRouteResult Details(Guid id,
-									[Bind(Prefix = "User.Email")] string email,
-									[Bind(Prefix = "User.Comment")] string comment)
+		public RedirectToRouteResult Details(Guid id, string email, string comments)
 		{
 			var user = _userService.Get(id);
 			user.Email = email;
-			user.Comment = comment;
+			user.Comment = comments;
 			_userService.Update(user);
 			return RedirectToAction("Details", new { id });
 		}
@@ -134,7 +133,19 @@ namespace SampleWebsite.Areas.UserAdministration.Controllers
 		}
 
 		[AcceptVerbs(HttpVerbs.Post)]
-		public RedirectToRouteResult ResetPassword(Guid id, string answer)
+		public RedirectToRouteResult ResetPassword(Guid id)
+		{
+			var user = _userService.Get(id);
+			var newPassword = _passwordService.ResetPassword(user);
+
+			var body = ResetPasswordBody + newPassword;
+			_smtpClient.Send(new MailMessage(ResetPasswordFromAddress, user.Email, ResetPasswordSubject, body));
+
+			return RedirectToAction("Details", new { id });
+		}
+
+		[AcceptVerbs(HttpVerbs.Post)]
+		public RedirectToRouteResult ResetPasswordWithAnswer(Guid id, string answer)
 		{
 			var user = _userService.Get(id);
 			var newPassword = _passwordService.ResetPassword(user, answer);
@@ -146,7 +157,7 @@ namespace SampleWebsite.Areas.UserAdministration.Controllers
 		}
 
 		[AcceptVerbs(HttpVerbs.Post)]
-		public RedirectToRouteResult ChangePassword(Guid id, string password)
+		public RedirectToRouteResult SetPassword(Guid id, string password)
 		{
 			var user = _userService.Get(id);
 			_passwordService.ChangePassword(user, password);

@@ -16,6 +16,8 @@
 		<dl class="mvcMembership">
 			<dt>User Name:</dt>
 				<dd><%: Model.User.UserName %></dd>
+			<dt>Email Address:</dt>
+				<dd><a href="mailto:<%: Model.User.Email %>"><%: Model.User.Email %></a></dd>
 			<% if(Model.User.LastActivityDate == Model.User.CreationDate){ %>
 			<dt>Last Active:</dt>
 				<dd><em>Never</em></dd>
@@ -45,14 +47,14 @@
 		<% using(Html.BeginForm("Details", "UserAdministration", new{ id = Model.User.ProviderUserKey })){ %>
 		<fieldset>
 			<p>
-				<label for="User_Email">Email Address:</label>
-				<% =Html.TextBox("User.Email") %>
+				<label for="email">Email Address:</label>
+				<% =Html.TextBox("email", Model.User.Email) %>
 			</p>
 			<p>
-				<label for="User_Comment">Comments:</label>
-				<% =Html.TextArea("User.Comment") %>
+				<label for="comments">Comments:</label>
+				<% =Html.TextArea("comments", Model.User.Comment) %>
 			</p>
-			<input type="submit" value="Save Email Address and Comment" />
+			<input type="submit" value="Save Email Address and Comments" />
 		</fieldset>
 		<% } %>
 	</div>
@@ -78,18 +80,8 @@
 			</dl>
 			<% } %>
 
-			<% if(Model.AllowChangePassword){ %>
-				<% using(Html.BeginForm("ChangePassword", "UserAdministration", new{ id = Model.User.ProviderUserKey })){ %>
-				<fieldset>
-					<p>
-						<label for="password">New Password:</label>
-						<% =Html.TextBox("password") %>
-					</p>
-					<input type="submit" value="Change Password" />
-				</fieldset>
-				<% } %>
-			<% }else{ %>
-				<% using(Html.BeginForm("ResetPassword", "UserAdministration", new{ id = Model.User.ProviderUserKey })){ %>
+			<% if(Model.CanResetPassword && Model.RequirePasswordQuestionAnswerToResetPassword){ %>
+				<% using(Html.BeginForm("ResetPasswordWithAnswer", "UserAdministration", new{ id = Model.User.ProviderUserKey })){ %>
 				<fieldset>
 					<p>
 						<dl class="mvcMembership">
@@ -105,7 +97,22 @@
 						<label for="answer">Password Answer:</label>
 						<% =Html.TextBox("answer") %>
 					</p>
-					<input type="submit" value="Reset Password" />
+					<input type="submit" value="Reset to Random Password and Email User" />
+				</fieldset>
+				<% } %>
+			<% }else if(Model.CanResetPassword){ %>
+				<% using(Html.BeginForm("ChangePassword", "UserAdministration", new{ id = Model.User.ProviderUserKey })){ %>
+				<fieldset>
+					<p>
+						<label for="password">New Password:</label>
+						<% =Html.TextBox("password") %>
+					</p>
+					<input type="submit" value="Change Password" />
+				</fieldset>
+				<% } %>
+				<% using(Html.BeginForm("ResetPassword", "UserAdministration", new{ id = Model.User.ProviderUserKey })){ %>
+				<fieldset>
+					<input type="submit" value="Reset to Random Password and Email User" />
 				</fieldset>
 				<% } %>
 			<% } %>
