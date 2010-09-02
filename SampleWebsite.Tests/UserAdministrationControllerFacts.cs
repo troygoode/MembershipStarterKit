@@ -413,7 +413,7 @@ namespace SampleWebsite.Tests
 			var result = _controller.ResetPassword(id);
 
 			//assert
-			Assert.Equal("Details", result.RouteValues["action"]);
+			Assert.Equal("Password", result.RouteValues["action"]);
 			Assert.Null(result.RouteValues["controller"]);
 			Assert.Equal(id, result.RouteValues["id"]);
 		}
@@ -477,7 +477,7 @@ namespace SampleWebsite.Tests
 			var result = _controller.ResetPasswordWithAnswer(id, string.Empty);
 
 			//assert
-			Assert.Equal("Details", result.RouteValues["action"]);
+			Assert.Equal("Password", result.RouteValues["action"]);
 			Assert.Null(result.RouteValues["controller"]);
 			Assert.Equal(id, result.RouteValues["id"]);
 		}
@@ -542,7 +542,7 @@ namespace SampleWebsite.Tests
 			var result = _controller.SetPassword(id, string.Empty);
 
 			//assert
-			Assert.Equal("Details", result.RouteValues["action"]);
+			Assert.Equal("Password", result.RouteValues["action"]);
 			Assert.Null(result.RouteValues["controller"]);
 			Assert.Equal(id, result.RouteValues["id"]);
 		}
@@ -603,7 +603,7 @@ namespace SampleWebsite.Tests
 			var result = _controller.AddToRole(id, "");
 
 			//assert
-			Assert.Equal("Details", result.RouteValues["action"]);
+			Assert.Equal("UsersRoles", result.RouteValues["action"]);
 			Assert.Null(result.RouteValues["controller"]);
 			Assert.Equal(id, result.RouteValues["id"]);
 		}
@@ -635,7 +635,7 @@ namespace SampleWebsite.Tests
 			var result = _controller.RemoveFromRole(id, "");
 
 			//assert
-			Assert.Equal("Details", result.RouteValues["action"]);
+			Assert.Equal("UsersRoles", result.RouteValues["action"]);
 			Assert.Null(result.RouteValues["controller"]);
 			Assert.Equal(id, result.RouteValues["id"]);
 		}

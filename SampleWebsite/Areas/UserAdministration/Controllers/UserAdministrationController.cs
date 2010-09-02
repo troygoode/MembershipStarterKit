@@ -99,6 +99,48 @@ namespace SampleWebsite.Areas.UserAdministration.Controllers
 							});
 		}
 
+		public ViewResult Password(Guid id)
+		{
+			var user = _userService.Get(id);
+			var userRoles = _rolesService.FindByUser(user);
+			return View(new DetailsViewModel
+			{
+				CanResetPassword = _membershipSettings.Password.ResetOrRetrieval.CanReset,
+				RequirePasswordQuestionAnswerToResetPassword = _membershipSettings.Password.ResetOrRetrieval.RequiresQuestionAndAnswer,
+				DisplayName = user.UserName,
+				User = user,
+				Roles = _rolesService.FindAll().ToDictionary(role => role, role => userRoles.Contains(role)),
+				Status = user.IsOnline
+							? DetailsViewModel.StatusEnum.Online
+							: !user.IsApproved
+								? DetailsViewModel.StatusEnum.Unapproved
+								: user.IsLockedOut
+									? DetailsViewModel.StatusEnum.LockedOut
+									: DetailsViewModel.StatusEnum.Offline
+			});
+		}
+
+		public ViewResult UsersRoles(Guid id)
+		{
+			var user = _userService.Get(id);
+			var userRoles = _rolesService.FindByUser(user);
+			return View(new DetailsViewModel
+			{
+				CanResetPassword = _membershipSettings.Password.ResetOrRetrieval.CanReset,
+				RequirePasswordQuestionAnswerToResetPassword = _membershipSettings.Password.ResetOrRetrieval.RequiresQuestionAndAnswer,
+				DisplayName = user.UserName,
+				User = user,
+				Roles = _rolesService.FindAll().ToDictionary(role => role, role => userRoles.Contains(role)),
+				Status = user.IsOnline
+							? DetailsViewModel.StatusEnum.Online
+							: !user.IsApproved
+								? DetailsViewModel.StatusEnum.Unapproved
+								: user.IsLockedOut
+									? DetailsViewModel.StatusEnum.LockedOut
+									: DetailsViewModel.StatusEnum.Offline
+			});
+		}
+
 		[AcceptVerbs(HttpVerbs.Post)]
 		public RedirectToRouteResult Details(Guid id, string email, string comments)
 		{
@@ -141,7 +183,7 @@ namespace SampleWebsite.Areas.UserAdministration.Controllers
 			var body = ResetPasswordBody + newPassword;
 			_smtpClient.Send(new MailMessage(ResetPasswordFromAddress, user.Email, ResetPasswordSubject, body));
 
-			return RedirectToAction("Details", new { id });
+			return RedirectToAction("Password", new { id });
 		}
 
 		[AcceptVerbs(HttpVerbs.Post)]
@@ -153,7 +195,7 @@ namespace SampleWebsite.Areas.UserAdministration.Controllers
 			var body = ResetPasswordBody + newPassword;
 			_smtpClient.Send(new MailMessage(ResetPasswordFromAddress, user.Email, ResetPasswordSubject, body));
 
-			return RedirectToAction("Details", new { id });
+			return RedirectToAction("Password", new { id });
 		}
 
 		[AcceptVerbs(HttpVerbs.Post)]
@@ -165,21 +207,21 @@ namespace SampleWebsite.Areas.UserAdministration.Controllers
 			var body = ResetPasswordBody + password;
 			_smtpClient.Send(new MailMessage(ResetPasswordFromAddress, user.Email, ResetPasswordSubject, body));
 
-			return RedirectToAction("Details", new { id });
+			return RedirectToAction("Password", new { id });
 		}
 
 		[AcceptVerbs(HttpVerbs.Post)]
 		public RedirectToRouteResult AddToRole(Guid id, string role)
 		{
 			_rolesService.AddToRole(_userService.Get(id), role);
-			return RedirectToAction("Details", new { id });
+			return RedirectToAction("UsersRoles", new { id });
 		}
 
 		[AcceptVerbs(HttpVerbs.Post)]
 		public RedirectToRouteResult RemoveFromRole(Guid id, string role)
 		{
 			_rolesService.RemoveFromRole(_userService.Get(id), role);
-			return RedirectToAction("Details", new { id });
+			return RedirectToAction("UsersRoles", new { id });
 		}
 	}
 }

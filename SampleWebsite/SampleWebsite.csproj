@@ -86,6 +86,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\blank.txt" />
+    <Content Include="Areas\UserAdministration\Views\UserAdministration\UsersRoles.aspx" />
+    <Content Include="Areas\UserAdministration\Views\UserAdministration\Password.aspx" />
     <Content Include="Areas\UserAdministration\Views\UserAdministration\Details.aspx" />
     <Content Include="Areas\UserAdministration\Views\UserAdministration\Index.aspx" />
     <Content Include="Areas\UserAdministration\Views\UserAdministration\Role.aspx" />
