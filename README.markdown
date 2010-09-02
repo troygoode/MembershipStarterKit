@@ -48,11 +48,7 @@ instructions:
             Membership.GetUser(true);
     }
 </pre>
-4. Change the "Administrator" value of the `Authorize` attribute in the `UserAdministrationController.cs` file to whatever role you want to require a user to have in order to view/use the User Administration area. If a user tries to navigate to the User Administration area without this role, they will be redirected to the login page (even if they're already logged in).
-<pre>
-    [Authorize(Roles = "Administrator")]
-    public class UserAdministrationController : Controller
-</pre>
+4. Change the "Administrator" value of the `Authorize` attribute in the `UserAdministrationController.cs` file (line 11) to whatever role you want to require a user to have in order to view/use the User Administration area. If a user tries to navigate to the User Administration area without this role, they will be redirected to the login page (even if they're already logged in).
 
 ## Integrate the Views
 
@@ -61,7 +57,7 @@ instructions:
     `Html.ActionLink("Home", "Index", "Home", new {Area = ""}, new {})`
 3. Add a User Administration link to your master page (change "Administrator" to whatever role you want to use):
 <pre>
-    <% if (Roles.IsUserInRole("Administrator")){ %>
-        <li><%= Html.ActionLink("User Administration", "Index", "UserAdministration", new { Area = "UserAdministration" }, new { })%></li>
-    <% } %>
+    &lt;% if (Roles.IsUserInRole("Administrator")){ %&gt;
+        &lt;li&gt;&lt;%= Html.ActionLink("User Administration", "Index", "UserAdministration", new { Area = "UserAdministration" }, new { })%&gt;&lt;/li&gt;
+    &lt;% } %&gt;
 </pre>
