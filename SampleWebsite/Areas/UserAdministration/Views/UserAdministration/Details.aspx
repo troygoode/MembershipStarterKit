@@ -101,7 +101,7 @@
 				</fieldset>
 				<% } %>
 			<% }else if(Model.CanResetPassword){ %>
-				<% using(Html.BeginForm("ChangePassword", "UserAdministration", new{ id = Model.User.ProviderUserKey })){ %>
+				<% using(Html.BeginForm("SetPassword", "UserAdministration", new{ id = Model.User.ProviderUserKey })){ %>
 				<fieldset>
 					<p>
 						<label for="password">New Password:</label>
