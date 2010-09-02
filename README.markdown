@@ -48,11 +48,20 @@ instructions:
             Membership.GetUser(true);
     }
 </pre>
+4. Change the "Administrator" value of the `Authorize` attribute in the `UserAdministrationController.cs` file to whatever role you want to require a user to have in order to view/use the User Administration area. If a user tries to navigate to the User Administration area without this role, they will be redirected to the login page (even if they're already logged in).
+<pre>
+    [Authorize(Roles = "Administrator")]
+    public class UserAdministrationController : Controller
+</pre>
 
 ## Integrate the Views
 
 1. The starter kit relies on your site having a site master page. A default ASP.Net MVC site is generated with a `Site.Master` in the `\Views\Shared` folder. If you want to isolate something to the starter kit you could put it in `\Areas\UserAdministration\Views\Shared`.
 2. That master page and any contained views will need to specify their Area when generating links, even views not in an area (so the default master page would requires fixes). If the link is not to a page in an area (typical), then an Area of "" (empty string) should be specified. For instance, a call to generate a link to the homepage should look like so:
     `Html.ActionLink("Home", "Index", "Home", new {Area = ""}, new {})`
-3. Add a User Administration link to your master page:
-    `Html.ActionLink("User Administration", "Index", "UserAdministration", new { Area = "UserAdministration" }, new {})`
+3. Add a User Administration link to your master page (change "Administrator" to whatever role you want to use):
+<pre>
+    <% if (Roles.IsUserInRole("Administrator")){ %>
+        <li><%= Html.ActionLink("User Administration", "Index", "UserAdministration", new { Area = "UserAdministration" }, new { })%></li>
+    <% } %>
+</pre>
