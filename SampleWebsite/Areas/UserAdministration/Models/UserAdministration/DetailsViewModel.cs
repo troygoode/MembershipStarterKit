@@ -20,6 +20,7 @@ namespace SampleWebsite.Areas.UserAdministration.Models.UserAdministration
 		public string DisplayName { get; set; }
 		public StatusEnum Status { get; set; }
 		public MembershipUser User { get; set; }
+		public bool AllowChangePassword { get; set; }
 		public IDictionary<string, bool> Roles { get; set; }
 	}
 }

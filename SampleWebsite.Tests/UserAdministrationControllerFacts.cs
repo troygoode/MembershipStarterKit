@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.Security;
 using Moq;
 using MvcMembership;
+using MvcMembership.Settings;
 using PagedList;
 using SampleWebsite.Areas.UserAdministration.Controllers;
 using SampleWebsite.Areas.UserAdministration.Models.UserAdministration;
@@ -17,6 +18,7 @@ namespace SampleWebsite.Tests
 	public class UserAdministrationControllerFacts
 	{
 		private readonly UserAdministrationController _controller;
+		private readonly Mock<IMembershipSettings> _membershipSettings = new Mock<IMembershipSettings>();
 		private readonly Mock<IUserService> _userService = new Mock<IUserService>();
 		private readonly Mock<IPasswordService> _passwordService = new Mock<IPasswordService>();
 		private readonly Mock<IRolesService> _rolesService = new Mock<IRolesService>();
@@ -24,7 +26,7 @@ namespace SampleWebsite.Tests
 
 		public UserAdministrationControllerFacts()
 		{
-			_controller = new UserAdministrationController(_userService.Object, _passwordService.Object, _rolesService.Object, _smtpClient.Object);
+			_controller = new UserAdministrationController(_membershipSettings.Object, _userService.Object, _passwordService.Object, _rolesService.Object, _smtpClient.Object);
 		}
 
 		[Fact]
@@ -176,6 +178,7 @@ namespace SampleWebsite.Tests
 		public void Details_returns_default_view()
 		{
 			//arrange
+			_membershipSettings.SetupGet(x => x.Password.ResetOrRetrieval.CanReset).Returns(true);
 			_userService.Setup(x => x.Get(It.IsAny<Guid>())).Returns(new Mock<MembershipUser>().Object);
 
 			//act
@@ -192,6 +195,7 @@ namespace SampleWebsite.Tests
 			//arrange
 			var id = Guid.NewGuid();
 			var user = new Mock<MembershipUser>().Object;
+			_membershipSettings.SetupGet(x => x.Password.ResetOrRetrieval.CanReset).Returns(true);
 			_userService.Setup(x => x.Get(id)).Returns(user).Verifiable();
 
 			//act
@@ -207,6 +211,7 @@ namespace SampleWebsite.Tests
 		public void Details_looks_roles_up_by_username_and_passes_to_view()
 		{
 			//arrange
+			_membershipSettings.SetupGet(x => x.Password.ResetOrRetrieval.CanReset).Returns(true);
 			var id = Guid.NewGuid();
 			var username = new Random().Next().ToString();
 			var user = new Mock<MembershipUser>();
@@ -234,6 +239,7 @@ namespace SampleWebsite.Tests
 		public void Details_uses_UserName_as_DisplayName()
 		{
 			//arrange
+			_membershipSettings.SetupGet(x => x.Password.ResetOrRetrieval.CanReset).Returns(true);
 			var id = Guid.NewGuid();
 			const string username = "Lorem Ipsum";
 			var user = new Mock<MembershipUser>();
@@ -454,6 +460,70 @@ namespace SampleWebsite.Tests
 
 			//act
 			_controller.ResetPassword(id, "password answer");
+
+			//assert
+			Assert.True(emailIsValid);
+		}
+
+		[Fact]
+		public void ChangePassword_redirects_to_Details()
+		{
+			//arrange
+			var id = Guid.NewGuid();
+			var user = new Mock<MembershipUser>();
+			user.SetupGet(x => x.Email).Returns(new Random().Next() + "@domain.com");
+			_userService.Setup(x => x.Get(id)).Returns(user.Object);
+
+			//act
+			var result = _controller.ChangePassword(id, string.Empty);
+
+			//assert
+			Assert.Equal("Details", result.RouteValues["action"]);
+			Assert.Null(result.RouteValues["controller"]);
+			Assert.Equal(id, result.RouteValues["id"]);
+		}
+
+		[Fact]
+		public void ChangePassword_calls_ChangePassword_method_and_passes_new_password()
+		{
+			//arrange
+			var id = Guid.NewGuid();
+			var password = new Random().Next().ToString();
+			var user = new Mock<MembershipUser>();
+			user.SetupGet(x => x.Email).Returns(new Random().Next() + "@domain.com");
+			_userService.Setup(x => x.Get(id)).Returns(user.Object);
+
+			//act
+			_controller.ChangePassword(id, password);
+
+			//assert
+			_passwordService.Verify(x => x.ChangePassword(user.Object, password));
+		}
+
+		[Fact]
+		public void ChangePassword_sends_new_password_to_user_via_email()
+		{
+			//arrange
+			var id = Guid.NewGuid();
+			//arrange - generate new password
+			var newPassword = new Random().Next().ToString();
+			var emailAddress = new Random().Next() + "@domain.com";
+			//arrange - retrieve user & email address
+			var user = new Mock<MembershipUser>();
+			user.SetupGet(x => x.Email).Returns(emailAddress);
+			_userService.Setup(x => x.Get(id)).Returns(user.Object);
+			//arrange - verify the message that is sent to the user
+			var emailIsValid = false;
+			_smtpClient.Setup(x => x.Send(It.IsAny<MailMessage>())).Callback<MailMessage>(msg =>
+			{
+				if (msg.To.Count == 1 &&
+				msg.To[0].Address == emailAddress &&
+				msg.Body.Contains(newPassword))
+					emailIsValid = true;
+			});
+
+			//act
+			_controller.ChangePassword(id, newPassword);
 
 			//assert
 			Assert.True(emailIsValid);

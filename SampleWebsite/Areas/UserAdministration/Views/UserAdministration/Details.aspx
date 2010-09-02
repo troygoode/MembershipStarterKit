@@ -78,24 +78,36 @@
 			</dl>
 			<% } %>
 
-			<% using(Html.BeginForm("ResetPassword", "UserAdministration", new{ id = Model.User.ProviderUserKey })){ %>
-			<fieldset>
-				<p>
-					<dl class="mvcMembership">
-						<dt>Password Question:</dt>
-						<% if(string.IsNullOrEmpty(Model.User.PasswordQuestion) || string.IsNullOrEmpty(Model.User.PasswordQuestion.Trim())){ %>
-						<dd><em>No password question defined.</em></dd>
-						<% }else{ %>
-						<dd><%: Model.User.PasswordQuestion %></dd>
-						<% } %>
-					</dl>
-				</p>
-				<p>
-					<label for="answer">Password Answer:</label>
-					<% =Html.TextBox("answer") %>
-				</p>
-				<input type="submit" value="Reset Password" />
-			</fieldset>
+			<% if(Model.AllowChangePassword){ %>
+				<% using(Html.BeginForm("ChangePassword", "UserAdministration", new{ id = Model.User.ProviderUserKey })){ %>
+				<fieldset>
+					<p>
+						<label for="password">New Password:</label>
+						<% =Html.TextBox("password") %>
+					</p>
+					<input type="submit" value="Change Password" />
+				</fieldset>
+				<% } %>
+			<% }else{ %>
+				<% using(Html.BeginForm("ResetPassword", "UserAdministration", new{ id = Model.User.ProviderUserKey })){ %>
+				<fieldset>
+					<p>
+						<dl class="mvcMembership">
+							<dt>Password Question:</dt>
+							<% if(string.IsNullOrEmpty(Model.User.PasswordQuestion) || string.IsNullOrEmpty(Model.User.PasswordQuestion.Trim())){ %>
+							<dd><em>No password question defined.</em></dd>
+							<% }else{ %>
+							<dd><%: Model.User.PasswordQuestion %></dd>
+							<% } %>
+						</dl>
+					</p>
+					<p>
+						<label for="answer">Password Answer:</label>
+						<% =Html.TextBox("answer") %>
+					</p>
+					<input type="submit" value="Reset Password" />
+				</fieldset>
+				<% } %>
 			<% } %>
 
 		<% } %>

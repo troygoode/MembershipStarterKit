@@ -4,6 +4,7 @@ using System.Net.Mail;
 using System.Web.Mvc;
 using System.Web.Security;
 using MvcMembership;
+using MvcMembership.Settings;
 using SampleWebsite.Areas.UserAdministration.Models.UserAdministration;
 
 namespace SampleWebsite.Areas.UserAdministration.Controllers
@@ -17,11 +18,13 @@ namespace SampleWebsite.Areas.UserAdministration.Controllers
 		private const string ResetPasswordSubject = "Your New Password";
 		private readonly IRolesService _rolesService;
 		private readonly ISmtpClient _smtpClient;
+		private readonly IMembershipSettings _membershipSettings;
 		private readonly IUserService _userService;
 		private readonly IPasswordService _passwordService;
 
 		public UserAdministrationController()
 			: this(
+				new AspNetMembershipProviderSettingsWrapper(Membership.Provider),
 				new AspNetMembershipProviderWrapper(Membership.Provider),
 				new AspNetMembershipProviderWrapper(Membership.Provider),
 				new AspNetRoleProviderWrapper(Roles.Provider),
@@ -30,11 +33,13 @@ namespace SampleWebsite.Areas.UserAdministration.Controllers
 		}
 
 		public UserAdministrationController(
+			IMembershipSettings membershipSettings,
 			IUserService userService,
 			IPasswordService passwordService,
 			IRolesService rolesService,
 			ISmtpClient smtpClient)
 		{
+			_membershipSettings = membershipSettings;
 			_userService = userService;
 			_passwordService = passwordService;
 			_rolesService = rolesService;
@@ -79,6 +84,7 @@ namespace SampleWebsite.Areas.UserAdministration.Controllers
 			var userRoles = _rolesService.FindByUser(user);
 			return View(new DetailsViewModel
 							{
+								AllowChangePassword = _membershipSettings.Password.ResetOrRetrieval.CanReset,
 								DisplayName = user.UserName,
 								User = user,
 								Roles = _rolesService.FindAll().ToDictionary(role => role, role => userRoles.Contains(role)),
@@ -134,6 +140,18 @@ namespace SampleWebsite.Areas.UserAdministration.Controllers
 			var newPassword = _passwordService.ResetPassword(user, answer);
 
 			var body = ResetPasswordBody + newPassword;
+			_smtpClient.Send(new MailMessage(ResetPasswordFromAddress, user.Email, ResetPasswordSubject, body));
+
+			return RedirectToAction("Details", new { id });
+		}
+
+		[AcceptVerbs(HttpVerbs.Post)]
+		public RedirectToRouteResult ChangePassword(Guid id, string password)
+		{
+			var user = _userService.Get(id);
+			_passwordService.ChangePassword(user, password);
+
+			var body = ResetPasswordBody + password;
 			_smtpClient.Send(new MailMessage(ResetPasswordFromAddress, user.Email, ResetPasswordSubject, body));
 
 			return RedirectToAction("Details", new { id });
