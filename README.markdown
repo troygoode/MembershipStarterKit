@@ -39,8 +39,9 @@ instructions:
 ## Configure Membership & Roles Providers
 
 1. Make sure you've configured your `web.config` properly for Membership and Roles. If you aren't sure of how to do this, take a look at the first two articles in [this series by Scott Mitchell at 4GuysFromRolla](http://www.4guysfromrolla.com/articles/120705-1.aspx). *Hint:* Use C:\Windows\Microsoft.NET\Framework\v2.0.50727\aspnet_regsql.exe, and then grant your web site's application pool user access to the database.
-2. Make sure the user identity of your application pool has sufficient permissions to the aspnet database.
-3. Add the following code to your `global.asax` to keep the membership system updated with each user's last activity date:
+2. Change the "Administrator" value of the `Authorize` attribute in the `UserAdministrationController.cs` file (line 11) to whatever role you want to require a user to have in order to view/use the User Administration area. If a user tries to navigate to the User Administration area without this role, they will be redirected to the login page (even if they're already logged in).
+3. Make sure the user identity of your application pool has sufficient permissions to the aspnet database.
+4. Add the following code to your `global.asax` to keep the membership system updated with each user's last activity date:
 <pre>
     protected void Application_AuthenticateRequest()
     {
@@ -48,7 +49,6 @@ instructions:
             Membership.GetUser(true);
     }
 </pre>
-4. Change the "Administrator" value of the `Authorize` attribute in the `UserAdministrationController.cs` file (line 11) to whatever role you want to require a user to have in order to view/use the User Administration area. If a user tries to navigate to the User Administration area without this role, they will be redirected to the login page (even if they're already logged in).
 
 ## Integrate the Views
 
