@@ -2,6 +2,6 @@
 <xunit>
   <assemblies>
     <assembly filename="MvcMembership.Tests\bin\Debug\MvcMembership.Tests.dll" shadow-copy="true" />
-    <assembly filename="SampleWebsite.Tests\bin\Debug\SampleWebsite.Tests.dll" shadow-copy="true" />
+    <assembly filename="UserAdministrationArea.Tests\bin\Debug\UserAdministrationArea.Tests.dll" shadow-copy="true" />
   </assemblies>
 </xunit>

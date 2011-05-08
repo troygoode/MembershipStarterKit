@@ -4,6 +4,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Security;
+using MvcContrib.PortableAreas;
 
 namespace SampleWebsite
 {
@@ -27,6 +28,9 @@ namespace SampleWebsite
 		protected void Application_Start()
 		{
             AreaRegistration.RegisterAllAreas();
+
+            PortableAreaRegistration.RegisterEmbeddedViewEngine();
+
             RegisterRoutes(RouteTable.Routes);
         }
 
