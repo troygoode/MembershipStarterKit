@@ -1,9 +1,10 @@
 # What is the Asp.Net MVC Membership Starter Kit?
 
-The starter kit currently consists of two things:
+The starter kit currently consists of three things:
 
-1. A sample website containing the controllers, models, and views needed to administer users & roles.
-2. A library that provides testable interfaces for administering users & roles and concrete implementations of those interfaces that wrap the built-in Asp.Net Membership & Roles providers.
+1. A library that provides testable interfaces for administering users & roles and concrete implementations of those interfaces that wrap the built-in Asp.Net Membership & Roles providers.
+2. An MVC 3 Portable Area which contains the controllers, models and views needed to administer users & roles.
+3. A sample website which consumes the Portable Area.
 
 Out of the box, the starter kit gives you the following features:
 
@@ -17,6 +18,8 @@ Some screenshots of the UI are [available on my blog](http://www.squaredroot.com
 
 # How do I use it?
 
+*Note* As of now this uses MVC 3 with razor views, so your project needs to be MVC 3. It uses MVCContrib which in turn uses MVC Futures.
+
 *Note:* If you have an ASP.Net MVC 1.0 project, you can convert it to ASP.NET MVC 2.0 following these
 instructions:
 [http://www.asp.net/learn/whitepapers/what-is-new-in-aspnet-mvc/#_TOC2](http://www.asp.net/learn/whitepapers/what-is-new-in-aspnet-mvc/#_TOC2)
@@ -24,17 +27,12 @@ instructions:
 ## Add References to MvcMembership.dll
   
 1. After getting the source code build it using your preferred IDE or using the included `Build.Debug.bat` or `Build.Release.bat` batch files.
-2. Add a reference from the target site to `MvcMembership.dll`.
+2. Add a reference from the target site to `UserAdministrationArea.dll`.
 
 ## Dependencies
 
+1. The UserAdministrationArea dll depends on MvcMembership.dll (and MvcContrib).
 1. The MvcMembership.dll depends upon the PagedList.dll assembly, which you can find packaged with the MvcMembership source code, in the bin of the SampleWebsite, or [downloaded from GitHub](http://github.com/TroyGoode/PagedList).
-
-## Add the Provided MVC Area (Controller, Views, etc)
- 
-1. Copy the directory `SampleWebsite\Areas\UserAdministration` to `{targetSite}\Areas`. (If no "Areas" folder exists in your target site, you can just add one.)
-2. Ensure your application registers areas on startup: `Application_Start` shold call `AreaRegistration.RegisterAllAreas()`.
-3. Copy the file `SampleWebsite\Content\MvcMembership.css` to `{targetSite}\Content\`.
 
 ## Configure Membership & Roles Providers
 
@@ -53,12 +51,23 @@ instructions:
 
 ## Integrate the Views
 
-1. The starter kit relies on your site having a site master page. A default ASP.Net MVC site is generated with a `Site.Master` in the `\Views\Shared` folder. If you want to isolate something to the starter kit you could put it in `\Areas\UserAdministration\Views\Shared`.
-2. That master page and any contained views will need to specify their Area when generating links, even views not in an area (so the default master page would requires fixes). If the link is not to a page in an area (typical), then an Area of "" (empty string) should be specified. For instance, a call to generate a link to the homepage should look like so:
+1. Add the following to the application_Start method of you Global.asax.cs:
+<pre>
+        PortableAreaRegistration.RegisterEmbeddedViewEngine();
+</pre>
+2. The starter kit relies on your site having a site master page (_Layout.cshtml) and a _ViewStart.chtml. A default ASP.Net MVC razor site is generated with a `_layout.cshtml` in the `\Views\Shared` folder and a `_ViewStart.chtml` in the `\Views` folder. That master page needs to have a secion "Headsection" rendered in the "head" of the page:
+<pre>
+    <head>
+        <!-- links to stylesheets and javascript go here --!>
+        @RenderSection("HeadSection", false)
+    </head>
+</pre>
+3. That master page and any contained views will need to specify their Area when generating links, even views not in an area (so the default master page would requires fixes). If the link is not to a page in an area (typical), then an Area of "" (empty string) should be specified. For instance, a call to generate a link to the homepage should look like so:
     `Html.ActionLink("Home", "Index", "Home", new {Area = ""}, new {})`
-3. Add a User Administration link to your master page (change "Administrator" to whatever role you want to use):
+4. Add a User Administration link to your master page (change "Administrator" to whatever role you want to use):
 <pre>
     &lt;% if (Roles.IsUserInRole("Administrator")){ %&gt;
         &lt;li&gt;&lt;%= Html.ActionLink("User Administration", "Index", "UserAdministration", new { Area = "UserAdministration" }, new { })%&gt;&lt;/li&gt;
     &lt;% } %&gt;
 </pre>
+5. If you don't have an "Areas" folder, create one, and copy the web.config from the "Views" folder into it. Otherwise make sure there is a web.config in there (this is needed for Portable Areas).
