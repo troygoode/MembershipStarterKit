@@ -57,10 +57,13 @@ instructions:
 </pre>
 2. The starter kit relies on your site having a site master page (_Layout.cshtml) and a _ViewStart.chtml. A default ASP.Net MVC razor site is generated with a `_layout.cshtml` in the `\Views\Shared` folder and a `_ViewStart.chtml` in the `\Views` folder. That master page needs to have a secion "Headsection" rendered in the "head" of the page:
 <pre>
-    <head>
-        <!-- links to stylesheets and javascript go here --!>
-        @RenderSection("HeadSection", false)
-    </head>
+    &lt;html&gt;
+        ...
+        &lt;head&gt;
+            <!-- links to stylesheets and javascript go here --!>
+            @RenderSection("HeadSection", false)
+        &lt;/head&gt;
+        ...
 </pre>
 3. That master page and any contained views will need to specify their Area when generating links, even views not in an area (so the default master page would requires fixes). If the link is not to a page in an area (typical), then an Area of "" (empty string) should be specified. For instance, a call to generate a link to the homepage should look like so:
     `Html.ActionLink("Home", "Index", "Home", new {Area = ""}, new {})`
