@@ -14,6 +14,7 @@
 <h3 class="mvcMembership">Users</h3>
 
 <div class="mvcMembership-allUsers">
+    @Html.ActionLink("Create New User", "CreateUser")
     @if(Model.Users.Count > 0) { 
 	    <ul class="mvcMembership mvcMembership-users">
 	        @foreach(var user in Model.Users) { 

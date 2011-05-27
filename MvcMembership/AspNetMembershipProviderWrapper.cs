@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Web.Security;
 using PagedList;
 
@@ -96,7 +97,20 @@ namespace MvcMembership
 			return _membershipProvider.GetUser(providerUserKey, false);
 		}
 
-		public void Update(MembershipUser user)
+        public MembershipUser Create(string username, string password, string email, string passwordQuestion, string passwordAnswer)
+        {
+            var providerUserKey = Guid.NewGuid();
+            const bool isApproved = true;
+            MembershipCreateStatus status;
+            var user = _membershipProvider.CreateUser(username, password, email, passwordQuestion, passwordAnswer, isApproved, providerUserKey, out status);
+            if(status != MembershipCreateStatus.Success) 
+            {
+                throw new MembershipCreateUserException(status);
+            }
+            return user;
+        }
+
+	    public void Update(MembershipUser user)
 		{
 			_membershipProvider.UpdateUser(user);
 		}

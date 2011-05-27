@@ -9,7 +9,7 @@ using UserAdministration.Models;
 
 namespace UserAdministration.Controllers
 {
-	[Authorize(Roles = "Administrator")]
+    [Authorize(Roles = "Administrator")]
 	public class UserAdministrationController : Controller
 	{
 		private const int PageSize = 10;
@@ -152,7 +152,30 @@ namespace UserAdministration.Controllers
 			return RedirectToAction("Details", new { id });
 		}
 
-		[AcceptVerbs(HttpVerbs.Post)]
+        public ViewResult CreateUser() 
+        {
+            return View();
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+	    public ActionResult CreateUser(CreateUserViewModel createUserViewModel)
+        {
+            try 
+            {
+                if (ModelState.IsValid)
+                {
+                    var user = _userService.Create(createUserViewModel.Username, createUserViewModel.Password, createUserViewModel.Email, createUserViewModel.PasswordQuestion, createUserViewModel.PasswordAnswer);
+                    return RedirectToAction("Details", new {id = user.ProviderUserKey});
+                }
+            } 
+            catch(MembershipCreateUserException e) 
+            {
+                ModelState.AddModelError(string.Empty, e.Message);
+            }
+            return View(createUserViewModel);
+        }
+
+	    [AcceptVerbs(HttpVerbs.Post)]
 		public RedirectToRouteResult DeleteUser(Guid id)
 		{
 			_userService.Delete(_userService.Get(id));

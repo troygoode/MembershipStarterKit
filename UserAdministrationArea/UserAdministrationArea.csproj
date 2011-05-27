@@ -49,6 +49,7 @@
       <HintPath>..\References\PagedList - 1.1\PagedList.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
@@ -58,6 +59,7 @@
     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.Razor, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Web.WebPages, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -65,6 +67,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\CreateUserViewModel.cs" />
     <Compile Include="UserAdministrationRegistration.cs" />
     <Compile Include="Controllers\UserAdministrationController.cs" />
     <Compile Include="Models\DetailsViewModel.cs" />
@@ -83,6 +86,7 @@
     <EmbeddedResource Include="Views\UserAdministration\Password.cshtml" />
     <EmbeddedResource Include="Views\UserAdministration\Role.cshtml" />
     <EmbeddedResource Include="Views\UserAdministration\UsersRoles.cshtml" />
+    <EmbeddedResource Include="Views\UserAdministration\CreateUser.cshtml" />
     <None Include="Views\Web.config" />
     <EmbeddedResource Include="Views\_ViewStart.cshtml" />
   </ItemGroup>

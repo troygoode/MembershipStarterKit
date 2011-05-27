@@ -1,0 +1,20 @@
+﻿@using MvcContrib;
+@model UserAdministration.Models.CreateUserViewModel
+
+@{
+    ViewBag.Title = "Create New User";
+}
+
+@section HeadSection {
+	<link href='@Url.Resource("Content.MvcMembership.css")' rel="stylesheet" type="text/css" />
+}
+
+<h2 class="mvcMembership">Create New User</h2>
+
+<div class="mvcMembership-account">
+	@using(Html.BeginForm("CreateUser", "UserAdministration")){ 
+		@Html.EditorForModel()
+        <input type="submit" value="Create" />
+        @Html.ValidationSummary(true)
+	} 
+</div>
