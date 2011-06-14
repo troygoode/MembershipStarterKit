@@ -5,7 +5,6 @@ namespace MvcMembership
 {
 	public interface IUserService
 	{
-		//todo: add create user method
 		int TotalUsers { get; }
 		int UsersOnline{ get; }
 		IPagedList<MembershipUser> FindAll(int pageIndex, int pageSize);
@@ -19,5 +18,6 @@ namespace MvcMembership
 		MembershipUser Touch(MembershipUser user);
 		MembershipUser Touch(string userName);
 		MembershipUser Touch(object providerUserKey);
+	    MembershipUser Create(string username, string password, string email, string passwordQuestion, string passwordAnswer);
 	}
 }

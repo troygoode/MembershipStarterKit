@@ -45,13 +45,11 @@
     <Reference Include="MvcContrib">
       <HintPath>..\packages\MvcContrib.Mvc3-ci.3.0.68.0\lib\MvcContrib.dll</HintPath>
     </Reference>
-    <Reference Include="MvcMembership">
-      <HintPath>..\..\..\..\..\Projects\Frits\hboregistry\Libraries\MvcMembership.dll</HintPath>
-    </Reference>
     <Reference Include="PagedList">
-      <HintPath>..\..\..\..\..\Projects\Frits\hboregistry\Libraries\PagedList.dll</HintPath>
+      <HintPath>..\References\PagedList - 1.1\PagedList.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
@@ -61,6 +59,7 @@
     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.Razor, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Web.WebPages, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -68,6 +67,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\CreateUserViewModel.cs" />
     <Compile Include="UserAdministrationRegistration.cs" />
     <Compile Include="Controllers\UserAdministrationController.cs" />
     <Compile Include="Models\DetailsViewModel.cs" />
@@ -86,10 +86,16 @@
     <EmbeddedResource Include="Views\UserAdministration\Password.cshtml" />
     <EmbeddedResource Include="Views\UserAdministration\Role.cshtml" />
     <EmbeddedResource Include="Views\UserAdministration\UsersRoles.cshtml" />
+    <EmbeddedResource Include="Views\UserAdministration\CreateUser.cshtml" />
     <None Include="Views\Web.config" />
     <EmbeddedResource Include="Views\_ViewStart.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\MvcMembership\MvcMembership.csproj">
+      <Project>{C9D7F653-E589-44CE-9D41-89821F4F9E4E}</Project>
+      <Name>MvcMembership</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

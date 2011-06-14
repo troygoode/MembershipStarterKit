@@ -656,5 +656,68 @@ namespace UserAdministrationArea.Tests
 			_userService.Verify();
 			_rolesService.Verify(x => x.RemoveFromRole(user, role));
 		}
+
+        [Fact]
+        public void CreateUser_creates_a_new_user() 
+        {
+            // arrange
+			var user = new Mock<MembershipUser>().Object;
+            const string username = "jdoe";
+            const string password = "password";
+            const string email = "jdoe@example.com";
+            const string passwordQuestion = "What is your quest?";
+            const string passwordAnswer = "To seek the Holy Grail";
+            _userService.Setup(x => x.Create(username, password, email, passwordQuestion, passwordAnswer)).Returns(user).Verifiable();
+
+            // act
+            var viewModel = new CreateUserViewModel { Username = username, 
+                                                      Password = password, 
+                                                      Email = email, 
+                                                      PasswordQuestion = passwordQuestion, 
+                                                      PasswordAnswer = passwordAnswer };
+            _controller.CreateUser(viewModel);
+
+            // assert
+            _userService.Verify();
+        }
+
+        [Fact]
+        public void CreateUser_redirects_to_newly_created_user() 
+        {
+            // arrange
+            var id = Guid.NewGuid();
+            var user = new Mock<MembershipUser>();
+            user.Setup(x => x.ProviderUserKey).Returns(id);
+            _userService.Setup(x => x.Create(null, null, null, null, null)).Returns(user.Object);
+
+            // act
+            var returnedResult = _controller.CreateUser(new CreateUserViewModel());
+
+            // assert
+            var result = Assert.IsType<RedirectToRouteResult>(returnedResult);
+            Assert.Equal("Details", result.RouteValues["action"]);
+            Assert.Null(result.RouteValues["controller"]);
+            Assert.Equal(id, result.RouteValues["id"]);
+        }
+
+        [Fact]
+        public void CreateUser_displays_username_validation_error_when_duplicate_username_supplied() 
+        {
+            // arrange
+            var exception = new MembershipCreateUserException(MembershipCreateStatus.DuplicateUserName);
+            _userService.Setup(x => x.Create(null, null, null, null, null)).Throws(exception);
+            var viewModel = new CreateUserViewModel();
+
+            // act
+            var returnedResult = _controller.CreateUser(viewModel);
+
+            // assert
+            var result = Assert.IsType<ViewResult>(returnedResult);
+            Assert.Equal("", result.ViewName);
+            Assert.Equal(viewModel, result.Model);
+            var modelState = result.ViewData.ModelState;
+            Assert.True(modelState.ContainsKey(string.Empty));
+            Assert.Equal(exception.Message, modelState[string.Empty].Errors.First().ErrorMessage);
+        }
 	}
 }

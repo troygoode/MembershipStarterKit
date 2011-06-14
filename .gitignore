@@ -16,4 +16,6 @@ LastBuild.log
 _ReSharper*
 .DS_Store
 *.MDF
+*.mdf
 *.LDF
+*.ldf
