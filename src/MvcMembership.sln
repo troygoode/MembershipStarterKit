@@ -10,8 +10,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcMembership", "MvcMembers
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcMembership.Tests", "MvcMembership.Tests\MvcMembership.Tests.csproj", "{B48B10DD-E450-49AF-A1FA-102AC165DEEA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleWebsite", "SampleWebsite\SampleWebsite.csproj", "{80C05049-D202-49CD-B9EA-9210429FC8FA}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleWebsite.Mvc3", "SampleWebsite.Mvc3\SampleWebsite.Mvc3.csproj", "{65C3A21B-D946-45B6-8A7E-2DBB98E35E0C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleWebsite.Mvc3.Tests", "SampleWebsite.Mvc3.Tests\SampleWebsite.Mvc3.Tests.csproj", "{BC267EA5-FC39-41CA-A032-84AB5AF0AFD4}"
@@ -30,10 +28,6 @@ Global
 		{B48B10DD-E450-49AF-A1FA-102AC165DEEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B48B10DD-E450-49AF-A1FA-102AC165DEEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B48B10DD-E450-49AF-A1FA-102AC165DEEA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{80C05049-D202-49CD-B9EA-9210429FC8FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{80C05049-D202-49CD-B9EA-9210429FC8FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{80C05049-D202-49CD-B9EA-9210429FC8FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{80C05049-D202-49CD-B9EA-9210429FC8FA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{65C3A21B-D946-45B6-8A7E-2DBB98E35E0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{65C3A21B-D946-45B6-8A7E-2DBB98E35E0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{65C3A21B-D946-45B6-8A7E-2DBB98E35E0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
