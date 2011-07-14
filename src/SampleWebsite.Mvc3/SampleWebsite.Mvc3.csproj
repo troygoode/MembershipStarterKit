@@ -78,7 +78,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RegisterClientValidationExtensions.cs" />
-    <Compile Include="App_Start\TouchUserOnEachVisit.cs" />
+    <Compile Include="App_Start\MvcMembership.cs" />
     <Compile Include="Areas\MvcMembership\Controllers\UserAdministrationController.cs" />
     <Compile Include="Areas\MvcMembership\Models\UserAdministration\CreateUserViewModel.cs" />
     <Compile Include="Areas\MvcMembership\Models\UserAdministration\DetailsViewModel.cs" />
