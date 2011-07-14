@@ -16,7 +16,7 @@ end
 
 xunit :test_sampleWebsite => :build do |xunit|
   xunit.path_to_command = "src/packages-manual/xunit-1.8/xunit.console.clr4.exe"
-  xunit.assembly = "src/SampleWebsite.Tests/bin/debug/SampleWebsite.Tests.dll"
+  xunit.assembly = "src/SampleWebsite.Mvc3.Tests/bin/debug/SampleWebsite.Mvc3.Tests.dll"
 end
 
 task :test => [:test_library, :test_sampleWebsite] do
