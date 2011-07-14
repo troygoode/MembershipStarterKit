@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata schemaVersion="2">
+    <id>MvcMembership.Mvc</id>
+    <version>3.0.0.0</version>
+    <authors>Troy Goode</authors>
+    <owners>TroyGoode</owners>
+    <description><![CDATA[Lorem ipsum.]]></description>
+    <language>en-US</language>
+    <projectUrl>http://github.com/TroyGoode/MvcMembership</projectUrl>
+    <licenseUrl>http://www.opensource.org/licenses/mit-license.php</licenseUrl>
+    <dependencies>
+    	<dependency id="PagedList.Mvc" version="3.2" />
+    	<dependency id="MvcMembership" version="3.0" />
+    	<dependency id="DataAnnotationExtensions.MVC3" version="0.6" />
+    	<dependency id="WebActivator" version="1.1" />
+    </dependencies>
+  </metadata>
+</package>
