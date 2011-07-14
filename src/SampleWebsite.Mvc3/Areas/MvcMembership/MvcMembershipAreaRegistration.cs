@@ -16,8 +16,8 @@ namespace SampleWebsite.Mvc3.Areas.MvcMembership
 		{
 			context.MapRoute(
 				"MvcMembership_default",
-				"UserAdministration/{action}/{id}",
-				new { controller = "UserAdministration", action = "Index", id = UrlParameter.Optional }
+				"MvcMembership/{controller}/{action}/{id}",
+				new { action = "Index", id = UrlParameter.Optional }
 			);
 		}
 	}

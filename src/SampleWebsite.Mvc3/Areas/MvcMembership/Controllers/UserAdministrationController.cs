@@ -46,11 +46,11 @@ namespace SampleWebsite.Mvc3.Areas.MvcMembership.Controllers
 			_smtpClient = smtpClient;
 		}
 
-		public ViewResult Index(int? index)
+		public ViewResult Index(int? page)
 		{
 			return View(new IndexViewModel
 							{
-								Users = _userService.FindAll(index ?? 0, PageSize),
+								Users = _userService.FindAll(page ?? 0, PageSize),
 								Roles = _rolesService.FindAll()
 							});
 		}
