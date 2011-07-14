@@ -17,3 +17,6 @@ _ReSharper*
 .DS_Store
 *.MDF
 *.LDF
+packages/MvcMembership/lib/40/
+packages/MvcMembership.Mvc/content/
+packages/*.nupkg
