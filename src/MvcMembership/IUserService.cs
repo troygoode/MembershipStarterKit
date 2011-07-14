@@ -5,7 +5,6 @@ namespace MvcMembership
 {
 	public interface IUserService
 	{
-		//todo: add create user method
 		int TotalUsers { get; }
 		int UsersOnline{ get; }
 		IPagedList<MembershipUser> FindAll(int pageIndex, int pageSize);
@@ -13,6 +12,8 @@ namespace MvcMembership
 		IPagedList<MembershipUser> FindByUserName(string userNameToMatch, int pageIndex, int pageSize);
 		MembershipUser Get(string userName);
 		MembershipUser Get(object providerUserKey);
+		MembershipUser Create(string username, string password, string email, string passwordQuestion, string passwordAnswer, bool isApproved);
+		MembershipUser Create(string username, string password, string email, string passwordQuestion, string passwordAnswer, bool isApproved, object providerUserKey);
 		void Update(MembershipUser user);
 		void Delete(MembershipUser user);
 		void Delete(MembershipUser user, bool deleteAllRelatedData);

@@ -92,6 +92,7 @@
     <Compile Include="Settings\PasswordResetRetrievalSettings.cs" />
     <Compile Include="Settings\PasswordSettings.cs" />
     <Compile Include="Settings\RegistrationSettings.cs" />
+    <Compile Include="TouchUserOnEachVisitFilter.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

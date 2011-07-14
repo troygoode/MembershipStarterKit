@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mail;
 using System.Web.Mvc;
+using System.Web.Security;
 using MvcMembership;
 using MvcMembership.Settings;
 using SampleWebsite.Mvc3.Areas.MvcMembership.Models.UserAdministration;
@@ -154,6 +155,35 @@ namespace SampleWebsite.Mvc3.Areas.MvcMembership.Controllers
 									? DetailsViewModel.StatusEnum.LockedOut
 									: DetailsViewModel.StatusEnum.Offline
 			});
+		}
+
+		public ViewResult CreateUser()
+		{
+			return View();
+		}
+
+		[AcceptVerbs(HttpVerbs.Post)]
+		public ActionResult CreateUser(CreateUserViewModel createUserViewModel)
+		{
+			if (!ModelState.IsValid)
+				return View(createUserViewModel);
+
+			try
+			{
+				var user = _userService.Create(
+					createUserViewModel.Username,
+					createUserViewModel.Password,
+					createUserViewModel.Email,
+					createUserViewModel.PasswordQuestion,
+					createUserViewModel.PasswordAnswer,
+					true);
+				return RedirectToAction("Details", new { id = user.ProviderUserKey });
+			}
+			catch (MembershipCreateUserException e)
+			{
+				ModelState.AddModelError(string.Empty, e.Message);
+				return View(createUserViewModel);
+			}
 		}
 
 		[AcceptVerbs(HttpVerbs.Post)]

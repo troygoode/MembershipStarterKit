@@ -1,0 +1,17 @@
+﻿@model SampleWebsite.Mvc3.Areas.MvcMembership.Models.UserAdministration.CreateUserViewModel
+@{
+	ViewBag.Title = "Create New User";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href='@Url.Content("~/Content/MvcMembership.css")' rel="stylesheet" type="text/css" />
+
+<h2 class="mvcMembership">Create New User</h2>
+
+<div class="mvcMembership-account">
+	@using(Html.BeginForm("CreateUser", "UserAdministration")){ 
+		@Html.ValidationSummary(true)
+	 	@Html.EditorForModel()
+		<input type="submit" value="Create" />
+	} 
+</div>

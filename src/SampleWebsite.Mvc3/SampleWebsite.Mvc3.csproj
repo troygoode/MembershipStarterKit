@@ -34,6 +34,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DataAnnotationsExtensions">
+      <HintPath>..\packages\DataAnnotationsExtensions.0.6.0.0\lib\NETFramework40\DataAnnotationsExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="DataAnnotationsExtensions.ClientValidation">
+      <HintPath>..\packages\DataAnnotationsExtensions.MVC3.0.6.0.0\lib\NETFramework40\DataAnnotationsExtensions.ClientValidation.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.4.1.10331.0\lib\EntityFramework.dll</HintPath>
     </Reference>
@@ -66,9 +72,15 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="WebActivator">
+      <HintPath>..\packages\WebActivator.1.1.0.0\lib\NETFramework40\WebActivator.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\RegisterClientValidationExtensions.cs" />
+    <Compile Include="App_Start\TouchUserOnEachVisit.cs" />
     <Compile Include="Areas\MvcMembership\Controllers\UserAdministrationController.cs" />
+    <Compile Include="Areas\MvcMembership\Models\UserAdministration\CreateUserViewModel.cs" />
     <Compile Include="Areas\MvcMembership\Models\UserAdministration\DetailsViewModel.cs" />
     <Compile Include="Areas\MvcMembership\Models\UserAdministration\IndexViewModel.cs" />
     <Compile Include="Areas\MvcMembership\Models\UserAdministration\RoleViewModel.cs" />
@@ -82,6 +94,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\MvcMembership\Views\UserAdministration\CreateUser.cshtml" />
     <None Include="Areas\MvcMembership\Views\UserAdministration\Details.cshtml" />
     <None Include="Areas\MvcMembership\Views\UserAdministration\Index.cshtml" />
     <None Include="Areas\MvcMembership\Views\UserAdministration\Password.cshtml" />
@@ -161,7 +174,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\MvcMembership\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
