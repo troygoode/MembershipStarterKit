@@ -58,6 +58,13 @@ div.mvcMembership-allUsers ul.mvcMembership-users > li > span.mvcMembership-comm
 	margin: .5em 0 .5em 0;
 }
 
+div.mvcMembership-allUsers .PagedList-disabled a{
+	color: #666;
+}
+div.mvcMembership-allUsers .PagedList-disabled a:hover{
+	color: #666;
+}
+
 div.mvcMembership-allRoles ul > li{
 	margin: .5em 0 .5em 0;
 }
