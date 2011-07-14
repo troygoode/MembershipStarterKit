@@ -5,9 +5,9 @@
     <version>3.0.0.0</version>
     <authors>Troy Goode</authors>
     <owners>TroyGoode</owners>
-    <description><![CDATA[Lorem ipsum.]]></description>
+    <description><![CDATA[The starter kit provides the Asp.Net MVC controllers, models, and views needed to administer users & roles. This package contains classes needed by the MvcMembership.Mvc package to provide a testable interface to ASP.Net's MembershipProvider and RoleProvider features.]]></description>
     <language>en-US</language>
-    <projectUrl>http://github.com/TroyGoode/MvcMembership</projectUrl>
+    <projectUrl>http://github.com/TroyGoode/MembershipStarterKit</projectUrl>
     <licenseUrl>http://www.opensource.org/licenses/mit-license.php</licenseUrl>
     <dependencies>
     	<dependency id="PagedList" version="1.4" />
