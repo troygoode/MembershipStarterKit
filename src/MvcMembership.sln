@@ -12,8 +12,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcMembership.Tests", "MvcM
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleWebsite", "SampleWebsite\SampleWebsite.csproj", "{80C05049-D202-49CD-B9EA-9210429FC8FA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleWebsite.Tests", "SampleWebsite.Tests\SampleWebsite.Tests.csproj", "{498E569C-DE6D-4F83-8660-6E58F818D803}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleWebsite.Mvc3", "SampleWebsite.Mvc3\SampleWebsite.Mvc3.csproj", "{65C3A21B-D946-45B6-8A7E-2DBB98E35E0C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleWebsite.Mvc3.Tests", "SampleWebsite.Mvc3.Tests\SampleWebsite.Mvc3.Tests.csproj", "{BC267EA5-FC39-41CA-A032-84AB5AF0AFD4}"
@@ -36,10 +34,6 @@ Global
 		{80C05049-D202-49CD-B9EA-9210429FC8FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{80C05049-D202-49CD-B9EA-9210429FC8FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{80C05049-D202-49CD-B9EA-9210429FC8FA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{498E569C-DE6D-4F83-8660-6E58F818D803}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{498E569C-DE6D-4F83-8660-6E58F818D803}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{498E569C-DE6D-4F83-8660-6E58F818D803}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{498E569C-DE6D-4F83-8660-6E58F818D803}.Release|Any CPU.Build.0 = Release|Any CPU
 		{65C3A21B-D946-45B6-8A7E-2DBB98E35E0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{65C3A21B-D946-45B6-8A7E-2DBB98E35E0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{65C3A21B-D946-45B6-8A7E-2DBB98E35E0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
