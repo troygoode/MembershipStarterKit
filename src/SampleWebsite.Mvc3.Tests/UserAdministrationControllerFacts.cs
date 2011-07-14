@@ -27,6 +27,7 @@ namespace SampleWebsite.Tests
 		public UserAdministrationControllerFacts()
 		{
 			_controller = new UserAdministrationController(_membershipSettings.Object, _userService.Object, _passwordService.Object, _rolesService.Object, _smtpClient.Object);
+			_rolesService.SetupGet(x => x.Enabled).Returns(true);
 		}
 
 		[Fact]
@@ -692,7 +693,7 @@ namespace SampleWebsite.Tests
 			var id = Guid.NewGuid();
 			var user = new Mock<MembershipUser>();
 			user.Setup(x => x.ProviderUserKey).Returns(id);
-			_userService.Setup(x => x.Create(null, null, null, null, null, false)).Returns(user.Object);
+			_userService.Setup(x => x.Create(null, null, null, null, null, true)).Returns(user.Object);
 
 			// act
 			var returnedResult = _controller.CreateUser(new CreateUserViewModel());
@@ -709,7 +710,7 @@ namespace SampleWebsite.Tests
 		{
 			// arrange
 			var exception = new MembershipCreateUserException(MembershipCreateStatus.DuplicateUserName);
-			_userService.Setup(x => x.Create(null, null, null, null, null, false)).Throws(exception);
+			_userService.Setup(x => x.Create(null, null, null, null, null, true)).Throws(exception);
 			var viewModel = new CreateUserViewModel();
 
 			// act
