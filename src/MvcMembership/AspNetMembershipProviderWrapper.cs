@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Web.Security;
+using MvcMembership.Settings;
 using PagedList;
 
 namespace MvcMembership
@@ -8,9 +9,19 @@ namespace MvcMembership
 	{
 		private readonly MembershipProvider _membershipProvider;
 
+		public AspNetMembershipProviderWrapper()
+		{
+			_membershipProvider = Membership.Provider;
+		}
+
 		public AspNetMembershipProviderWrapper(MembershipProvider membershipProvider)
 		{
 			_membershipProvider = membershipProvider;
+		}
+
+		public AspNetMembershipProviderSettingsWrapper Settings
+		{
+			get{ return new AspNetMembershipProviderSettingsWrapper(_membershipProvider); }
 		}
 
 		#region IPasswordService Members

@@ -5,6 +5,7 @@ namespace MvcMembership
 {
 	public interface IRolesService
 	{
+		bool Enabled { get; }
 		IEnumerable<string> FindAll();
 		IEnumerable<string> FindByUser(MembershipUser user);
 		IEnumerable<string> FindByUserName(string userName);

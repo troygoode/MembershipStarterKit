@@ -20,9 +20,7 @@
 				<ul id="menu">
 					<li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, null)</li>
 					<li>@Html.ActionLink("About", "About", "Home", new { area = "" }, null)</li>
-					@if (User.IsInRole("Administrator")){
-						<li>@Html.ActionLink("User Administration", "Index", "UserAdministration", new { area = "MvcMembership" }, null)</li>
-					}
+					<li>@Html.ActionLink("User Administration", "Index", "UserAdministration", new { area = "MvcMembership" }, null)</li>
 				</ul>
 			</nav>
 		</header>

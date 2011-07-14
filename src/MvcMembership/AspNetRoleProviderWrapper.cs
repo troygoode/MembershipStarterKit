@@ -7,12 +7,23 @@ namespace MvcMembership
 	{
 		private readonly RoleProvider _roleProvider;
 
+		public AspNetRoleProviderWrapper()
+		{
+			if (Roles.Enabled)
+				_roleProvider = Roles.Provider;
+		}
+
 		public AspNetRoleProviderWrapper(RoleProvider roleProvider)
 		{
 			_roleProvider = roleProvider;
 		}
 
 		#region IRolesService Members
+
+		public bool Enabled
+		{
+			get { return _roleProvider != null; }
+		}
 
 		public IEnumerable<string> FindAll()
 		{

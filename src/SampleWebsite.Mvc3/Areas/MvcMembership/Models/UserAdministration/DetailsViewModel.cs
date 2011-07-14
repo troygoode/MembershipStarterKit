@@ -23,5 +23,6 @@ namespace SampleWebsite.Mvc3.Areas.MvcMembership.Models.UserAdministration
 		public bool CanResetPassword { get; set; }
 		public bool RequirePasswordQuestionAnswerToResetPassword { get; set; }
 		public IDictionary<string, bool> Roles { get; set; }
+		public bool IsRolesEnabled { get; set; }
 	}
 }

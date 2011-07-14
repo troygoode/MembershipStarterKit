@@ -52,28 +52,30 @@
 }
 </div>
 
-<h3 class="mvcMembership">Roles</h3>
-<div class="mvcMembership-allRoles">
-@if(Model.Roles.Count() > 0 ){
-	<ul class="mvcMembership">
-		@foreach(var role in Model.Roles){
-		<li>
-			@Html.ActionLink(role, "Role", new{id = role})
-			@using(Html.BeginForm("DeleteRole", "UserAdministration", new{id=role})){
-			<input type="submit" value="Delete" />
+@if(Model.IsRolesEnabled){
+	<h3 class="mvcMembership">Roles</h3>
+	<div class="mvcMembership-allRoles">
+	@if(Model.Roles.Count() > 0 ){
+		<ul class="mvcMembership">
+			@foreach(var role in Model.Roles){
+			<li>
+				@Html.ActionLink(role, "Role", new{id = role})
+				@using(Html.BeginForm("DeleteRole", "UserAdministration", new{id=role})){
+				<input type="submit" value="Delete" />
+				}
+			</li>
 			}
-		</li>
-		}
-	</ul>
-}else{
-	<p>No roles have been created.</p>
-}
+		</ul>
+	}else{
+		<p>No roles have been created.</p>
+	}
 
-@using(Html.BeginForm("CreateRole", "UserAdministration")){
-	<fieldset>
-		<label for="id">Role:</label>
-		@Html.TextBox("id")
-		<input type="submit" value="Create Role" />
-	</fieldset>
+	@using(Html.BeginForm("CreateRole", "UserAdministration")){
+		<fieldset>
+			<label for="id">Role:</label>
+			@Html.TextBox("id")
+			<input type="submit" value="Create Role" />
+		</fieldset>
+	}
+	</div>
 }
-</div>

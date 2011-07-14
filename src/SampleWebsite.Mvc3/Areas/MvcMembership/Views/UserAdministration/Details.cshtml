@@ -12,7 +12,9 @@
 <ul class="mvcMembership-tabs">
 	<li>Details</li>
 	<li>@Html.ActionLink("Password", "Password", "UserAdministration", new { id = Model.User.ProviderUserKey }, null)</li>
+	@if(Model.IsRolesEnabled){
 	<li>@Html.ActionLink("Roles", "UsersRoles", "UserAdministration", new { id = Model.User.ProviderUserKey }, null)</li>
+	}
 </ul>
 
 <h3 class="mvcMembership">Account</h3>

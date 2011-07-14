@@ -6,6 +6,11 @@ namespace MvcMembership
 	{
 		private readonly SmtpClient _smtpClient;
 
+		public SmtpClientProxy()
+		{
+			_smtpClient = new SmtpClient();
+		}
+
 		public SmtpClientProxy(SmtpClient smtpClient)
 		{
 			_smtpClient = smtpClient;

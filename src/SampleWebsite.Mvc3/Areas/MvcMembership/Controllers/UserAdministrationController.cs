@@ -1,15 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mail;
 using System.Web.Mvc;
-using System.Web.Security;
 using MvcMembership;
 using MvcMembership.Settings;
 using SampleWebsite.Mvc3.Areas.MvcMembership.Models.UserAdministration;
 
 namespace SampleWebsite.Mvc3.Areas.MvcMembership.Controllers
 {
-	[Authorize(Roles = "Administrator")]
+	[AuthorizeUnlessOnlyUser(Roles = "Administrator")] // allows access if you're the only user, only validates role if role provider is enabled
 	public class UserAdministrationController : Controller
 	{
 		private const int PageSize = 10;
@@ -23,12 +23,12 @@ namespace SampleWebsite.Mvc3.Areas.MvcMembership.Controllers
 		private readonly IPasswordService _passwordService;
 
 		public UserAdministrationController()
-			: this(
-				new AspNetMembershipProviderSettingsWrapper(Membership.Provider),
-				new AspNetMembershipProviderWrapper(Membership.Provider),
-				new AspNetMembershipProviderWrapper(Membership.Provider),
-				new AspNetRoleProviderWrapper(Roles.Provider),
-				new SmtpClientProxy(new SmtpClient()))
+			: this(new AspNetMembershipProviderWrapper(), new AspNetRoleProviderWrapper(), new SmtpClientProxy())
+		{
+		}
+
+		public UserAdministrationController(AspNetMembershipProviderWrapper membership, IRolesService roles, ISmtpClient smtp)
+			: this(membership.Settings, membership, membership, roles, smtp)
 		{
 		}
 
@@ -51,14 +51,18 @@ namespace SampleWebsite.Mvc3.Areas.MvcMembership.Controllers
 			return View(new IndexViewModel
 							{
 								Users = _userService.FindAll(page ?? 0, PageSize),
-								Roles = _rolesService.FindAll()
+								Roles = _rolesService.Enabled
+									? _rolesService.FindAll()
+									: Enumerable.Empty<string>(),
+								IsRolesEnabled = _rolesService.Enabled
 							});
 		}
 
 		[AcceptVerbs(HttpVerbs.Post)]
 		public RedirectToRouteResult CreateRole(string id)
 		{
-			_rolesService.Create(id);
+			if (_rolesService.Enabled)
+				_rolesService.Create(id);
 			return RedirectToAction("Index");
 		}
 
@@ -81,14 +85,19 @@ namespace SampleWebsite.Mvc3.Areas.MvcMembership.Controllers
 		public ViewResult Details(Guid id)
 		{
 			var user = _userService.Get(id);
-			var userRoles = _rolesService.FindByUser(user);
+			var userRoles = _rolesService.Enabled
+				? _rolesService.FindByUser(user)
+				: Enumerable.Empty<string>();
 			return View(new DetailsViewModel
 							{
 								CanResetPassword = _membershipSettings.Password.ResetOrRetrieval.CanReset,
 								RequirePasswordQuestionAnswerToResetPassword = _membershipSettings.Password.ResetOrRetrieval.RequiresQuestionAndAnswer,
 								DisplayName = user.UserName,
 								User = user,
-								Roles = _rolesService.FindAll().ToDictionary(role => role, role => userRoles.Contains(role)),
+								Roles = _rolesService.Enabled
+									? _rolesService.FindAll().ToDictionary(role => role, role => userRoles.Contains(role))
+									: new Dictionary<string, bool>(0),
+								IsRolesEnabled = _rolesService.Enabled,
 								Status = user.IsOnline
 											? DetailsViewModel.StatusEnum.Online
 											: !user.IsApproved
@@ -102,14 +111,19 @@ namespace SampleWebsite.Mvc3.Areas.MvcMembership.Controllers
 		public ViewResult Password(Guid id)
 		{
 			var user = _userService.Get(id);
-			var userRoles = _rolesService.FindByUser(user);
+			var userRoles = _rolesService.Enabled
+				? _rolesService.FindByUser(user)
+				: Enumerable.Empty<string>();
 			return View(new DetailsViewModel
 			{
 				CanResetPassword = _membershipSettings.Password.ResetOrRetrieval.CanReset,
 				RequirePasswordQuestionAnswerToResetPassword = _membershipSettings.Password.ResetOrRetrieval.RequiresQuestionAndAnswer,
 				DisplayName = user.UserName,
 				User = user,
-				Roles = _rolesService.FindAll().ToDictionary(role => role, role => userRoles.Contains(role)),
+				Roles = _rolesService.Enabled
+					? _rolesService.FindAll().ToDictionary(role => role, role => userRoles.Contains(role))
+					: new Dictionary<string, bool>(0),
+				IsRolesEnabled = _rolesService.Enabled,
 				Status = user.IsOnline
 							? DetailsViewModel.StatusEnum.Online
 							: !user.IsApproved
@@ -131,6 +145,7 @@ namespace SampleWebsite.Mvc3.Areas.MvcMembership.Controllers
 				DisplayName = user.UserName,
 				User = user,
 				Roles = _rolesService.FindAll().ToDictionary(role => role, role => userRoles.Contains(role)),
+				IsRolesEnabled = true,
 				Status = user.IsOnline
 							? DetailsViewModel.StatusEnum.Online
 							: !user.IsApproved
