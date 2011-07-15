@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata schemaVersion="2">
     <id>MvcMembership.Mvc</id>
-    <version>3.0.0.0</version>
+    <version>3.0.0.1</version>
     <authors>Troy Goode</authors>
     <owners>TroyGoode</owners>
     <description><![CDATA[The starter kit provides the Asp.Net MVC controllers, models, and views needed to administer users & roles.]]></description>
