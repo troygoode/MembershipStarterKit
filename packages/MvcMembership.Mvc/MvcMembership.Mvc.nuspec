@@ -12,7 +12,7 @@
     <dependencies>
     	<dependency id="PagedList.Mvc" version="3.2" />
     	<dependency id="MvcMembership" version="3.0" />
-    	<dependency id="DataAnnotationExtensions.MVC3" version="0.6" />
+    	<dependency id="DataAnnotationsExtensions.MVC3" version="0.6" />
     	<dependency id="WebActivator" version="1.1" />
     </dependencies>
   </metadata>
