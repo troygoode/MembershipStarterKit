@@ -15,7 +15,6 @@ namespace SampleWebsite.Mvc3.Areas.MvcMembership.Controllers
 	{
 		private const int PageSize = 10;
 		private const string ResetPasswordBody = "Your new password is: ";
-		private const string ResetPasswordFromAddress = "from@domain.com";
 		private const string ResetPasswordSubject = "Your New Password";
 		private readonly IRolesService _rolesService;
 		private readonly ISmtpClient _smtpClient;
@@ -226,7 +225,11 @@ namespace SampleWebsite.Mvc3.Areas.MvcMembership.Controllers
 			var newPassword = _passwordService.ResetPassword(user);
 
 			var body = ResetPasswordBody + newPassword;
-			_smtpClient.Send(new MailMessage(ResetPasswordFromAddress, user.Email, ResetPasswordSubject, body));
+			var msg = new MailMessage();
+			msg.To.Add(user.Email);
+			msg.Subject = ResetPasswordSubject;
+			msg.Body = body;
+			_smtpClient.Send(msg);
 
 			return RedirectToAction("Password", new { id });
 		}
@@ -238,7 +241,11 @@ namespace SampleWebsite.Mvc3.Areas.MvcMembership.Controllers
 			var newPassword = _passwordService.ResetPassword(user, answer);
 
 			var body = ResetPasswordBody + newPassword;
-			_smtpClient.Send(new MailMessage(ResetPasswordFromAddress, user.Email, ResetPasswordSubject, body));
+			var msg = new MailMessage();
+			msg.To.Add(user.Email);
+			msg.Subject = ResetPasswordSubject;
+			msg.Body = body;
+			_smtpClient.Send(msg);
 
 			return RedirectToAction("Password", new { id });
 		}
@@ -250,7 +257,11 @@ namespace SampleWebsite.Mvc3.Areas.MvcMembership.Controllers
 			_passwordService.ChangePassword(user, password);
 
 			var body = ResetPasswordBody + password;
-			_smtpClient.Send(new MailMessage(ResetPasswordFromAddress, user.Email, ResetPasswordSubject, body));
+			var msg = new MailMessage();
+			msg.To.Add(user.Email);
+			msg.Subject = ResetPasswordSubject;
+			msg.Body = body;
+			_smtpClient.Send(msg);
 
 			return RedirectToAction("Password", new { id });
 		}
