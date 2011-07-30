@@ -34,7 +34,8 @@
     <Reference Include="Moq">
       <HintPath>..\packages\Moq.4.0.10827\lib\NET40\Moq.dll</HintPath>
     </Reference>
-    <Reference Include="PagedList">
+    <Reference Include="PagedList, Version=1.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\PagedList.1.5.0.0\lib\40\PagedList.dll</HintPath>
     </Reference>
     <Reference Include="System" />
