@@ -41,14 +41,14 @@
       <HintPath>..\packages\DataAnnotationsExtensions.MVC3.0.6.0.0\lib\NETFramework40\DataAnnotationsExtensions.ClientValidation.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.4.1.10331.0\lib\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.4.1.10715.0\lib\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="PagedList, Version=1.4.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
-      <HintPath>..\packages\PagedList.1.4.0.0\lib\40\PagedList.dll</HintPath>
+    <Reference Include="PagedList">
+      <HintPath>..\packages\PagedList.1.5.0.0\lib\40\PagedList.dll</HintPath>
     </Reference>
     <Reference Include="PagedList.Mvc">
-      <HintPath>..\packages\PagedList.Mvc.3.2.0.0\lib\40\PagedList.Mvc.dll</HintPath>
+      <HintPath>..\packages\PagedList.Mvc.3.3.0.0\lib\40\PagedList.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
@@ -73,7 +73,7 @@
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="WebActivator">
-      <HintPath>..\packages\WebActivator.1.1.0.0\lib\NETFramework40\WebActivator.dll</HintPath>
+      <HintPath>..\packages\WebActivator.1.4.1\lib\net40\WebActivator.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
