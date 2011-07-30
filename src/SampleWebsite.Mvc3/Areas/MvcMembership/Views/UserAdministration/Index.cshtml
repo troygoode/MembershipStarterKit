@@ -8,6 +8,10 @@
 <link href='@Url.Content("~/Content/MvcMembership.css")' rel="stylesheet" type="text/css" />
 <link href='@Url.Content("~/Content/PagedList.css")' rel="stylesheet" type="text/css" />
 
+@if(!Model.IsRolesEnabled){
+	<p class="mvcMembership-warning">WARNING: Your Role Provider is currently disabled - any user may currently visit this page.<br />Change &lt;roleManager enabled="false"&gt; to &lt;roleManager enabled="true"&gt; in your web.config file.</p>
+}
+
 <h2 class="mvcMembership">User Administration</h2>
 	
 <h3 class="mvcMembership">Users (@Html.ActionLink("New User", "CreateUser", "UserAdministration"))</h3>

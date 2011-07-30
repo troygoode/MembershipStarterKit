@@ -1,4 +1,13 @@
-﻿h3.mvcMembership{
+﻿p.mvcMembership-warning{
+	color: #cc0000;
+	font-weight: bold;
+	border: 2px solid #cc0000;
+	padding: 1em;
+	border-radius: .5em;
+	text-align: center;
+}
+
+h3.mvcMembership{
 	clear: left;
 }
 
