@@ -10,7 +10,7 @@ namespace SampleWebsite.Mvc3.App_Start
 	{
 		public static void Start()
 		{
-			GlobalFilters.Filters.Add(new TouchUserOnEachVisitFilter(() => new AspNetMembershipProviderWrapper()));
+			GlobalFilters.Filters.Add(new TouchUserOnEachVisitFilter());
 		}
 	}
 }

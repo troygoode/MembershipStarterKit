@@ -73,6 +73,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AspNetMembershipProviderUserServiceFactory.cs" />
     <Compile Include="AspNetMembershipProviderWrapper.cs" />
     <Compile Include="AspNetRoleProviderWrapper.cs" />
     <Compile Include="AuthorizeUnlessOnlyUserAttribute.cs" />
@@ -80,6 +81,7 @@
     <Compile Include="IRolesService.cs" />
     <Compile Include="IUserService.cs" />
     <Compile Include="ISmtpClient.cs" />
+    <Compile Include="IUserServiceFactory.cs" />
     <Compile Include="SmtpClientProxy.cs" />
     <Compile Include="Settings\ILoginSettings.cs" />
     <Compile Include="Settings\IMembershipSettings.cs" />

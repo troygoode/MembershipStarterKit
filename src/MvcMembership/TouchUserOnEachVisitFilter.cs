@@ -1,19 +1,22 @@
-﻿using System;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
 namespace MvcMembership
 {
 	public class TouchUserOnEachVisitFilter : ActionFilterAttribute
 	{
-		private readonly Func<IUserService> _userServiceFactory;
+		private readonly IUserServiceFactory _userServiceFactory;
 		private IUserService _userService;
 
 		private IUserService UserService
 		{
-			get { return _userService ?? (_userService = _userServiceFactory()); }
+			get { return _userService ?? (_userService = _userServiceFactory.Make()); }
 		}
 
-		public TouchUserOnEachVisitFilter(Func<IUserService> userServiceFactory)
+		public TouchUserOnEachVisitFilter() : this(new AspNetMembershipProviderUserServiceFactory())
+		{
+		}
+
+		public TouchUserOnEachVisitFilter(IUserServiceFactory userServiceFactory)
 		{
 			_userServiceFactory = userServiceFactory;
 		}
