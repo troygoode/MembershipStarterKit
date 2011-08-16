@@ -7,9 +7,9 @@ namespace MvcMembership
 	{
 		int TotalUsers { get; }
 		int UsersOnline{ get; }
-		IPagedList<MembershipUser> FindAll(int pageIndex, int pageSize);
-		IPagedList<MembershipUser> FindByEmail(string emailAddressToMatch, int pageIndex, int pageSize);
-		IPagedList<MembershipUser> FindByUserName(string userNameToMatch, int pageIndex, int pageSize);
+        IPagedList<MembershipUser> FindAll(int pageNumber, int pageSize);
+        IPagedList<MembershipUser> FindByEmail(string emailAddressToMatch, int pageNumber, int pageSize);
+        IPagedList<MembershipUser> FindByUserName(string userNameToMatch, int pageNumber, int pageSize);
 		MembershipUser Get(string userName);
 		MembershipUser Get(object providerUserKey);
 		MembershipUser Create(string username, string password, string email, string passwordQuestion, string passwordAnswer, bool isApproved);

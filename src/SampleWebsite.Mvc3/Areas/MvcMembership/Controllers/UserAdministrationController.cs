@@ -51,7 +51,7 @@ namespace SampleWebsite.Mvc3.Areas.MvcMembership.Controllers
 		{
 			return View(new IndexViewModel
 							{
-								Users = _userService.FindAll(page ?? 0, PageSize),
+								Users = _userService.FindAll(page ?? 1, PageSize),
 								Roles = _rolesService.Enabled
 									? _rolesService.FindAll()
 									: Enumerable.Empty<string>(),

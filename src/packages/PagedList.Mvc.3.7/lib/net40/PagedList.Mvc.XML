@@ -4,6 +4,53 @@
         <name>PagedList.Mvc</name>
     </assembly>
     <members>
+        <member name="T:PagedList.Mvc.GoToFormRenderOptions">
+            <summary>
+             Options for configuring the output of <see cref="T:PagedList.Mvc.HtmlHelper"/>.
+            </summary>
+        </member>
+        <member name="M:PagedList.Mvc.GoToFormRenderOptions.#ctor(System.String)">
+            <summary>
+             The default settings, with configurable querystring key (input field name).
+            </summary>
+        </member>
+        <member name="M:PagedList.Mvc.GoToFormRenderOptions.#ctor">
+            <summary>
+             The default settings.
+            </summary>
+        </member>
+        <member name="P:PagedList.Mvc.GoToFormRenderOptions.LabelFormat">
+            <summary>
+             The text to show in the form's input label.
+            </summary>
+            <example>
+             "Go to page:"
+            </example>
+        </member>
+        <member name="P:PagedList.Mvc.GoToFormRenderOptions.SubmitButtonFormat">
+            <summary>
+             The text to show in the form's submit button.
+            </summary>
+            <example>
+             "Go"
+            </example>
+        </member>
+        <member name="P:PagedList.Mvc.GoToFormRenderOptions.InputFieldName">
+            <summary>
+             The querystring key this form should submit the new page number as.
+            </summary>
+            <example>
+             "page"
+            </example>
+        </member>
+        <member name="P:PagedList.Mvc.GoToFormRenderOptions.InputFieldType">
+            <summary>
+             The HTML input type for this field. Defaults to the HTML5 "number" type, but can be changed to "text" if targetting previous versions of HTML.
+            </summary>
+            <example>
+             "number"
+            </example>
+        </member>
         <member name="T:PagedList.Mvc.HtmlHelper">
             <summary>
             	Extension methods for generating paging controls that can operate on instances of IPagedList.
@@ -15,7 +62,7 @@
             </summary>
             <param name = "html">This method is meant to hook off HtmlHelper as an extension method.</param>
             <param name = "list">The PagedList to use as the data source.</param>
-            <param name = "generatePageUrl">A function that takes the index of the desired page and returns a URL-string that will load that page.</param>
+            <param name = "generatePageUrl">A function that takes the page number of the desired page and returns a URL-string that will load that page.</param>
             <returns>Outputs the paging control HTML.</returns>
         </member>
         <member name="M:PagedList.Mvc.HtmlHelper.PagedListPager(System.Web.Mvc.HtmlHelper,PagedList.IPagedList,System.Func{System.Int32,System.String},PagedList.Mvc.PagedListRenderOptions)">
@@ -24,9 +71,38 @@
             </summary>
             <param name = "html">This method is meant to hook off HtmlHelper as an extension method.</param>
             <param name = "list">The PagedList to use as the data source.</param>
-            <param name = "generatePageUrl">A function that takes the index of the desired page and returns a URL-string that will load that page.</param>
+            <param name = "generatePageUrl">A function that takes the page number  of the desired page and returns a URL-string that will load that page.</param>
             <param name = "options">Formatting options.</param>
             <returns>Outputs the paging control HTML.</returns>
+        </member>
+        <member name="M:PagedList.Mvc.HtmlHelper.PagedListGoToPageForm(System.Web.Mvc.HtmlHelper,PagedList.IPagedList,System.String)">
+            <summary>
+             Displays a configurable "Go To Page:" form for instances of PagedList.
+            </summary>
+            <param name="html">This method is meant to hook off HtmlHelper as an extension method.</param>
+            <param name="list">The PagedList to use as the data source.</param>
+            <param name="formAction">The URL this form should submit the GET request to.</param>
+            <returns>Outputs the "Go To Page:" form HTML.</returns>
+        </member>
+        <member name="M:PagedList.Mvc.HtmlHelper.PagedListGoToPageForm(System.Web.Mvc.HtmlHelper,PagedList.IPagedList,System.String,System.String)">
+            <summary>
+             Displays a configurable "Go To Page:" form for instances of PagedList.
+            </summary>
+            <param name="html">This method is meant to hook off HtmlHelper as an extension method.</param>
+            <param name="list">The PagedList to use as the data source.</param>
+            <param name="formAction">The URL this form should submit the GET request to.</param>
+            <param name="inputFieldName">The querystring key this form should submit the new page number as.</param>
+            <returns>Outputs the "Go To Page:" form HTML.</returns>
+        </member>
+        <member name="M:PagedList.Mvc.HtmlHelper.PagedListGoToPageForm(System.Web.Mvc.HtmlHelper,PagedList.IPagedList,System.String,PagedList.Mvc.GoToFormRenderOptions)">
+            <summary>
+             Displays a configurable "Go To Page:" form for instances of PagedList.
+            </summary>
+            <param name="html">This method is meant to hook off HtmlHelper as an extension method.</param>
+            <param name="list">The PagedList to use as the data source.</param>
+            <param name="formAction">The URL this form should submit the GET request to.</param>
+            <param name="options">Formatting options.</param>
+            <returns>Outputs the "Go To Page:" form HTML.</returns>
         </member>
         <member name="T:PagedList.Mvc.PagedListRenderOptions">
             <summary>

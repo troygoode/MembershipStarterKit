@@ -93,7 +93,7 @@ namespace SampleWebsite.Tests
 			_controller.Index(null);
 
 			//assert
-			_userService.Verify(x => x.FindAll(It.Is<int>(v => v == 0), It.IsAny<int>()));
+			_userService.Verify(x => x.FindAll(It.Is<int>(v => v == 1), It.IsAny<int>()));
 		}
 
 		[Fact]
