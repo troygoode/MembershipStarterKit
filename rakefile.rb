@@ -100,7 +100,7 @@ task :replace_package_contents_mvcmembershipmvc => :prepare_package_mvcmembershi
 end
 
 exec :package_mvcmembership => :prepare_package_mvcmembership do |cmd|
-	cmd.path_to_command = 'nuget'
+	cmd.command = 'nuget'
 	cmd.parameters [
 		'pack',
 		'./packages/MvcMembership/MvcMembership.nuspec',
@@ -110,7 +110,7 @@ exec :package_mvcmembership => :prepare_package_mvcmembership do |cmd|
 end
 
 exec :package_mvcmembershipmvc => :replace_package_contents_mvcmembershipmvc do |cmd|
-	cmd.path_to_command = 'nuget'
+	cmd.command = 'nuget'
 	cmd.parameters [
 		'pack',
 		'./packages/MvcMembership.Mvc/MvcMembership.Mvc.nuspec',
