@@ -38,14 +38,14 @@ namespace MvcMembership.Tests
 			                 		PageSize = -1
 			                 	};
 			var service = new AspNetMembershipProviderWrapper(membership);
-			const int index = 3;
+			const int pageNumber = 3;
 			const int size = 10;
 
 			//act
-			var result = service.FindAll(index, size);
+            var result = service.FindAll(pageNumber, size);
 
 			//assert
-			Assert.Equal(index, membership.PageIndex);
+            Assert.Equal(pageNumber - 1, membership.PageIndex);
 			Assert.Equal(size, membership.PageSize);
 			Assert.Equal(usercollection.Count, result.Count());
 			foreach (var user in result)
@@ -73,15 +73,15 @@ namespace MvcMembership.Tests
 			                 		PageSize = -1
 			                 	};
 			var service = new AspNetMembershipProviderWrapper(membership);
-			const int index = 3;
+			const int pageNumber = 3;
 			const int size = 10;
 			var username = new Random().Next().ToString();
 
 			//act
-			var result = service.FindByUserName(username, index, size);
+            var result = service.FindByUserName(username, pageNumber, size);
 
 			//assert
-			Assert.Equal(index, membership.PageIndex);
+            Assert.Equal(pageNumber - 1, membership.PageIndex);
 			Assert.Equal(size, membership.PageSize);
 			Assert.Equal(usercollection.Count, result.Count());
 			foreach (var user in result)
@@ -109,15 +109,15 @@ namespace MvcMembership.Tests
 			                 		PageSize = -1
 			                 	};
 			var service = new AspNetMembershipProviderWrapper(membership);
-			const int index = 3;
+            const int pageNumber = 3;
 			const int size = 10;
 			var emailAddress = new Random().Next().ToString();
 
 			//act
-			var result = service.FindByEmail(emailAddress, index, size);
+            var result = service.FindByEmail(emailAddress, pageNumber, size);
 
 			//assert
-			Assert.Equal(index, membership.PageIndex);
+            Assert.Equal(pageNumber - 1, membership.PageIndex);
 			Assert.Equal(size, membership.PageSize);
 			Assert.Equal(usercollection.Count, result.Count());
 			foreach (var user in result)

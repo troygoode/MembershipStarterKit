@@ -4,19 +4,18 @@ require 'find'
 task :default => [:build]
 
 msbuild :build do |msb|
-  msb.path_to_command =  File.join(ENV['windir'], 'Microsoft.NET', 'Framework',  'v4.0.30319', 'MSBuild.exe')
   msb.properties :configuration => :Debug
   msb.targets :Clean, :Rebuild
   msb.solution = "src/MvcMembership.sln"
 end
 
 xunit :test_library => :build do |xunit|
-  xunit.path_to_command = "src/packages-manual/xunit-1.8/xunit.console.clr4.exe"
+  xunit.command = "src/packages-manual/xunit-1.8/xunit.console.clr4.exe"
   xunit.assembly = "src/MvcMembership.Tests/bin/debug/MvcMembership.Tests.dll"
 end
 
 xunit :test_sampleWebsite => :build do |xunit|
-  xunit.path_to_command = "src/packages-manual/xunit-1.8/xunit.console.clr4.exe"
+  xunit.command = "src/packages-manual/xunit-1.8/xunit.console.clr4.exe"
   xunit.assembly = "src/SampleWebsite.Mvc3.Tests/bin/debug/SampleWebsite.Mvc3.Tests.dll"
 end
 
@@ -24,7 +23,6 @@ task :test => [:test_library, :test_sampleWebsite] do
 end
 
 msbuild :release => :test do |msb|
-  msb.path_to_command =  File.join(ENV['windir'], 'Microsoft.NET', 'Framework',  'v4.0.30319', 'MSBuild.exe')
   msb.properties :configuration => :Release
   msb.targets :Clean, :Rebuild
   msb.solution = "src/MvcMembership.sln"
@@ -102,7 +100,7 @@ task :replace_package_contents_mvcmembershipmvc => :prepare_package_mvcmembershi
 end
 
 exec :package_mvcmembership => :prepare_package_mvcmembership do |cmd|
-	cmd.path_to_command = 'nuget'
+	cmd.command = 'nuget'
 	cmd.parameters [
 		'pack',
 		'./packages/MvcMembership/MvcMembership.nuspec',
@@ -112,7 +110,7 @@ exec :package_mvcmembership => :prepare_package_mvcmembership do |cmd|
 end
 
 exec :package_mvcmembershipmvc => :replace_package_contents_mvcmembershipmvc do |cmd|
-	cmd.path_to_command = 'nuget'
+	cmd.command = 'nuget'
 	cmd.parameters [
 		'pack',
 		'./packages/MvcMembership.Mvc/MvcMembership.Mvc.nuspec',

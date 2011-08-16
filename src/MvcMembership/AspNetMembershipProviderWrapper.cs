@@ -59,42 +59,42 @@ namespace MvcMembership
 
 		#region IUserService Members
 
-		public IPagedList<MembershipUser> FindAll(int pageIndex, int pageSize)
+		public IPagedList<MembershipUser> FindAll(int pageNumber, int pageSize)
 		{
 			// get one page of users
 			int totalUserCount;
-			var usersCollection = _membershipProvider.GetAllUsers(pageIndex, pageSize, out totalUserCount);
+            var usersCollection = _membershipProvider.GetAllUsers(pageNumber - 1, pageSize, out totalUserCount);
 
 			// convert from MembershipUserColletion to PagedList<MembershipUser> and return
 			var converter = new EnumerableToEnumerableTConverter<MembershipUserCollection, MembershipUser>();
 			var usersList = converter.ConvertTo<IEnumerable<MembershipUser>>(usersCollection);
-			var usersPagedList = new StaticPagedList<MembershipUser>(usersList, pageIndex, pageSize, totalUserCount);
+            var usersPagedList = new StaticPagedList<MembershipUser>(usersList, pageNumber, pageSize, totalUserCount);
 			return usersPagedList;
 		}
 
-		public IPagedList<MembershipUser> FindByEmail(string emailAddressToMatch, int pageIndex, int pageSize)
+        public IPagedList<MembershipUser> FindByEmail(string emailAddressToMatch, int pageNumber, int pageSize)
 		{
 			// get one page of users
 			int totalUserCount;
-			var usersCollection = _membershipProvider.FindUsersByEmail(emailAddressToMatch, pageIndex, pageSize, out totalUserCount);
+            var usersCollection = _membershipProvider.FindUsersByEmail(emailAddressToMatch, pageNumber - 1, pageSize, out totalUserCount);
 
 			// convert from MembershipUserColletion to PagedList<MembershipUser> and return
 			var converter = new EnumerableToEnumerableTConverter<MembershipUserCollection, MembershipUser>();
 			var usersList = converter.ConvertTo<IEnumerable<MembershipUser>>(usersCollection);
-			var usersPagedList = new StaticPagedList<MembershipUser>(usersList, pageIndex, pageSize, totalUserCount);
+            var usersPagedList = new StaticPagedList<MembershipUser>(usersList, pageNumber, pageSize, totalUserCount);
 			return usersPagedList;
 		}
 
-		public IPagedList<MembershipUser> FindByUserName(string userNameToMatch, int pageIndex, int pageSize)
+        public IPagedList<MembershipUser> FindByUserName(string userNameToMatch, int pageNumber, int pageSize)
 		{
 			// get one page of users
 			int totalUserCount;
-			var usersCollection = _membershipProvider.FindUsersByName(userNameToMatch, pageIndex, pageSize, out totalUserCount);
+            var usersCollection = _membershipProvider.FindUsersByName(userNameToMatch, pageNumber - 1, pageSize, out totalUserCount);
 
 			// convert from MembershipUserColletion to PagedList<MembershipUser> and return
 			var converter = new EnumerableToEnumerableTConverter<MembershipUserCollection, MembershipUser>();
 			var usersList = converter.ConvertTo<IEnumerable<MembershipUser>>(usersCollection);
-			var usersPagedList = new StaticPagedList<MembershipUser>(usersList, pageIndex, pageSize, totalUserCount);
+            var usersPagedList = new StaticPagedList<MembershipUser>(usersList, pageNumber, pageSize, totalUserCount);
 			return usersPagedList;
 		}
 
