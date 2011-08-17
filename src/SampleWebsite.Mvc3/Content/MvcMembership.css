@@ -77,3 +77,8 @@ div.mvcMembership-allUsers .PagedList-disabled a:hover{
 div.mvcMembership-allRoles ul > li{
 	margin: .5em 0 .5em 0;
 }
+
+form.mvcMembership-searchForm fieldset,
+.mvcMembership-allRoles fieldset{
+	padding-top: 1.5em;
+}

@@ -46,11 +46,21 @@ namespace SampleWebsite.Mvc3.Areas.MvcMembership.Controllers
 			_smtpClient = smtpClient;
 		}
 
-		public ViewResult Index(int? page)
+		public ActionResult Index(int? page, string search)
 		{
+			var users = string.IsNullOrWhiteSpace(search)
+				? _userService.FindAll(page ?? 1, PageSize)
+				: search.Contains("@")
+					? _userService.FindByEmail(search, page ?? 1, PageSize)
+					: _userService.FindByUserName(search, page ?? 1, PageSize);
+
+			if (!string.IsNullOrWhiteSpace(search) && users.Count == 1)
+				return RedirectToAction("Details", new {id = users[0].ProviderUserKey.ToString()});
+
 			return View(new IndexViewModel
 							{
-								Users = _userService.FindAll(page ?? 1, PageSize),
+								Search = search,
+								Users = users,
 								Roles = _rolesService.Enabled
 									? _rolesService.FindAll()
 									: Enumerable.Empty<string>(),

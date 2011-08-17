@@ -13,6 +13,21 @@
 }
 
 <h2 class="mvcMembership">User Administration</h2>
+
+<h3 class="mvcMembership">Find a User
+	@if (!string.IsNullOrWhiteSpace(Model.Search)) { 
+		<span>(@Html.ActionLink("Clear Search", "Index"))</span>
+	}
+</h3>
+<form method="get" class="mvcMembership-searchForm">
+	<fieldset>
+		<label>
+			User Name or Email Address:
+			<input type="text" name="search" value="@Model.Search" />
+			<input type="submit" value="Search" />
+		</label>
+	</fieldset>
+</form>
 	
 <h3 class="mvcMembership">Users (@Html.ActionLink("New User", "CreateUser", "UserAdministration"))</h3>
 <div class="mvcMembership-allUsers">
@@ -50,7 +65,7 @@
 		</li>
 		}
 	</ul>
-	@Html.PagedListPager(Model.Users, page => Url.Action("Index", new { page }))
+	@Html.PagedListPager(Model.Users, page => Url.Action("Index", new { page, search = Model.Search }))
 }else{
 	<p>No users have registered.</p>
 }

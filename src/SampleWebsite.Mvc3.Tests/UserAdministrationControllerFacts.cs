@@ -34,11 +34,11 @@ namespace SampleWebsite.Tests
 		public void Index_returns_default_view()
 		{
 			//act
-			var result = _controller.Index(1);
+			var result = _controller.Index(1, null);
 
 			//assert
-			Assert.IsType<ViewResult>(result);
-			Assert.Empty(result.ViewName);
+			var viewResult = Assert.IsType<ViewResult>(result);
+			Assert.Empty(viewResult.ViewName);
 		}
 
 		[Fact]
@@ -49,11 +49,12 @@ namespace SampleWebsite.Tests
 			_userService.Setup(x => x.FindAll(It.IsAny<int>(), It.IsAny<int>())).Returns(users).Verifiable();
 
 			//act
-			var result = _controller.Index(1);
+			var result = _controller.Index(1, null);
 
 			//assert
 			_userService.Verify();
-			var viewModel = Assert.IsType<IndexViewModel>(result.ViewData.Model);
+			var viewResult = Assert.IsType<ViewResult>(result);
+			var viewModel = Assert.IsType<IndexViewModel>(viewResult.ViewData.Model);
 			Assert.Same(users, viewModel.Users);
 		}
 
@@ -65,11 +66,12 @@ namespace SampleWebsite.Tests
 			_rolesService.Setup(x => x.FindAll()).Returns(roles).Verifiable();
 
 			//act
-			var result = _controller.Index(1);
+			var result = _controller.Index(1, null);
 
 			//assert
 			_rolesService.Verify();
-			var viewModel = Assert.IsType<IndexViewModel>(result.ViewData.Model);
+			var viewResult = Assert.IsType<ViewResult>(result);
+			var viewModel = Assert.IsType<IndexViewModel>(viewResult.ViewData.Model);
 			Assert.Same(roles, viewModel.Roles);
 		}
 
@@ -80,7 +82,7 @@ namespace SampleWebsite.Tests
 			const int index = 5;
 
 			//act
-			_controller.Index(index);
+			_controller.Index(index, null);
 
 			//assert
 			_userService.Verify(x => x.FindAll(It.Is<int>(v => v == index), It.IsAny<int>()));
@@ -90,7 +92,7 @@ namespace SampleWebsite.Tests
 		public void Index_defaults_to_the_first_page_if_no_pageIndex_is_specified()
 		{
 			//act
-			_controller.Index(null);
+			_controller.Index(null, null);
 
 			//assert
 			_userService.Verify(x => x.FindAll(It.Is<int>(v => v == 1), It.IsAny<int>()));
