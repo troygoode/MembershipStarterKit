@@ -11,7 +11,22 @@
 <div class="mvcMembership-account">
 	@using(Html.BeginForm("CreateUser", "UserAdministration")){ 
 		@Html.ValidationSummary(true)
-	 	@Html.EditorForModel()
+
+	 	<fieldset>
+			@Html.EditorForModel()
+		</fieldset>
+
+		<fieldset>
+			<h3 class="mvcMembership">Initial Roles</h3>
+			@for(var i = 0; i < Model.InitialRoles.Count; i++){ 
+				var role = Model.InitialRoles.ElementAt(i);
+				<div>
+					<input name="InitialRoles[@i].Key" type="hidden" value="@role.Key" />
+					<label>@Html.CheckBox("InitialRoles[" + i + "].Value", role.Value) @role.Key</label>
+				</div>
+			}
+		</fieldset>
+	 
 		<input type="submit" value="Create" />
 	} 
 </div>

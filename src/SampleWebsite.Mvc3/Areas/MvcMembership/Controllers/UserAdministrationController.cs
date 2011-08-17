@@ -168,7 +168,11 @@ namespace SampleWebsite.Mvc3.Areas.MvcMembership.Controllers
 
 		public ViewResult CreateUser()
 		{
-			return View();
+			var model = new CreateUserViewModel
+			            	{
+			            		InitialRoles = _rolesService.FindAll().ToDictionary(k => k, v => false)
+			            	};
+			return View(model);
 		}
 
 		[AcceptVerbs(HttpVerbs.Post)]
@@ -189,6 +193,14 @@ namespace SampleWebsite.Mvc3.Areas.MvcMembership.Controllers
 					createUserViewModel.PasswordQuestion,
 					createUserViewModel.PasswordAnswer,
 					true);
+
+				if (createUserViewModel.InitialRoles != null)
+				{
+					var rolesToAddUserTo = createUserViewModel.InitialRoles.Where(x => x.Value).Select(x => x.Key);
+					foreach (var role in rolesToAddUserTo)
+						_rolesService.AddToRole(user, role);					
+				}
+
 				return RedirectToAction("Details", new { id = user.ProviderUserKey });
 			}
 			catch (MembershipCreateUserException e)

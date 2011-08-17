@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using DataAnnotationsExtensions;
 
 namespace SampleWebsite.Mvc3.Areas.MvcMembership.Models.UserAdministration
@@ -26,5 +27,8 @@ namespace SampleWebsite.Mvc3.Areas.MvcMembership.Models.UserAdministration
 		[StringLength(100)]
 		[Display(Name = "Secret Answer")]
 		public string PasswordAnswer { get; set; }
+
+		[Display(Name = "Initial Roles")]
+		public IDictionary<string, bool> InitialRoles { get; set; }
 	}
 }

@@ -678,6 +678,7 @@ namespace SampleWebsite.Tests
 			{
 				Username = username,
 				Password = password,
+				ConfirmPassword = password,
 				Email = email,
 				PasswordQuestion = passwordQuestion,
 				PasswordAnswer = passwordAnswer
