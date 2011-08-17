@@ -179,6 +179,9 @@ namespace SampleWebsite.Mvc3.Areas.MvcMembership.Controllers
 
 			try
 			{
+				if(createUserViewModel.Password != createUserViewModel.ConfirmPassword)
+					throw new MembershipCreateUserException("Passwords do not match.");
+
 				var user = _userService.Create(
 					createUserViewModel.Username,
 					createUserViewModel.Password,

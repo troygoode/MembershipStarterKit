@@ -5,12 +5,18 @@ namespace SampleWebsite.Mvc3.Areas.MvcMembership.Models.UserAdministration
 {
 	public class CreateUserViewModel
 	{
+		[Display(Name = "User Name")]
 		[Required]
 		public string Username { get; set; }
 
 		[Required, DataType(DataType.Password)]
 		public string Password { get; set; }
 
+		[Display(Name = "Password (Again...)")]
+		[Required, DataType(DataType.Password)]
+		public string ConfirmPassword { get; set; }
+
+		[Display(Name = "Email Address")]
 		[Required, Email]
 		public string Email { get; set; }
 
