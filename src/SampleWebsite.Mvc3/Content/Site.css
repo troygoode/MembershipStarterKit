@@ -322,3 +322,42 @@ div#title {
 .tri-state {
     width: 6em;
 }
+
+/* Language Picker  
+----------------------------------------------------------*/
+.lang-picker-wrapper
+{
+    position: absolute; 
+    right: 300px; 
+    z-index: 1000; 
+    top: 5px;
+}
+.lang-picker 
+{
+    background: no-repeat scroll right top #e8eef4;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: block;
+    float: left;
+    height: 24px;
+    line-height: 12px;
+    margin: -2px 0 0 5px;
+    overflow: hidden;
+    padding: 0 7px;
+    position: relative;
+    border-radius: 6px;
+}
+.lang-picker a 
+{
+    color: #034af3;
+    display: block;
+    line-height: 22px;
+    padding: 0 16px 0 20px;
+    text-align: left;
+    text-decoration: none;
+}
+.lang-picker a:hover 
+{
+    color: #fff;
+}
+

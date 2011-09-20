@@ -1,12 +1,12 @@
 ﻿@model SampleWebsite.Mvc3.Areas.MvcMembership.Models.UserAdministration.CreateUserViewModel
 @{
-	ViewBag.Title = "Create New User";
+	ViewBag.Title = Resources.CreateNewUser;
 	Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <link href='@Url.Content("~/Content/MvcMembership.css")' rel="stylesheet" type="text/css" />
 
-<h2 class="mvcMembership">Create New User</h2>
+<h2 class="mvcMembership">@Resources.CreateNewUser</h2>
 
 <div class="mvcMembership-account">
 	@using(Html.BeginForm("CreateUser", "UserAdministration")){ 
@@ -17,7 +17,7 @@
 		</fieldset>
 
 		<fieldset>
-			<h3 class="mvcMembership">Initial Roles</h3>
+			<h3 class="mvcMembership">@Resources.InitialRoles</h3>
 			@for(var i = 0; i < Model.InitialRoles.Count; i++){ 
 				var role = Model.InitialRoles.ElementAt(i);
 				<div>
@@ -27,6 +27,6 @@
 			}
 		</fieldset>
 	 
-		<input type="submit" value="Create" />
+		<input type="submit" value="@Resources.Create" />
 	} 
 </div>

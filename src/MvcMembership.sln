@@ -18,6 +18,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleWebsite.Mvc3", "Sampl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleWebsite.Mvc3.Tests", "SampleWebsite.Mvc3.Tests\SampleWebsite.Mvc3.Tests.csproj", "{BC267EA5-FC39-41CA-A032-84AB5AF0AFD4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleWebsite.Mvc3.Resources", "SampleWebsite.Resources.Mvc3\SampleWebsite.Mvc3.Resources.csproj", "{1EB4E2FC-F8BC-46D3-96CA-D0C31A036C31}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Code Style Enforcer", "Code Style Enforcer", "{308FAAB5-B91E-413F-BEF6-3D6F08681646}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -40,6 +44,10 @@ Global
 		{BC267EA5-FC39-41CA-A032-84AB5AF0AFD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BC267EA5-FC39-41CA-A032-84AB5AF0AFD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BC267EA5-FC39-41CA-A032-84AB5AF0AFD4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1EB4E2FC-F8BC-46D3-96CA-D0C31A036C31}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1EB4E2FC-F8BC-46D3-96CA-D0C31A036C31}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1EB4E2FC-F8BC-46D3-96CA-D0C31A036C31}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1EB4E2FC-F8BC-46D3-96CA-D0C31A036C31}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

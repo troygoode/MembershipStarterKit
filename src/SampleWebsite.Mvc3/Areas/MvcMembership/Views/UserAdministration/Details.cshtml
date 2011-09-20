@@ -1,66 +1,66 @@
 @using System.Globalization
 @model SampleWebsite.Mvc3.Areas.MvcMembership.Models.UserAdministration.DetailsViewModel
 @{
-	ViewBag.Title = "User Details: " + Model.DisplayName;
+	ViewBag.Title = Resources.UserDetailsLabel + Model.DisplayName;
 	Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <link href='@Url.Content("~/Content/MvcMembership.css")' rel="stylesheet" type="text/css" />
 
-<h2 class="mvcMembership">User Details: @Model.DisplayName [@Model.Status]</h2>
+<h2 class="mvcMembership">@Resources.UserDetailsLabel@Model.DisplayName [@Model.StatusLabel]</h2>
 
 <ul class="mvcMembership-tabs">
 	<li>Details</li>
-	<li>@Html.ActionLink("Password", "Password", "UserAdministration", new { id = Model.User.ProviderUserKey }, null)</li>
+	<li>@Html.ActionLink(@Resources.Password, "Password", "UserAdministration", new { id = Model.User.ProviderUserKey }, null)</li>
 	@if(Model.IsRolesEnabled){
-	<li>@Html.ActionLink("Roles", "UsersRoles", "UserAdministration", new { id = Model.User.ProviderUserKey }, null)</li>
+	<li>@Html.ActionLink(@Resources.Roles, "UsersRoles", "UserAdministration", new { id = Model.User.ProviderUserKey }, null)</li>
 	}
 </ul>
 
-<h3 class="mvcMembership">Account</h3>
+<h3 class="mvcMembership">@Resources.Account</h3>
 <div class="mvcMembership-account">
 	<dl class="mvcMembership">
-		<dt>User Name:</dt>
+		<dt>@Resources.UsernameLabel</dt>
 			<dd>@Model.User.UserName</dd>
-		<dt>Email Address:</dt>
+		<dt>@Resources.EmailAddressLabel</dt>
 			<dd><a href="mailto:@Model.User.Email">@Model.User.Email</a></dd>
 		@if(Model.User.LastActivityDate == Model.User.CreationDate){
-		<dt>Last Active:</dt>
-			<dd><em>Never</em></dd>
-		<dt>Last Login:</dt>
-			<dd><em>Never</em></dd>
+		<dt>@Resources.LastActiveLabel</dt>
+			<dd><em>@Resources.Never</em></dd>
+		<dt>@Resources.LastLoginLabel</dt>
+			<dd><em>@Resources.Never</em></dd>
 		}else{
-		<dt>Last Active:</dt>
+		<dt>@Resources.LastActiveLabel</dt>
 			<dd>@Model.User.LastActivityDate.ToString("MMMM dd, yyyy h:mm:ss tt", CultureInfo.InvariantCulture)</dd>
-		<dt>Last Login:</dt>
+		<dt>@Resources.LastLoginLabel</dt>
 			<dd>@Model.User.LastLoginDate.ToString("MMMM dd, yyyy h:mm:ss tt", CultureInfo.InvariantCulture)</dd>
 		}
-		<dt>Created:</dt>
+		<dt>@Resources.CreatedLabel</dt>
 			<dd>@Model.User.CreationDate.ToString("MMMM dd, yyyy h:mm:ss tt", CultureInfo.InvariantCulture)</dd>
 	</dl>
 
 	@using(Html.BeginForm("ChangeApproval", "UserAdministration", new{ id = Model.User.ProviderUserKey })){
 		@Html.Hidden("isApproved", !Model.User.IsApproved)
-		<input type="submit" value='@(Model.User.IsApproved ? "Unapprove" : "Approve") Account' />
+		<input type="submit" value='@(Model.User.IsApproved ? @Resources.DisapproveAccount : @Resources.ApproveAccount) ' />
 	}
 	@using(Html.BeginForm("DeleteUser", "UserAdministration", new{ id = Model.User.ProviderUserKey })){
 		<input type="submit" value="Delete Account" />
 	}
 </div>
 
-<h3 class="mvcMembership">Email Address & Comments</h3>
+<h3 class="mvcMembership">@Resources.EmailAndComments</h3>
 <div class="mvcMembership-emailAndComments">
 	@using(Html.BeginForm("Details", "UserAdministration", new{ id = Model.User.ProviderUserKey })){
 	<fieldset>
 		<p>
-			<label for="email">Email Address:</label>
+			<label for="email">@Resources.EmailAddressLabel</label>
 			@Html.TextBox("email", Model.User.Email)
 		</p>
 		<p>
-			<label for="comments">Comments:</label>
+			<label for="comments">@Resources.CommentsLabel</label>
 			@Html.TextArea("comments", Model.User.Comment)
 		</p>
-		<input type="submit" value="Save Email Address and Comments" />
+		<input type="submit" value="@Resources.SaveEmailAddressAndComments" />
 	</fieldset>
 	}
 </div>

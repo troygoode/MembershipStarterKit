@@ -7,15 +7,16 @@ using System.Web.Security;
 using MvcMembership;
 using MvcMembership.Settings;
 using SampleWebsite.Mvc3.Areas.MvcMembership.Models.UserAdministration;
+using SampleWebsite.Mvc3.Controllers;
 
 namespace SampleWebsite.Mvc3.Areas.MvcMembership.Controllers
 {
 	[AuthorizeUnlessOnlyUser(Roles = "Administrator")] // allows access if you're the only user, only validates role if role provider is enabled
-	public class UserAdministrationController : Controller
+	public class UserAdministrationController : BaseController
 	{
 		private const int PageSize = 10;
-		private const string ResetPasswordBody = "Your new password is: ";
-		private const string ResetPasswordSubject = "Your New Password";
+		private string ResetPasswordBody = Resources.Resources.YourNewPasswordIsLabel;
+		private string ResetPasswordSubject = Resources.Resources.YourNewPassword;
 		private readonly IRolesService _rolesService;
 		private readonly ISmtpClient _smtpClient;
 		private readonly IMembershipSettings _membershipSettings;
@@ -184,7 +185,7 @@ namespace SampleWebsite.Mvc3.Areas.MvcMembership.Controllers
 			try
 			{
 				if(createUserViewModel.Password != createUserViewModel.ConfirmPassword)
-					throw new MembershipCreateUserException("Passwords do not match.");
+					throw new MembershipCreateUserException(Resources.Resources.PasswordDoNotMatch);
 
 				var user = _userService.Create(
 					createUserViewModel.Username,

@@ -4,31 +4,32 @@ using DataAnnotationsExtensions;
 
 namespace SampleWebsite.Mvc3.Areas.MvcMembership.Models.UserAdministration
 {
-	public class CreateUserViewModel
-	{
-		[Display(Name = "User Name")]
-		[Required]
-		public string Username { get; set; }
+   public class CreateUserViewModel
+   {
+      [Display(Name = "Username" , ResourceType= typeof(Resources.Resources))]
+      [Required(ErrorMessageResourceName = "YouMustSpecifyUsername", ErrorMessageResourceType = typeof(Resources.Resources))]
+      public string Username { get; set; }
 
-		[Required, DataType(DataType.Password)]
-		public string Password { get; set; }
+      [Display(Name = "Password", ResourceType = typeof(Resources.Resources))]
+      [Required(ErrorMessageResourceName = "YouMustSpecifyPassword", ErrorMessageResourceType = typeof(Resources.Resources)), DataType(DataType.Password)]
+      public string Password { get; set; }
 
-		[Display(Name = "Password (Again...)")]
-		[Required, DataType(DataType.Password)]
-		public string ConfirmPassword { get; set; }
+      [Display(Name = "PasswordAgain", ResourceType=typeof(Resources.Resources))]
+      [Required(ErrorMessageResourceName = "YouMustConfirmPassword", ErrorMessageResourceType = typeof(Resources.Resources)), DataType(DataType.Password)]
+      public string ConfirmPassword { get; set; }
 
-		[Display(Name = "Email Address")]
-		[Required, Email]
-		public string Email { get; set; }
+      [Display(Name = "EmailAddress", ResourceType=typeof(Resources.Resources))]
+      [Required(ErrorMessageResourceName = "YouMustSpecifiyEmailAddress", ErrorMessageResourceType = typeof(Resources.Resources)), Email]
+      public string Email { get; set; }
 
-		[Display(Name = "Secret Question")]
-		public string PasswordQuestion { get; set; }
+      [Display(Name = "SecretQuestion", ResourceType=typeof(Resources.Resources))]
+      public string PasswordQuestion { get; set; }
 
-		[StringLength(100)]
-		[Display(Name = "Secret Answer")]
-		public string PasswordAnswer { get; set; }
+      [StringLength(100)]
+      [Display(Name = "SecretAnswer", ResourceType=typeof(Resources.Resources))]
+      public string PasswordAnswer { get; set; }
 
-		[Display(Name = "Initial Roles")]
-		public IDictionary<string, bool> InitialRoles { get; set; }
-	}
+      [Display(Name = "InitialRoles", ResourceType=typeof(Resources.Resources))]
+      public IDictionary<string, bool> InitialRoles { get; set; }
+   }
 }

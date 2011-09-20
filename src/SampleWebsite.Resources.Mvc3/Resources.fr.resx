@@ -1,0 +1,339 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Account" xml:space="preserve">
+    <value>Compte</value>
+  </data>
+  <data name="AddTo" xml:space="preserve">
+    <value>Ajouter à</value>
+  </data>
+  <data name="ApproveAccount" xml:space="preserve">
+    <value>Approuver le compte</value>
+  </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>Changer le mot de passe</value>
+  </data>
+  <data name="ClearSearch" xml:space="preserve">
+    <value>Effacer la recherche</value>
+  </data>
+  <data name="CommentsLabel" xml:space="preserve">
+    <value>Commentaires : </value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>Créer</value>
+  </data>
+  <data name="CreatedLabel" xml:space="preserve">
+    <value>Créé : </value>
+  </data>
+  <data name="CreateNewUser" xml:space="preserve">
+    <value>Créer un nouvel utilisateur</value>
+  </data>
+  <data name="CreateRole" xml:space="preserve">
+    <value>Créer un rôle</value>
+  </data>
+  <data name="Days" xml:space="preserve">
+    <value>jours.</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Supprimer</value>
+  </data>
+  <data name="DeleteAccount" xml:space="preserve">
+    <value>Supprimer le compte</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Détails</value>
+  </data>
+  <data name="DisapproveAccount" xml:space="preserve">
+    <value>désactiver le compte</value>
+  </data>
+  <data name="EmailAddress" xml:space="preserve">
+    <value>Adresse courriel</value>
+  </data>
+  <data name="EmailAddressLabel" xml:space="preserve">
+    <value>Adresse courriel : </value>
+  </data>
+  <data name="EmailAndComments" xml:space="preserve">
+    <value>Adresse courriel &amp; commentaires</value>
+  </data>
+  <data name="FindAUser" xml:space="preserve">
+    <value>Trouver un utilisateur</value>
+  </data>
+  <data name="Hours" xml:space="preserve">
+    <value>heures.</value>
+  </data>
+  <data name="InitialRoles" xml:space="preserve">
+    <value>Rôles initiaux</value>
+  </data>
+  <data name="LastActiveLabel" xml:space="preserve">
+    <value>Dernière activité : </value>
+  </data>
+  <data name="LastChangedLabel" xml:space="preserve">
+    <value>Dernier changement : </value>
+  </data>
+  <data name="LastLoginLabel" xml:space="preserve">
+    <value>Dernière connexion : </value>
+  </data>
+  <data name="LockedOut" xml:space="preserve">
+    <value>Bloqué</value>
+  </data>
+  <data name="LockedOutSince" xml:space="preserve">
+    <value>Bloqué depuis</value>
+  </data>
+  <data name="Minutes" xml:space="preserve">
+    <value>minutes.</value>
+  </data>
+  <data name="Never" xml:space="preserve">
+    <value>Jamais</value>
+  </data>
+  <data name="NewPasswordLabel" xml:space="preserve">
+    <value>Nouveau mot de passe</value>
+  </data>
+  <data name="NewUser" xml:space="preserve">
+    <value>Nouvel utilisateur</value>
+  </data>
+  <data name="NoPasswordQuestionDefined" xml:space="preserve">
+    <value>Pas de question à mot de passe définie.</value>
+  </data>
+  <data name="NoRolesHaveBeenCreated" xml:space="preserve">
+    <value>Aucun rôle n'a été créé.</value>
+  </data>
+  <data name="NoUsersAreInThisRole" xml:space="preserve">
+    <value>Pas d'utilisateurs dans ce rôle.</value>
+  </data>
+  <data name="NoUsersHaveRegistered" xml:space="preserve">
+    <value>Aucun utilisateur ne s'est enregistré.</value>
+  </data>
+  <data name="Offline" xml:space="preserve">
+    <value>Hors Ligne</value>
+  </data>
+  <data name="OfflineFor" xml:space="preserve">
+    <value>Hors ligne depuis</value>
+  </data>
+  <data name="OneDay" xml:space="preserve">
+    <value>1 jour.</value>
+  </data>
+  <data name="OneHour" xml:space="preserve">
+    <value>1 heure.</value>
+  </data>
+  <data name="OneMinute" xml:space="preserve">
+    <value>1 minute.</value>
+  </data>
+  <data name="Online" xml:space="preserve">
+    <value>En ligne</value>
+  </data>
+  <data name="PagedListFirst" xml:space="preserve">
+    <value>&lt;&lt; Premier</value>
+  </data>
+  <data name="PagedListLast" xml:space="preserve">
+    <value>Dernier &gt;&gt;</value>
+  </data>
+  <data name="PagedListNext" xml:space="preserve">
+    <value>Suivant &gt;</value>
+  </data>
+  <data name="PagedListPrevious" xml:space="preserve">
+    <value>&lt; Précédent</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Mot de passe</value>
+  </data>
+  <data name="PasswordAgain" xml:space="preserve">
+    <value>Mot de passe (Encore...)</value>
+  </data>
+  <data name="PasswordAnswerLabel" xml:space="preserve">
+    <value>Réponse à mot de passe :</value>
+  </data>
+  <data name="PasswordDoNotMatch" xml:space="preserve">
+    <value>Les mots de passe ne correspondent pas.</value>
+  </data>
+  <data name="PasswordQuestionLabel" xml:space="preserve">
+    <value>Question à mot de passe :</value>
+  </data>
+  <data name="RemoveFrom" xml:space="preserve">
+    <value>Retirer de</value>
+  </data>
+  <data name="ResetToRandomPasswordAndEmailUser" xml:space="preserve">
+    <value>Réinitialiser à un mot de passe aléatoire et envoyer un courriel à l'utilisateur</value>
+  </data>
+  <data name="RoleLabel" xml:space="preserve">
+    <value>Rôle : </value>
+  </data>
+  <data name="Roles" xml:space="preserve">
+    <value>Rôles</value>
+  </data>
+  <data name="SaveEmailAddressAndComments" xml:space="preserve">
+    <value>Sauvegarder l'adresse courriel et les commentaires</value>
+  </data>
+  <data name="SecretAnswer" xml:space="preserve">
+    <value>Réponse secrète</value>
+  </data>
+  <data name="SecretQuestion" xml:space="preserve">
+    <value>Question secrète</value>
+  </data>
+  <data name="Unapproved" xml:space="preserve">
+    <value>Non approuvé</value>
+  </data>
+  <data name="UnknownStatus" xml:space="preserve">
+    <value>Statut inconnu</value>
+  </data>
+  <data name="UnlockAccount" xml:space="preserve">
+    <value>Débloquer le compte</value>
+  </data>
+  <data name="UserAdministration" xml:space="preserve">
+    <value>Gestion des utilisateurs</value>
+  </data>
+  <data name="UserDetailsLabel" xml:space="preserve">
+    <value>Détails de l'utilisateur : </value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>Nom d'utilisateur</value>
+  </data>
+  <data name="UsernameLabel" xml:space="preserve">
+    <value>Nom d'utilisateur : </value>
+  </data>
+  <data name="UsernameOrEmailAddressLabel" xml:space="preserve">
+    <value>Nom d'utilisateur et adresse courriel : </value>
+  </data>
+  <data name="Users" xml:space="preserve">
+    <value>Utilisateurs</value>
+  </data>
+  <data name="WarningChangeRoleManager" xml:space="preserve">
+    <value>Changer &amp;lt;roleManager enabled="false"&amp;gt; en &amp;lt;roleManager enabled="true"&amp;gt; dans votre fichier web.config.</value>
+  </data>
+  <data name="WarningRoleProviderDisabled" xml:space="preserve">
+    <value>ATTENTION : Votre Role Provider est désactivé pour le moment - n'importe quel utilisateur peut visiter cette page.</value>
+  </data>
+  <data name="YouMustConfirmPassword" xml:space="preserve">
+    <value>Vous devez confirmer votre mot de passe.</value>
+  </data>
+  <data name="YouMustSpecifiyEmailAddress" xml:space="preserve">
+    <value>Vous devez spécifier votre adresse courriel.</value>
+  </data>
+  <data name="YouMustSpecifyPassword" xml:space="preserve">
+    <value>Vous devez spécifier votre mot de passe.</value>
+  </data>
+  <data name="YouMustSpecifyUsername" xml:space="preserve">
+    <value>Vous devez spécifier votre nom d'utilisateur.</value>
+  </data>
+  <data name="YourNewPassword" xml:space="preserve">
+    <value>Votre nouveau mot de passe</value>
+  </data>
+  <data name="YourNewPasswordIsLabel" xml:space="preserve">
+    <value>Votre nouveau mot de passe est : </value>
+  </data>
+</root>
