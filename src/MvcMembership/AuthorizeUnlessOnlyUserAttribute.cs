@@ -35,7 +35,7 @@ namespace MvcMembership
 
 			//allow anyone access if there are less than two users, otherwise
 			// - use normal logic (and cache this finding in a static variable)
-			if (!_hasAtLeastTwoUsers && _userService.TotalUsers > 1)
+			if (_hasAtLeastTwoUsers || _userService.TotalUsers > 1)
 				_hasAtLeastTwoUsers = true;
 			else
 				return true;
@@ -51,7 +51,11 @@ namespace MvcMembership
 				return false;
 
 			//added the check for whether the role service is enabled or not. if it isn't, don't validate on that
-			return !_rolesService.Enabled || !_rolesSplit.Any() || _rolesSplit.Any(user.IsInRole);
+			if (!_rolesService.Enabled || !_rolesSplit.Any())
+				return true;
+
+			//is this user in one of the necessary roles?
+			return _rolesSplit.Any(user.IsInRole);
 		}
 
 		private static string[] SplitString(string original)
