@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Web.Security;
 
 namespace MvcMembership
@@ -53,6 +54,13 @@ namespace MvcMembership
 		public void RemoveFromRole(MembershipUser user, string roleName)
 		{
 			_roleProvider.RemoveUsersFromRoles(new[] {user.UserName}, new[] {roleName});
+		}
+
+		public void RemoveFromAllRoles(MembershipUser user)
+		{
+			var roles = FindByUser(user);
+			foreach(var role in roles)
+				RemoveFromRole(user, role);
 		}
 
 		public bool IsInRole(MembershipUser user, string roleName)

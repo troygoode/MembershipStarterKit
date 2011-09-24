@@ -227,7 +227,11 @@ namespace SampleWebsite.Mvc3.Areas.MvcMembership.Controllers
 		[AcceptVerbs(HttpVerbs.Post)]
 		public RedirectToRouteResult DeleteUser(Guid id)
 		{
-			_userService.Delete(_userService.Get(id));
+			var user = _userService.Get(id);
+
+			if (_rolesService.Enabled)
+				_rolesService.RemoveFromAllRoles(user);
+			_userService.Delete(user);
 			return RedirectToAction("Index");
 		}
 

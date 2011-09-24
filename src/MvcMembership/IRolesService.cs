@@ -12,6 +12,7 @@ namespace MvcMembership
 		IEnumerable<string> FindUserNamesByRole(string roleName);
 		void AddToRole(MembershipUser user, string roleName);
 		void RemoveFromRole(MembershipUser user, string roleName);
+		void RemoveFromAllRoles(MembershipUser user);
 		bool IsInRole(MembershipUser user, string roleName);
 		void Create(string roleName);
 		void Delete(string roleName);
