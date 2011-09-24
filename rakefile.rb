@@ -89,8 +89,8 @@ end
 task :replace_package_contents_mvcmembershipmvc => :prepare_package_mvcmembershipmvc do
   output_root = 'packages/MvcMembership.Mvc/content/'
   Find.find output_root do |path|
-  	#puts path
-  	if File.file? path
+    #puts path
+    if File.file? path
      text = File.read path
      File.open path, 'w' do |file|
        file.puts text.gsub /SampleWebsite\.Mvc3/, '$rootnamespace$'
@@ -100,23 +100,23 @@ task :replace_package_contents_mvcmembershipmvc => :prepare_package_mvcmembershi
 end
 
 exec :package_mvcmembership => :prepare_package_mvcmembership do |cmd|
-	cmd.command = 'nuget'
-	cmd.parameters [
-		'pack',
-		'./packages/MvcMembership/MvcMembership.nuspec',
-		'-OutputDirectory',
-		'./packages/'
-	]
+    cmd.command = 'nuget'
+    cmd.parameters [
+        'pack',
+        './packages/MvcMembership/MvcMembership.nuspec',
+        '-OutputDirectory',
+        './packages/'
+    ]
 end
 
 exec :package_mvcmembershipmvc => :replace_package_contents_mvcmembershipmvc do |cmd|
-	cmd.command = 'nuget'
-	cmd.parameters [
-		'pack',
-		'./packages/MvcMembership.Mvc/MvcMembership.Mvc.nuspec',
-		'-OutputDirectory',
-		'./packages/'
-	]
+    cmd.command = 'nuget'
+    cmd.parameters [
+        'pack',
+        './packages/MvcMembership.Mvc/MvcMembership.Mvc.nuspec',
+        '-OutputDirectory',
+        './packages/'
+    ]
 end
 
 task :package => [:package_mvcmembership, :package_mvcmembershipmvc] do
