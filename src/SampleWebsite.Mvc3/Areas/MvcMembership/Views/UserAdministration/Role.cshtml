@@ -10,11 +10,15 @@
 <div class="mvcMembership-roleUsers">
 	@if(Model.Users.Count() > 0){
 		<ul class="mvcMembership">
-			@foreach(var user in Model.Users){
+			@foreach(var key in Model.Users.Keys){ var user = Model.Users[key];
 			<li>
-				@Html.ActionLink(user.UserName, "Details", new{id=user.ProviderUserKey})
-				@using(Html.BeginForm("RemoveFromRole", "UserAdministration", new{id = user.ProviderUserKey, role = Model.Role})){
-					<input type="submit" value="Remove From" />
+				@if(user == null){
+					<span>@key <em>(Deleted)</em></span>
+				}else{
+					@Html.ActionLink(user.UserName, "Details", new{id=user.ProviderUserKey})
+					using(Html.BeginForm("RemoveFromRole", "UserAdministration", new{id = user.ProviderUserKey, role = Model.Role})){
+						<input type="submit" value="Remove From" />
+					}
 				}
 			</li>
 			}
