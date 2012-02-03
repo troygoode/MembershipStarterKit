@@ -43,13 +43,14 @@ instructions:
 3. Configure the `system.net/mailSettings/smtp` node in your web.config file with the appropriate SMTP settings so that emails can be sent for password change/reset events.
 4. Make sure the user identity of your application pool has sufficient permissions to the aspnet database.
 5. Add the following code to your `global.asax` to keep the membership system updated with each user's last activity date:
-<pre>
-    protected void Application_AuthenticateRequest()
-    {
-        if(HttpContext.Current.User != null)
-            Membership.GetUser(true);
-    }
-</pre>
+
+```csharp
+protected void Application_AuthenticateRequest()
+{
+    if(HttpContext.Current.User != null)
+        Membership.GetUser(true);
+}
+```
 
 ## Integrate the Views
 
@@ -57,8 +58,9 @@ instructions:
 2. That master page and any contained views will need to specify their Area when generating links, even views not in an area (so the default master page would requires fixes). If the link is not to a page in an area (typical), then an Area of "" (empty string) should be specified. For instance, a call to generate a link to the homepage should look like so:
     `Html.ActionLink("Home", "Index", "Home", new {Area = ""}, new {})`
 3. Add a User Administration link to your master page (change "Administrator" to whatever role you want to use):
-<pre>
-    &lt;% if (Roles.IsUserInRole("Administrator")){ %&gt;
-        &lt;li&gt;&lt;%= Html.ActionLink("User Administration", "Index", "UserAdministration", new { Area = "UserAdministration" }, new { })%&gt;&lt;/li&gt;
-    &lt;% } %&gt;
-</pre>
+
+```html
+<% if (Roles.IsUserInRole("Administrator")){ %>
+    <li><%= Html.ActionLink("User Administration", "Index", "UserAdministration", new { Area = "UserAdministration" }, new { }) %></li>
+<% } %>
+```
