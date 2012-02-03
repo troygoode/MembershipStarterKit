@@ -59,7 +59,7 @@ protected void Application_AuthenticateRequest()
     `Html.ActionLink("Home", "Index", "Home", new {Area = ""}, new {})`
 3. Add a User Administration link to your master page (change "Administrator" to whatever role you want to use):
 
-```html
+```erb
 <% if (Roles.IsUserInRole("Administrator")){ %>
     <li><%= Html.ActionLink("User Administration", "Index", "UserAdministration", new { Area = "UserAdministration" }, new { }) %></li>
 <% } %>
