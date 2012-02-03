@@ -114,6 +114,11 @@
              The default settings render all navigation links and no descriptive text.
             </summary>
         </member>
+        <member name="P:PagedList.Mvc.PagedListRenderOptions.ClassToApplyToLastListItemInPager">
+            <summary>
+             Specifies a class to append to the last list item in the pager. If null or whitespace is defined, no additional class is added to last list item in list.
+            </summary>
+        </member>
         <member name="P:PagedList.Mvc.PagedListRenderOptions.DisplayLinkToFirstPage">
             <summary>
              When true, includes a hyperlink to the first page of the list.
@@ -242,6 +247,11 @@
         <member name="P:PagedList.Mvc.PagedListRenderOptions.DelimiterBetweenPageNumbers">
             <summary>
             Text that will appear between each page number. If null or whitespace is specified, no delimiter will be shown.
+            </summary>
+        </member>
+        <member name="P:PagedList.Mvc.PagedListRenderOptions.DefaultPlusFirstAndLast">
+            <summary>
+             Also includes links to First and Last pages.
             </summary>
         </member>
         <member name="P:PagedList.Mvc.PagedListRenderOptions.Minimal">
