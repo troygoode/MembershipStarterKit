@@ -328,6 +328,24 @@
             <returns>A subset of this collection of objects that can be individually accessed by index and containing metadata about the collection of objects the subset was created from.</returns>
             <seealso cref="T:PagedList.PagedList`1"/>
         </member>
+        <member name="M:PagedList.PagedListExtensions.Split``1(System.Collections.Generic.IEnumerable{``0},System.Int32)">
+            <summary>
+            Splits a collection of objects into n pages with an (for example, if I have a list of 45 shoes and say 'shoes.Split(5)' I will now have 4 pages of 10 shoes and 1 page of 5 shoes.
+            </summary>
+            <typeparam name="T">The type of object the collection should contain.</typeparam>
+            <param name="superset">The collection of objects to be divided into subsets.</param>
+            <param name="numberOfPages">The number of pages this collection should be split into.</param>
+            <returns>A subset of this collection of objects, split into n pages.</returns>
+        </member>
+        <member name="M:PagedList.PagedListExtensions.Partition``1(System.Collections.Generic.IEnumerable{``0},System.Int32)">
+            <summary>
+            Splits a collection of objects into an unknown number of pages with n items per page (for example, if I have a list of 45 shoes and say 'shoes.Partition(10)' I will now have 4 pages of 10 shoes and 1 page of 5 shoes.
+            </summary>
+            <typeparam name="T">The type of object the collection should contain.</typeparam>
+            <param name="superset">The collection of objects to be divided into subsets.</param>
+            <param name="pageSize">The maximum number of items each page may contain.</param>
+            <returns>A subset of this collection of objects, split into pages of maximum size n.</returns>
+        </member>
         <member name="T:PagedList.StaticPagedList`1">
             <summary>
             Represents a subset of a collection of objects that can be individually accessed by index and containing metadata about the superset collection of objects this subset was created from.
