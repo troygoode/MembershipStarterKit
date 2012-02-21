@@ -15,7 +15,7 @@ using System.Security;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Troy Goode")]
 [assembly: AssemblyProduct("ASP.Net MVC Membership Starter Kit")]
-[assembly: AssemblyCopyright("Copyright © Troy Goode 2008-2010")]
+[assembly: AssemblyCopyright("Copyright © Troy Goode 2008-2012")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -40,5 +40,5 @@ using System.Security;
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
 
-[assembly: AssemblyVersion("3.4.0.0")]
-[assembly: AssemblyFileVersion("3.4.0.0")]
+[assembly: AssemblyVersion("3.5.0")]
+[assembly: AssemblyFileVersion("3.5.0")]
