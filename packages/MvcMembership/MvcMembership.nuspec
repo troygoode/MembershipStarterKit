@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata schemaVersion="2">
 	<id>MvcMembership</id>
-	<version>3.6.0</version>
+	<version>3.7.0</version>
 	<authors>Troy Goode</authors>
 	<owners>TroyGoode</owners>
 	<description><![CDATA[The starter kit provides the Asp.Net MVC controllers, models, and views needed to administer users & roles. This package contains classes needed by the MvcMembership.Mvc package to provide a testable interface to ASP.Net's MembershipProvider and RoleProvider features.]]></description>

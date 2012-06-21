@@ -114,6 +114,14 @@
              The default settings render all navigation links and no descriptive text.
             </summary>
         </member>
+        <member name="M:PagedList.Mvc.PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(PagedList.Mvc.PagedListRenderOptions,System.String)">
+            <summary>
+            Enables ASP.NET MVC's unobtrusive AJAX feature. An XHR request will retrieve HTML from the clicked page and replace the innerHtml of the provided element ID.
+            </summary>
+            <param name="options">The preferred Html.PagedList(...) style options.</param>
+            <param name="id">The element ID ("#my_id") of the element whose innerHtml should be replaced.</param>
+            <returns>The PagedListRenderOptions value passed in, with unobtrusive AJAX attributes added to the page links.</returns>
+        </member>
         <member name="P:PagedList.Mvc.PagedListRenderOptions.ContainerDivClasses">
             <summary>
              CSS Classes to append to the &lt;div&gt; element that wraps the paging control.
@@ -267,6 +275,11 @@
         <member name="P:PagedList.Mvc.PagedListRenderOptions.DelimiterBetweenPageNumbers">
             <summary>
             Text that will appear between each page number. If null or whitespace is specified, no delimiter will be shown.
+            </summary>
+        </member>
+        <member name="P:PagedList.Mvc.PagedListRenderOptions.FunctionToTransformEachPageLink">
+            <summary>
+            An extension point which allows you to fully customize the anchor tags used for clickable pages, as well as navigation features such as Next, Last, etc.
             </summary>
         </member>
         <member name="P:PagedList.Mvc.PagedListRenderOptions.DefaultPlusFirstAndLast">

@@ -8,6 +8,7 @@ namespace MvcMembership
 	public class AuthorizeUnlessOnlyUserAttribute : AuthorizeAttribute
 	{
 		private static bool _hasAtLeastTwoUsers;
+		private static bool _hasAtLeastOneRole;
 		private readonly IRolesService _rolesService;
 		private readonly IUserService _userService;
 		private string[] _rolesSplit;
@@ -51,7 +52,9 @@ namespace MvcMembership
 				return false;
 
 			//added the check for whether the role service is enabled or not. if it isn't, don't validate on that
-			if (!_rolesService.Enabled || !_rolesSplit.Any())
+			if (_hasAtLeastOneRole || _rolesService.FindAll().Any())
+				_hasAtLeastOneRole = true;
+			if (!_rolesService.Enabled || !_rolesSplit.Any() || !_hasAtLeastOneRole)
 				return true;
 
 			//is this user in one of the necessary roles?
