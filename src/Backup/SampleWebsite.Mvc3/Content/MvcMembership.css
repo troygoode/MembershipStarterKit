@@ -1,0 +1,84 @@
+﻿p.mvcMembership-warning{
+	color: #cc0000;
+	font-weight: bold;
+	border: 2px solid #cc0000;
+	padding: 1em;
+	border-radius: .5em;
+	text-align: center;
+}
+
+h3.mvcMembership{
+	clear: left;
+}
+
+ul.mvcMembership-paging > li{
+	float: left;
+	list-style-type: none;
+	margin: 1em;
+}
+
+ul.mvcMembership > li > form{
+	display: inline;
+	margin-left: 1em;
+}
+
+dl.mvcMembership{
+	margin-left: .9em;
+}
+dl.mvcMembership > dt{
+	display: block;
+	float: left;
+	clear: left;
+	height: 1.75em;
+	margin-right: 1em;
+}
+dl.mvcMembership > dd{
+	display: block;
+	height: 1.75em;
+}
+
+div.mvcMembership-account > form{
+	display: inline;
+}
+
+div.mvcMembership-allUsers ul{
+	margin: 0;
+}
+div.mvcMembership-allUsers ul.mvcMembership-users > li{
+	margin: .5em 0 .5em 0;
+}
+div.mvcMembership-allUsers ul.mvcMembership-users > li > span.mvcMembership-isOnline{
+	display: block;
+	font-weight: bold;
+	color: #33cc33;
+}
+div.mvcMembership-allUsers ul.mvcMembership-users > li > span.mvcMembership-isOffline{
+	display: block;
+	color: #999;
+}
+div.mvcMembership-allUsers ul.mvcMembership-users > li > span.mvcMembership-email{
+	display: block;
+	font-size: .8em;
+}
+div.mvcMembership-allUsers ul.mvcMembership-users > li > span.mvcMembership-comment{
+	display: block;
+	border: 1px solid #ccc;
+	padding: .25em .5em .25em .5em;
+	margin: .5em 0 .5em 0;
+}
+
+div.mvcMembership-allUsers .PagedList-disabled a{
+	color: #666;
+}
+div.mvcMembership-allUsers .PagedList-disabled a:hover{
+	color: #666;
+}
+
+div.mvcMembership-allRoles ul > li{
+	margin: .5em 0 .5em 0;
+}
+
+form.mvcMembership-searchForm fieldset,
+.mvcMembership-allRoles fieldset{
+	padding-top: 1.5em;
+}

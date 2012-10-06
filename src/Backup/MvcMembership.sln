@@ -1,0 +1,47 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3BC95434-BABE-4954-9DE3-B88B7A5EE2DB}"
+	ProjectSection(SolutionItems) = preProject
+		..\LICENSE.txt = ..\LICENSE.txt
+		..\packages\MvcMembership.Mvc\MvcMembership.Mvc.nuspec = ..\packages\MvcMembership.Mvc\MvcMembership.Mvc.nuspec
+		..\packages\MvcMembership\MvcMembership.nuspec = ..\packages\MvcMembership\MvcMembership.nuspec
+		..\rakefile.rb = ..\rakefile.rb
+		..\README.markdown = ..\README.markdown
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcMembership", "MvcMembership\MvcMembership.csproj", "{C9D7F653-E589-44CE-9D41-89821F4F9E4E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcMembership.Tests", "MvcMembership.Tests\MvcMembership.Tests.csproj", "{B48B10DD-E450-49AF-A1FA-102AC165DEEA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleWebsite.Mvc3", "SampleWebsite.Mvc3\SampleWebsite.Mvc3.csproj", "{65C3A21B-D946-45B6-8A7E-2DBB98E35E0C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleWebsite.Mvc3.Tests", "SampleWebsite.Mvc3.Tests\SampleWebsite.Mvc3.Tests.csproj", "{BC267EA5-FC39-41CA-A032-84AB5AF0AFD4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C9D7F653-E589-44CE-9D41-89821F4F9E4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9D7F653-E589-44CE-9D41-89821F4F9E4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9D7F653-E589-44CE-9D41-89821F4F9E4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9D7F653-E589-44CE-9D41-89821F4F9E4E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B48B10DD-E450-49AF-A1FA-102AC165DEEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B48B10DD-E450-49AF-A1FA-102AC165DEEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B48B10DD-E450-49AF-A1FA-102AC165DEEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B48B10DD-E450-49AF-A1FA-102AC165DEEA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65C3A21B-D946-45B6-8A7E-2DBB98E35E0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65C3A21B-D946-45B6-8A7E-2DBB98E35E0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65C3A21B-D946-45B6-8A7E-2DBB98E35E0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65C3A21B-D946-45B6-8A7E-2DBB98E35E0C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC267EA5-FC39-41CA-A032-84AB5AF0AFD4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC267EA5-FC39-41CA-A032-84AB5AF0AFD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC267EA5-FC39-41CA-A032-84AB5AF0AFD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC267EA5-FC39-41CA-A032-84AB5AF0AFD4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata schemaVersion="2">
 	<id>MvcMembership.Mvc</id>
-	<version>3.7.0</version>
+	<version>3.8.0</version>
 	<authors>Troy Goode</authors>
 	<owners>TroyGoode</owners>
 	<description><![CDATA[The starter kit provides the Asp.Net MVC controllers, models, and views needed to administer users & roles.]]></description>
@@ -11,9 +11,9 @@
 	<projectUrl>http://github.com/TroyGoode/MembershipStarterKit</projectUrl>
 	<licenseUrl>http://www.opensource.org/licenses/mit-license.php</licenseUrl>
 	<dependencies>
-		<dependency id="PagedList" version="1.14" />
-		<dependency id="PagedList.Mvc" version="3.15" />
-		<dependency id="MvcMembership" version="3.7.0" />
+		<dependency id="PagedList" version="1.15" />
+		<dependency id="PagedList.Mvc" version="3.18" />
+		<dependency id="MvcMembership" version="3.8.0" />
 		<dependency id="DataAnnotationsExtensions.MVC3" version="0.6" />
 		<dependency id="WebActivator" version="1.4.1" />
 	</dependencies>
