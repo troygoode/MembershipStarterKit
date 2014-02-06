@@ -1,3 +1,7 @@
+# ASP.NET MVC Membership Starter Kit
+
+**[Follow me (@troygoode) on Twitter!](https://twitter.com/intent/user?screen_name=troygoode)**
+
 # What is the Asp.Net MVC Membership Starter Kit?
 
 The starter kit currently consists of two things:
