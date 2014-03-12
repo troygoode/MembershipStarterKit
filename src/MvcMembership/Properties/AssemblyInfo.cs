@@ -19,6 +19,11 @@ using System.Security;
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
+// Fix for error with MVC 5: 
+// Compiling transformation: The type or namespace name 'MvcTextTemplateHost' 
+// could not be found (are you missing a using directive or an assembly reference
+[assembly: SecurityRules(SecurityRuleSet.Level1)]
+
 // Setting ComVisible to false makes the types in this assembly not visible 
 // to COM components.  If you need to access a type in this assembly from 
 // COM, set the ComVisible attribute to true on that type.
